@@ -1,9 +1,9 @@
 <?php
 namespace Demo\Web;
 
-use PhalconPlus\Module as PPModule;
+use PhalconPlus\Base\AbstractModule as PlusModule;
 
-class Module extends PPModule
+class Module extends PlusModule
 {
     public function registerAutoloaders()
     {
@@ -24,7 +24,7 @@ class Module extends PPModule
         $config = $di->get('config');
 
         // registering a dispatcher
-        $di->has("dispached") || $di->set('dispatcher', function () use ($di) {
+        $di->has("dispatched") || $di->set('dispatcher', function () use ($di) {
             $evtManager = $di->getShared('eventsManager');
             $evtManager->attach("dispatch:beforeException", function ($event, $dispatcher, $exception) {
                 switch ($exception->getCode()) {
