@@ -1,6 +1,8 @@
 <?php
 ini_set("memory_limit", "4G");
+
 $bootstrap = new \PhalconPlus\Bootstrap(dirname(dirname(__DIR__)));
+
 $di = new \Phalcon\DI\FactoryDefault\CLI();
 $di->set("dispatched", function() {
     return true;
@@ -20,5 +22,4 @@ foreach($argv as $k => $arg) {
         $arguments['params'][] = $arg;
     }
 }
-
 $bootstrap->execTask($arguments, $di);
