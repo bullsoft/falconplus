@@ -9,7 +9,7 @@ return array(
         "ns"    => "Demo\Web\\",
         "mode"  => "Web",
         "staticUri" => "/",
-        "url" => "https://demo.phalconplus.com",
+        "url" => "http//demo.phalconplus.com/",
 	"logFilePath" => "/tmp/demo_phalconplus.log",
     ),
 );
