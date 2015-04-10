@@ -23,7 +23,7 @@ class Module extends PlusModule
         // get config
         $config = $di->get('config');
 
-        // registering a dispatcher
+        // register a dispatcher
         $di->has("dispatched") || $di->set('dispatcher', function () use ($di) {
             $evtManager = $di->getShared('eventsManager');
             $evtManager->attach("dispatch:beforeException", function ($event, $dispatcher, $exception) {
@@ -42,8 +42,13 @@ class Module extends PlusModule
             $dispatcher->setDefaultNamespace(__NAMESPACE__."\\Controllers\\");
             return $dispatcher;
         });
-
-
+        
+        // register db service 
+        $di->setShared('dbDemo', function() use ($di) {
+            $mysql = new \PhalconPlus\Db\Mysql($di, "dbDemo");
+            return $mysql->getConnection();
+        });
+        
         // set view with volt
         $di->set('view', function() use ($di) {
             $view = new \Phalcon\Mvc\View();
