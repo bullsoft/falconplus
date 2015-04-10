@@ -9,8 +9,9 @@ class Module extends PlusModule
     {
         $loader = new \Phalcon\Loader();
         $loader->registerNamespaces(array(
-            __NAMESPACE__.'\Controllers' => __DIR__.'/controllers/',
-            __NAMESPACE__.'\Models'      => __DIR__.'/models/',
+            __NAMESPACE__.'\\Controllers' => __DIR__.'/controllers/',
+            __NAMESPACE__.'\\Models'      => __DIR__.'/models/',
+            "Demo\\Protos"                => APP_ROOT_COMMON_DIR.'/protos/',
         ))->register();
     }
     
@@ -47,6 +48,18 @@ class Module extends PlusModule
         $di->setShared('dbDemo', function() use ($di) {
             $mysql = new \PhalconPlus\Db\Mysql($di, "dbDemo");
             return $mysql->getConnection();
+        });
+
+        $di->set("rpc", function() use ($di, $config, $bootstrap) {
+            $client = null;
+            if($config->debugRPC == true) {
+                $bootstrap->dependModule("server");
+                $client = new \PhalconPlus\RPC\Client\Adapter\Local($di);
+            } else {
+                $remoteUrls = $config->demoServerUrl;
+                $client = new \PhalconPlus\RPC\Client\Adapter\Remote($remoteUrls->toArray());
+            }
+            return $client;
         });
         
         // set view with volt

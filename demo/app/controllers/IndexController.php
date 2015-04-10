@@ -25,4 +25,19 @@ class IndexController extends \Phalcon\Mvc\Controller
         
         var_dump($b->toArray());
     }
+
+    public function rpcAction()
+    {
+        $request = new \Demo\Protos\RequestDemo();
+        $request->setFoo("hello")
+                ->setBar("world");
+        
+        $response = $this->rpc->callByObject(array(
+            "service" => "\\Demo\\Server\\Services\\Demo",
+            "method" => "demo",
+            "args"   => $request,
+        ));
+        
+        echo json_encode($response);
+    }
 }
