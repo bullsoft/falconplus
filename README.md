@@ -1,8 +1,10 @@
 # falconplus
 
-1. mkdir /tmp/compiled/
+1. 先安装 phalconplus，一个构建在phalconphp之上PHP扩展
 
-2. Nginx配置
+2. mkdir /tmp/compiled/
+
+3. Nginx配置
 
 ```nginx
     server {
