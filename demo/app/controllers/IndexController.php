@@ -31,7 +31,13 @@ class IndexController extends \Phalcon\Mvc\Controller
         $request = new \Demo\Protos\RequestDemo();
         $request->setFoo("hello")
                 ->setBar("world");
-        
+
+        $protoUser = new \Demo\Protos\ProtoUser();
+        $protoUser->setUsername("guweigang")
+                  ->setPassword("123456");
+
+        $request->setUser($protoUser);
+
         $response = $this->rpc->callByObject(array(
             "service" => "\\Demo\\Server\\Services\\Demo",
             "method" => "demo",

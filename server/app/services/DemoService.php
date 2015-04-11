@@ -10,7 +10,17 @@ class DemoService extends \PhalconPlus\Base\Service
         $response = new ResponseDemo();
         error_log("Service get input: " . var_export($request, true));
         error_log("Server application name: " . $this->config->application->name);
-        $response->setResult($request->getFoo() . " + " . $request->getBar());
+
+        $result = "";
+        
+        if(isset($request->user) && $request->getUser()) {
+            $result .= "Hi, " . ucfirst($request->getUser()->getUsername()) . ": ";
+        }
+        
+        $result .= $request->getFoo() . " + " . $request->getBar();
+        
+        $response->setResult($result);
+        
         return $response;
     }
 }

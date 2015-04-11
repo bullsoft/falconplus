@@ -58,6 +58,7 @@ class Module extends PlusModule
             } else {
                 $remoteUrls = $config->demoServerUrl;
                 $client = new \PhalconPlus\RPC\Client\Adapter\Remote($remoteUrls->toArray());
+                $client->SetOpt(\YAR_OPT_CONNECT_TIMEOUT, 5);
             }
             return $client;
         });

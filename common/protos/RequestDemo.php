@@ -4,8 +4,23 @@ use \PhalconPlus\Base\ProtoBuffer;
 
 class RequestDemo extends ProtoBuffer
 {
+    /**
+     * @var string
+     * @required
+     */
     private $foo;
+
+    /**
+     * @var string
+     * @required
+     */
     private $bar;
+
+    /**
+     * @var \Demo\Protos\ProtoUser
+     * @optional
+     */
+    private $user = null;
 
     public function setFoo($a)
     {
@@ -27,5 +42,16 @@ class RequestDemo extends ProtoBuffer
     public function getBar()
     {
         return $this->bar;
+    }
+
+    public function setUser(ProtoUser $user)
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    public function getUser()
+    {
+        return $this->user;
     }
 }
