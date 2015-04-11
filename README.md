@@ -1,6 +1,6 @@
-# falconplus
+# falconplus - 一个构建在phalconphp之上PHP扩展
 
-1. 先安装 phalconplus，一个构建在phalconphp之上PHP扩展
+1. 先安装 phalcon, phalconplus, yar, msgpack
 
 2. mkdir /tmp/compiled/
 
@@ -30,4 +30,30 @@
           deny all;
       }
    }
+```
+
+## 演示
+ - Frontend: http://demo.phalconphp.org
+ - Backend: http://server.phalconphp.org
+
+如果你想调用PhalconPlus的服务，你也可以这样开始：
+
+```php
+<?php
+$client = new \Yar_Client("http://server.phalconphp.org");
+$client->SetOpt(YAR_OPT_CONNECT_TIMEOUT, 3);
+
+$result = $client->callByObject(array(
+    "service" => "\\Demo\Server\Services\\Demo",
+    "method" => "demo",
+    "args" => array(
+        "foo" => "hello",
+        "bar" => "world",
+        "user" => array(
+            "username" => "guweigang",
+            "password" => "123456",
+        ),
+    ),
+));
+echo json_encode($result);
 ```
