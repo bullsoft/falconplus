@@ -1,7 +1,7 @@
 <?php
 return array(
     'application' => array(
-        "name"  => "demoServer",
+        "name"  => "demoServerDev",
         "ns"    => "Demo\\Server\\",
         "mode"  => "Srv",
         "staticUri" => "/",

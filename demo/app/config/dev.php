@@ -22,7 +22,7 @@ return array(
         "timeout" => 3, // 3 秒
     ),
     'demoServerUrl' => array(
-        // "http://server.phalconphp.org",
+        //"http://server.phalconphp.org",
         "http://server.phalconplus.com",
     ),
     'debugRPC' => false,

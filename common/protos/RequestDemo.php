@@ -44,7 +44,7 @@ class RequestDemo extends ProtoBuffer
         return $this->bar;
     }
 
-    public function setUser(ProtoUser $user)
+    public function setUser(\Demo\Protos\ProtoUser $user)
     {
         $this->user = $user;
         return $this;
