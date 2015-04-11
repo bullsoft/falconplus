@@ -9,7 +9,7 @@ return array(
         "ns"    => "Demo\Web\\",
         "mode"  => "Web",
         "staticUri" => "/",
-        "url" => "http//demo.phalconplus.com/",
+        "url" => "http//demo.phalconphp.org/",
         "logFilePath" => "/tmp/demo_phalconplus.log",
     ),
     'dbDemo' => array(
@@ -22,8 +22,9 @@ return array(
         "timeout" => 3, // 3 秒
     ),
     'demoServerUrl' => array(
-        // "http://server.phalconphp.org",
-        "http://server.phalconplus.com",
+        "http://server.phalconphp.org",
+        "http://server.phalconphp.org",
+        "http://server.phalconphp.org",
     ),
     'debugRPC' => false,
 );
