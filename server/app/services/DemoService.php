@@ -23,5 +23,11 @@ class DemoService extends \PhalconPlus\Base\Service
         
         return $response;
     }
+
+    public function simple(\PhalconPlus\Base\SimpleRequest $request)
+    {
+        return $request->getParam(2);
+    }
+        
 }
 

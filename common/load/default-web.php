@@ -23,6 +23,11 @@ $di->set('flash', function () {
     return $flash;
 });
 
+// Pseudo-static Url
+if(isset($_GET['_url'])) {
+    $_GET['_url'] = str_replace(array('.html', '.htm', '.jsp', '.shtml'), '', $_GET['_url']);
+}
+
 // register rules for router
 $di->set('router', function () use ($config) {
     $router = new \Phalcon\Mvc\Router();
@@ -32,7 +37,7 @@ $di->set('router', function () use ($config) {
         'params'     => 3,
     ))->beforeMatch(function ($uri, $route) {
         // support '-' in controllers and actions
-        $_GET['_url'] = str_replace('-', '', $_GET['_url']);
+        // $_GET['_url'] = str_replace('-', '', $_GET['_url']);
     });
     $router->handle();
     return $router;
