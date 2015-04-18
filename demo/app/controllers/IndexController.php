@@ -152,7 +152,7 @@ class IndexController extends \Phalcon\Mvc\Controller
     {
         $logger = new \Phalcon\Logger\Adapter\File($this->di->getConfig()->application->logFilePath);
         try {
-            throw new \PhalconPlus\Base\Exception("Test Exception");
+            // throw new \PhalconPlus\Base\Exception("Test Exception");
             // throw new \Demo\Protos\ExceptionUserNotExists("User 3 not exists in database");
             throw new \Demo\Protos\ExceptionUserNotExists("User 3 not exists in database", $logger);
         } catch (\Exception $e) {

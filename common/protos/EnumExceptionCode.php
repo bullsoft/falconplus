@@ -64,7 +64,8 @@ class EnumExceptionCode extends AbstractEnum
         $code = new self($eCode);
         $codeMap2Name = array_flip(self::validValues(true));
         $eName = $codeMap2Name[$eCode];
-        $eClassName = __NAMESPACE__."\\Exception".\Phalcon\Text::camelize($eName); // USER_NOT_EXISTS -> \Demo\Protos\ExceptionUserNotExists
+        // USER_NOT_EXISTS -> \Demo\Protos\ExceptionUserNotExists
+        $eClassName = __NAMESPACE__."\\Exception".\Phalcon\Text::camelize($eName); 
         $exception = new $eClassName($code->getMessage());
         $exception->setCode($code->getCode());
         $exception->setLevel($code->getLevel());
