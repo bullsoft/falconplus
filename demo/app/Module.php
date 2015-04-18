@@ -75,6 +75,10 @@ class Module extends PlusModule
                         "compiledPath"      => $di->get('config')->view->compiledPath,
                         "compiledExtension" => $di->get('config')->view->compiledExtension,
                     ));
+                    // 如果模板缓存目录不存在，则创建它
+                    if(!file_exists($di->get('config')->view->compiledPath)) {
+                        mkdir($di->get('config')->view->compiledPath, 0777, true);
+                    }
                     $compiler = $volt->getCompiler();
                     $compiler->addExtension(new \PhalconPlus\Volt\Extension\PhpFunction());
                     return $volt;

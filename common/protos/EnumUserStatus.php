@@ -4,7 +4,7 @@ use \PhalconPlus\Enum\AbstractEnum;
 
 class EnumUserStatus extends AbstractEnum
 {
-    const __default = 0;
+    const __default = self::NORMAL;
 
     const NORMAL = 0;
     const INIT = 1;

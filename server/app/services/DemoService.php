@@ -15,6 +15,9 @@ class DemoService extends \PhalconPlus\Base\Service
         
         if(isset($request->user) && $request->getUser()) {
             $result .= "Hi, " . ucfirst($request->getUser()->getUsername()) . ": ";
+            if(isset($request->getUser()->status) && $request->getUser()->getStatus() != null) {
+                $result .= ", Your status is " . $request->getUser()->getStatus() . " and ";
+            }
         }
         
         $result .= $request->getFoo() . " + " . $request->getBar();

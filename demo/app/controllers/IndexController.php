@@ -4,12 +4,18 @@ use Demo\Web\Models\DealRecord;
 
 class IndexController extends \Phalcon\Mvc\Controller
 {
+    /**
+     * 模板使用示例
+     */
     public function indexAction()
     {
         $this->view->setVar("hello", "hello, world! ");
         $this->view->setVar("world", array("foo" => "bar"));
     }
 
+    /**
+     * Query Builder查询示例
+     */
     public function dbAction()
     {
         $a = DealRecord::find()->toArray();
@@ -24,6 +30,9 @@ class IndexController extends \Phalcon\Mvc\Controller
         var_dump($b->toArray());
     }
 
+    /**
+     * 复杂RPC调用示例
+     */
     public function rpcAction()
     {
         $request = new \Demo\Protos\RequestDemo();
@@ -32,7 +41,8 @@ class IndexController extends \Phalcon\Mvc\Controller
 
         $protoUser = new \Demo\Protos\ProtoUser();
         $protoUser->setUsername("guweigang")
-                  ->setPassword("123456");
+                  ->setPassword("123456")
+                  ->setStatus(new \Demo\Protos\EnumUserStatus(3));
 
         $request->setUser($protoUser);
 
@@ -45,6 +55,9 @@ class IndexController extends \Phalcon\Mvc\Controller
         echo json_encode($response);
     }
 
+    /**
+     * 简单RPC调用示例
+     */
     public function simplerpcAction()
     {
         $request = new \PhalconPlus\Base\SimpleRequest();
@@ -59,6 +72,9 @@ class IndexController extends \Phalcon\Mvc\Controller
         var_dump($response);
     }
 
+    /**
+     * 分页类使用示例
+     */
     public function pagableAction()
     {
         $pagable = new \PhalconPlus\Base\Pagable();
@@ -79,6 +95,9 @@ class IndexController extends \Phalcon\Mvc\Controller
         var_dump($pagable->toArray());
     }
 
+    /**
+     * 分页查询示例
+     */
     public function pageAction()
     {
         $pagable = new \PhalconPlus\Base\Pagable();
@@ -104,6 +123,10 @@ class IndexController extends \Phalcon\Mvc\Controller
         var_dump($page->toArray());
     }
 
+    /**
+     * 枚举示例，当传入的值不在枚举范围内时，会抛异常
+     *
+     */
     public function enumAction($userStatus = 0)
     {
         try {
@@ -120,5 +143,30 @@ class IndexController extends \Phalcon\Mvc\Controller
         } catch (\Exception $e) {
             echo "Exception: " . $e->getMessage();
         }
+    }
+
+    /**
+     * 抛异常示例，如果传入日志类对象，则会打印日志
+     */
+    public function eAction()
+    {
+        $logger = new \Phalcon\Logger\Adapter\File($this->di->getConfig()->application->logFilePath);
+        try {
+            throw new \PhalconPlus\Base\Exception("Test Exception");
+            // throw new \Demo\Protos\ExceptionUserNotExists("User 3 not exists in database");
+            throw new \Demo\Protos\ExceptionUserNotExists("User 3 not exists in database", $logger);
+        } catch (\Exception $e) {
+            echo $e->getMessage() . "<br />";
+            echo $e->getCode() . "<br />";
+            echo $e->getLevel() . "<br />";
+        }
+    }
+
+    /**
+     * 通过Code唤醒异常
+     */
+    public function wakeExceptionAction()
+    {
+        throw \Demo\Protos\EnumExceptionCode::newException(10001);
     }
 }
