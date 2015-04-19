@@ -1,6 +1,6 @@
 <?php
 namespace Demo\Protos;
-use \PhalconPlus\Enum\AbstractEnum;
+use \PhalconPlus\Enum\Exception as EnumException;
 use \PhalconPlus\Assert\Assertion as Assert;
 
 /** 
@@ -17,7 +17,7 @@ use \PhalconPlus\Assert\Assertion as Assert;
  * </code>
  *
  */
-class EnumExceptionCode extends AbstractEnum
+class EnumExceptionCode extends EnumException
 {
     const __default = self::UNKNOWN;
 
@@ -29,7 +29,7 @@ class EnumExceptionCode extends AbstractEnum
     const AUTH_FAILED = 10002;
     const NEED_LOGIN = 10003;
 
-    private static $details = [
+    protected static $details = [
 
         self::UNKNOWN => [
             "message" => "未知错误",
@@ -42,48 +42,9 @@ class EnumExceptionCode extends AbstractEnum
         ],
         
     ];
-    
-    public static function has(EnumExceptionCode $code)
+   
+    public static function exceptionClassPrefix()
     {
-        return isset(self::$details[$code->__toString()]);
-    }
-    
-    public static function getByCode(EnumExceptionCode $code)
-    {
-        $detail = [];
-        if(self::has($code)) {
-            $detail = self::$details[$code->__toString()];
-            $detail["code"] = $code->__toString();
-        }
-        return $detail;
-    }
-
-    public static function newException($eCode)
-    {
-        Assert::notEmpty($eCode);
-        $code = new self($eCode);
-        $codeMap2Name = array_flip(self::validValues(true));
-        $eName = $codeMap2Name[$eCode];
-        // USER_NOT_EXISTS -> \Demo\Protos\ExceptionUserNotExists
-        $eClassName = __NAMESPACE__."\\Exception".\Phalcon\Text::camelize($eName); 
-        $exception = new $eClassName($code->getMessage());
-        $exception->setCode($code->getCode());
-        $exception->setLevel($code->getLevel());
-        return $exception;
-    }
-
-    public function getMessage()
-    {
-        return self::$details[$this->getValue()]["message"];
-    }
-
-    public function getLevel()
-    {
-        return self::$details[$this->getValue()]["level"];
-    }
-
-    public function getCode()
-    {
-        return $this->getValue();
+        return __NAMESPACE__ . "\\Exception";
     }
 }

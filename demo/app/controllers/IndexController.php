@@ -27,6 +27,15 @@ class IndexController extends \Phalcon\Mvc\Controller
            ->getQuery()
            ->execute();
         
+        $profiles = $this->profiler->getProfiles();
+
+        foreach ($profiles as $profile) {
+            echo "SQL Statement: ", $profile->getSQLStatement(), "<br />";
+            echo "Start Time: ", $profile->getInitialTime(), "<br />";
+            echo "Final Time: ", $profile->getFinalTime(), "<br />";
+            echo "Total Elapsed Time: ", $profile->getTotalElapsedSeconds(), "<br />";
+        }
+
         var_dump($b->toArray());
     }
 
@@ -120,6 +129,13 @@ class IndexController extends \Phalcon\Mvc\Controller
             "columns" => "id, dealId, investorId"
         ]);
         
+        $profiles = $this->profiler->getProfiles();
+        foreach ($profiles as $profile) {
+            echo "SQL Statement: ", $profile->getSQLStatement(), "<br />";
+            echo "Start Time: ", $profile->getInitialTime(), "<br />";
+            echo "Final Time: ", $profile->getFinalTime(), "<br />";
+            echo "Total Elapsed Time: ", $profile->getTotalElapsedSeconds(), "<br />";
+        }
         var_dump($page->toArray());
     }
 
@@ -167,6 +183,8 @@ class IndexController extends \Phalcon\Mvc\Controller
      */
     public function wakeExceptionAction()
     {
-        throw \Demo\Protos\EnumExceptionCode::newException(10001);
+        $logger = new \Phalcon\Logger\Adapter\File($this->di->getConfig()->application->logFilePath);
+        throw \Demo\Protos\EnumExceptionCode::newException(10001, $logger);
+        //var_dump(\Demo\Protos\EnumExceptionCode::getByCode(10001));
     }
 }

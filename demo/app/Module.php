@@ -44,11 +44,28 @@ class Module extends PlusModule
             $dispatcher->setDefaultNamespace(__NAMESPACE__."\\Controllers\\");
             return $dispatcher;
         });
+
+        $di->set('profiler', function(){
+            return new \Phalcon\Db\Profiler();
+        }, true);
         
         // register db service 
         $di->setShared('dbDemo', function() use ($di) {
             $mysql = new \PhalconPlus\Db\Mysql($di, "dbDemo");
-            return $mysql->getConnection();
+            $connection = $mysql->getConnection();
+            
+            $eventsManager = new \Phalcon\Events\Manager();
+            $profiler = $di->getProfiler();
+            $eventsManager->attach('db', function($event, $connection) use ($profiler) {
+                if ($event->getType() == 'beforeQuery') {
+                    $profiler->startProfile($connection->getSQLStatement());
+                }
+                if ($event->getType() == 'afterQuery') {
+                    $profiler->stopProfile();
+                }
+            });
+            $connection->setEventsManager($eventsManager);
+            return $connection;
         });
 
         $di->set("rpc", function() use ($di, $config, $bootstrap) {
