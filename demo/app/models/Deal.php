@@ -8,7 +8,7 @@ namespace Demo\Web\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Web\Models
- * @version $Rev:2015-04-12 13:31:17$
+ * @version $Rev:2015-04-20 15:09:04$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class Deal extends \PhalconPlus\Base\Model

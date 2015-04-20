@@ -183,8 +183,17 @@ class IndexController extends \Phalcon\Mvc\Controller
      */
     public function wakeExceptionAction()
     {
-        $logger = new \Phalcon\Logger\Adapter\File($this->di->getConfig()->application->logFilePath);
-        throw \Demo\Protos\EnumExceptionCode::newException(10001, $logger);
+        throw \Demo\Protos\EnumExceptionCode::newException(10001, $this->di->getLogger());
         //var_dump(\Demo\Protos\EnumExceptionCode::getByCode(10001));
+    }
+
+    public function loggerAction()
+    {
+        $this->logger->log("我是日志1");
+        $this->logger->log("我是日志2");
+        $this->logger->log("但是我们是同一个请求产生的日志");
+
+        throw new \Demo\Protos\ExceptionUserNotExists("User 3 not exists in database", $this->di->getLogger());
+
     }
 }

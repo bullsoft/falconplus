@@ -2,6 +2,8 @@
 namespace Demo\Web;
 
 use PhalconPlus\Base\AbstractModule as PlusModule;
+use PhalconPlus\Logger\Processor\Trace as TraceProcessor;
+use PhalconPlus\Logger\Processor\Uid as UidProcessor;
 
 class Module extends PlusModule
 {
@@ -102,6 +104,18 @@ class Module extends PlusModule
                 }
             ));
             return $view;
+        });
+
+        $di->setShared("logger", function() use ($di, $config){
+            $logger = new \PhalconPlus\Logger\Adapter\FilePlus($config->application->logFilePath);
+            $logger->registerExtension(".de", [\Phalcon\Logger::DEBUG]);
+            // 添加formatter
+            $formatter = new \PhalconPlus\Logger\Formatter\LinePlus("[%date%][%trace%][%uid%][%type%] %message%");
+            $formatter->addProcessor("uid", new UidProcessor(18));
+            $formatter->addProcessor("trace", new TraceProcessor(TraceProcessor::T_CLASS));
+            
+            $logger->setFormatter($formatter);
+            return $logger;
         });
     }
 }
