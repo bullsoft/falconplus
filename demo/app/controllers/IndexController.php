@@ -170,7 +170,7 @@ class IndexController extends \Phalcon\Mvc\Controller
         try {
             // throw new \PhalconPlus\Base\Exception("Test Exception");
             // throw new \Demo\Protos\ExceptionUserNotExists("User 3 not exists in database");
-            throw new \Demo\Protos\ExceptionUserNotExists("User 3 not exists in database", $logger);
+            throw new \Demo\Protos\Exception\UserNotExists("User 3 not exists in database", $logger);
         } catch (\Exception $e) {
             echo $e->getMessage() . "<br />";
             echo $e->getCode() . "<br />";
@@ -193,7 +193,7 @@ class IndexController extends \Phalcon\Mvc\Controller
         $this->logger->log("我是日志2");
         $this->logger->log("但是我们是同一个请求产生的日志");
 
-        throw new \Demo\Protos\ExceptionUserNotExists("User 3 not exists in database", $this->di->getLogger());
+        throw new \Demo\Protos\Exception\UserNotExists("User 3 not exists in database", $this->di->getLogger());
 
     }
 }

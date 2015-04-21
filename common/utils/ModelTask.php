@@ -7,7 +7,6 @@ use Zend\Code\Generator\MethodGenerator;
 use Zend\Code\Generator\DocBlock\Tag;
 use Zend\Code\Reflection\ClassReflection;
 
-
 class ModelTask extends \Phalcon\CLI\Task
 {
     public function mainAction(array $params = array())
@@ -18,7 +17,7 @@ class ModelTask extends \Phalcon\CLI\Task
         }
 
         $namespace = $this->di->getConfig()->application->ns . 'Models';
-        $modelDir = dirname(__DIR__) . "/models/";
+        $modelDir = APP_MODULE_DIR . "app/models/";
 
         $dbService = reset($params);
         $connection = $this->di->get($dbService);

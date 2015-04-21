@@ -45,6 +45,6 @@ class EnumExceptionCode extends EnumException
    
     public static function exceptionClassPrefix()
     {
-        return __NAMESPACE__ . "\\Exception";
+        return __NAMESPACE__ . "\\Exception\\";
     }
 }
