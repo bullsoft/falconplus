@@ -6,6 +6,6 @@ namespace Demo\Protos\Exception;
 class AuthFailed extends \PhalconPlus\Base\Exception
 {
     protected $code = 10002;
-    protected $message = '';
+    protected $message = '未知错误';
     protected $level = 7;
 }

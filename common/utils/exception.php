@@ -1,14 +1,30 @@
 <?php
-require dirname(__DIR__) . "/protos/EnumExceptionCode.php";
-require dirname(__DIR__) . "/protos/EnumLoggerLevel.php";
 
-use Demo\Protos\EnumExceptionCode as EnumExceptionCode;
+define("APP_ROOT_COMMON_DIR", dirname(dirname(__DIR__)) . "/common/");
 
-$enumExceptionCode = EnumExceptionCode::validValues(true);
-$exceptionNS = EnumExceptionCode::exceptionClassPrefix();
+$enumExceptionFilePath = APP_ROOT_COMMON_DIR . "protos/EnumExceptionCode.php";
 
-$dir = dirname(__DIR__) . "/protos/Exception/";
+$loader = new \Phalcon\Loader();
+$loader->registerNamespaces(array(
+    "Zend" => APP_ROOT_COMMON_DIR . "vendor/Zend/",
+))->register();
 
+$fileReflector = new Zend\Code\Reflection\FileReflection($enumExceptionFilePath, true);
+$ns = $fileReflector->getNamespace();
+
+$loader = new \Phalcon\Loader();
+$loader->registerNamespaces(array(
+    $ns => APP_ROOT_COMMON_DIR . "protos/"
+))->register();
+
+// 异常类名
+$enumExceptionClass = $ns . "\\EnumExceptionCode";
+
+$enumExceptionCode = $enumExceptionClass::validValues(true);
+$exceptionNS = $enumExceptionClass::exceptionClassPrefix();
+
+$dir = APP_ROOT_COMMON_DIR . "protos/Exception/";
+ 
 $classTemplate = <<<'EOT'
 namespace <<<namespace>>>;
 /**
@@ -39,8 +55,8 @@ foreach ($enumExceptionCode as $className => $code) {
     $replacement["className"] = \Phalcon\Text::camelize($className);
     $replacement["code"] = $code;
     
-    $eCode = new EnumExceptionCode($code);
-    $replacement["message"] = var_export($eCode->getMessage(), true);
+    $eCode = new $enumExceptionClass($code);
+    $replacement["message"] = var_export($eCode->getMessage()?:"未知错误", true);
     $replacement["level"] = $eCode->getLevel();
     
     $class = "<?php\n" . str_replace($tokens, $replacement, $classTemplate);

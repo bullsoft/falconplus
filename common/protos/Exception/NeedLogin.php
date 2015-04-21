@@ -6,6 +6,6 @@ namespace Demo\Protos\Exception;
 class NeedLogin extends \PhalconPlus\Base\Exception
 {
     protected $code = 10003;
-    protected $message = '';
+    protected $message = '未知错误';
     protected $level = 7;
 }
