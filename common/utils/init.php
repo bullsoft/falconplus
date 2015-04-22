@@ -25,8 +25,9 @@ $di->set("dispatched", function() {
 });
 
 $loader = new \Phalcon\Loader();
-$loader->registerDirs(array(__DIR__))
-       ->register();
+$loader->registerDirs(array(
+    __DIR__."/tasks/",
+))->register();
 
 $arguments = array();
 foreach($argv as $k => $arg) {
