@@ -8,25 +8,11 @@ namespace Demo\Web\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Web\Models
- * @version $Rev:2015-04-21 17:55:49$
+ * @version $Rev:2015-04-23 23:42:43$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class DealRecord extends \PhalconPlus\Base\Model
 {
-
-    const OP_NONE = 0;
-
-    const OP_CREATE = 1;
-
-    const OP_UPDATE = 2;
-
-    const OP_DELETE = 3;
-
-    const DIRTY_STATE_PERSISTENT = 0;
-
-    const DIRTY_STATE_TRANSIENT = 1;
-
-    const DIRTY_STATE_DETACHED = 2;
 
     /**
      * @var integer
@@ -77,7 +63,7 @@ class DealRecord extends \PhalconPlus\Base\Model
     }
 
     /**
-     * Set the baz property
+     * When an instance created, it would be executed
      */
     public function onConstruct()
     {
@@ -91,7 +77,7 @@ class DealRecord extends \PhalconPlus\Base\Model
     }
 
     /**
-     * Set the baz property
+     * Column map for database fields and model properties
      */
     public function columnMap()
     {
@@ -107,7 +93,7 @@ class DealRecord extends \PhalconPlus\Base\Model
     }
 
     /**
-     * 返回模型对应的表名
+     * return related table name
      */
     public function getSource()
     {

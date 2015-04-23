@@ -534,6 +534,14 @@ class ClassGenerator extends AbstractGenerator
         return $this->addConstantFromGenerator(new PropertyGenerator($name, $value, PropertyGenerator::FLAG_CONSTANT));
     }
 
+    public function removeConstant($name)
+    {
+        if (isset($this->constants[$name])) {
+            unset($this->constants[$name]);
+        }
+        return $this;
+    }
+    
     /**
      * @param  PropertyGenerator[]|array[] $constants
      *

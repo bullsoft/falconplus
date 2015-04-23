@@ -29,7 +29,14 @@ class ModelTask extends \Phalcon\CLI\Task
             $fullClassName = $namespace . '\\' . $className;
             
             if (class_exists($fullClassName)) {
-                $generator = ClassGenerator::fromReflection(new ClassReflection(new $fullClassName));
+                $cr = new ClassReflection(new $fullClassName);
+                $generator = ClassGenerator::fromReflection($cr);
+                $constants = $generator->getConstants();
+                foreach ($constants as $key => $val) {
+                    if ($cr->getParentClass()->hasConstant($key)) {
+                        $generator->removeConstant($key);
+                    }
+                }
             } else {
                 $generator = new ClassGenerator();
             }
@@ -104,7 +111,7 @@ class ModelTask extends \Phalcon\CLI\Task
                     MethodGenerator::FLAG_PUBLIC,
                     $onConstructBody,
                     DocBlockGenerator::fromArray(array(
-                        'shortDescription' => 'Set the baz property',
+                        'shortDescription' => 'When an instance created, it would be executed',
                         'longDescription'  => null,
                        
                     ))
@@ -116,7 +123,7 @@ class ModelTask extends \Phalcon\CLI\Task
                     MethodGenerator::FLAG_PUBLIC,
                     $columnMapBody,
                     DocBlockGenerator::fromArray(array(
-                        'shortDescription' => 'Set the baz property',
+                        'shortDescription' => 'Column map for database fields and model properties',
                         'longDescription'  => null,
                     ))
                 );
@@ -137,7 +144,7 @@ class ModelTask extends \Phalcon\CLI\Task
                 MethodGenerator::FLAG_PUBLIC,
                 "return '{$table}';\n",
                 DocBlockGenerator::fromArray(array(
-                    'shortDescription' => '返回模型对应的表名',
+                    'shortDescription' => 'return related table name',
                     'longDescription'  => null,
                        
                 ))
