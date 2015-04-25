@@ -48,7 +48,8 @@
         <h2 class="page-header">代码片断</h2>
     </div>
     <div class="col-md-6 col-sm-6">
-            <pre>
+
+            <pre><strong>入口文件</strong>
                 <code class="php">// 入口文件, 仅两行就搞定, 还能再简单吗?
 
 $bootstrap = new \PhalconPlus\Bootstrap(dirname(__DIR__));
@@ -60,7 +61,7 @@ $bootstrap->exec();
             </pre>
     </div>
     <div class="col-md-6 col-sm-6">
-            <pre>
+            <pre><strong>快速使用QueryBuilder</strong>
                 <code class="php">// QueryBuilder
 DealRecord::getInstance() // 非单例,每次创建实例
     ->createBuilder("dr") // dr为模型的别名
@@ -72,7 +73,7 @@ DealRecord::getInstance() // 非单例,每次创建实例
             </pre>
     </div>
     <div class="col-md-8 col-sm-6">
-        <pre>
+        <pre><strong>注册DB服务,添加profiler</strong>
             <code class="php">// register db service
 $di->setShared('dbDemo', function() use ($di) {
     $mysql = new \PhalconPlus\Db\Mysql($di, "dbDemo");
@@ -97,7 +98,7 @@ $di->setShared('dbDemo', function() use ($di) {
     </div>
 
     <div class="col-md-4 col-sm-6">
-        <pre>
+        <pre><strong>db配置,支持连接超时/失败重试</strong>
             <code class="php">// db 配置
 // 支持连接超时,失败重试
 return array(
@@ -123,7 +124,7 @@ return array(
 
 
     <div class="col-md-6 col-sm-6">
-        <pre>
+        <pre><strong>注册RPC服务</strong>
             <code class="php">// 基于Yar的RPC服务
 // Yar是鸟哥(http://www.laruence.com/)为PHP量身定制的RPC
 $di->set("rpc", function() use ($di, $config, $bootstrap) {
@@ -146,7 +147,7 @@ $di->set("rpc", function() use ($di, $config, $bootstrap) {
     </div>
 
     <div class="col-md-6 col-sm-6">
-        <pre>
+        <pre><strong>RPC调用方式</strong>
             <code class="php"> // 基于Yar的RPC服务
 $request = new \Demo\Protos\RequestDemo();
 $request->setFoo("hello")
@@ -170,10 +171,11 @@ echo json_encode($response);
     </div>
 
     <div class="col-md-8 col-sm-6">
-        <pre>
-            <code class="php">//自定义logger格式和处理
+        <pre><strong>注册logger, 自定义是亮点</strong>
+            <code class="php">//自定义log格式和处理
 $di->setShared("logger", function() use ($di, $config){
     $logger = new \PhalconPlus\Logger\Adapter\FilePlus($config->application->logFilePath);
+    // debug类别的日志单独打印在以.de结尾的文件中
     $logger->registerExtension(".de", [\Phalcon\Logger::DEBUG]);
     // 添加formatter
     $formatter = new \PhalconPlus\Logger\Formatter\LinePlus("[%date%][%trace%][%uid%][%type%] %message%");
@@ -187,7 +189,7 @@ $di->setShared("logger", function() use ($di, $config){
         </pre>
     </div>
     <div class="col-md-4 col-sm-6">
-        <pre>
+        <pre><strong>日志格式</strong>
             <code>
 [2015-04-20 23:28:09][/Users/guweigang/github/bullsoft/falcon/demo/app/controllers/IndexController.php:192][2dc6b1bcf7c49330e9][DEBUG] 我是日志1
 [2015-04-20 23:28:09][/Users/guweigang/github/bullsoft/falcon/demo/app/controllers/IndexController.php:193][2dc6b1bcf7c49330e9][DEBUG] 我是日志2
@@ -196,38 +198,131 @@ $di->setShared("logger", function() use ($di, $config){
         </pre>
     </div>
     <div class="col-md-7 col-sm-6">
-        <pre>
+        <pre><strong>模板设置,在模板中使用PHP函数</strong>
             <code class="php">// set view with volt
 $di->set('view', function() use ($di) {
-    $view = new \Phalcon\Mvc\View();
-    $view->setViewsDir(__DIR__.'/views/');
-    $view->registerEngines(array(
-        ".volt" => function($view, $di) {
-            $volt = new \Phalcon\Mvc\View\Engine\Volt($view, $di);
-            $volt->setOptions(array(
-                "compiledPath"      => $di->get('config')->view->compiledPath,
-                "compiledExtension" => $di->get('config')->view->compiledExtension,
-        ));
-    // 如果模板缓存目录不存在，则创建它
-    if(!file_exists($di->get('config')->view->compiledPath)) {
-        mkdir($di->get('config')->view->compiledPath, 0777, true);
-    }
+    // 此处省略很多代码 ...
     $compiler = $volt->getCompiler();
     // 注册PHP函数,在volt模板中可以使用php built-in函数
     $compiler->addExtension(new \PhalconPlus\Volt\Extension\PhpFunction());
         return $volt;
     }
-    ));
     return $view;
 });
             </code>
         </pre>
     </div>
     <div class="col-md-5 col-sm-6">
-        <pre>
+        <pre><strong>volt模板代码</strong>
             <code>
 { { substr(hello, 0, -1) } }
 { { json_encode(world, constant("JSON_PRETTY_PRINT")) } }
+            </code>
+        </pre>
+    </div>
+
+    <div class="col-md-6 col-sm-6">
+        <pre><strong>枚举类</strong>
+            <code>
+namespace Demo\Protos;
+use \PhalconPlus\Enum\AbstractEnum;
+class EnumUserStatus extends AbstractEnum
+{
+    const __default = self::NORMAL;
+
+    const NORMAL = 0;
+    const INIT = 1;
+    const NEED_VALID = 2;
+    const BLOCK = 3;
+    const DELETED = 4;
+}
+
+            </code>
+        </pre>
+    </div>
+
+
+    <div class="col-md-6 col-sm-6">
+        <pre><strong>枚举类使用</strong>
+            <code>
+try {
+    \PhalconPlus\Assert\Assertion::numeric($userStatus);
+} catch (\Exception $e) {
+    echo $e->getMessage();
+}
+// 0, 1, 2, 3, 4 才是合法的枚举值
+try {
+    $userStatus = $this->request->getQuery("status");
+    $a = new \Demo\Protos\EnumUserStatus($userStatus);
+    echo "Valid user Status is: " . $a;
+} catch (\Exception $e) {
+    echo "Exception: " . $e->getMessage();
+}
+            </code>
+        </pre>
+    </div>
+
+    <div class="col-md-6 col-sm-6">
+        <pre><strong>异常枚举</strong>
+            <code class="php">
+namespace Demo\Protos;
+use \PhalconPlus\Enum\Exception as EnumException;
+
+
+class EnumExceptionCode extends EnumException
+{
+    const __default = self::UNKNOWN;
+
+    /**
+     * 请不要使用重复异常码
+     */
+    const UNKNOWN = 10000;
+    const USER_NOT_EXISTS = 10001;
+    const AUTH_FAILED = 10002;
+    const NEED_LOGIN = 10003;
+
+    protected static $details = [
+
+        self::UNKNOWN => [
+            "message" => "未知错误",
+            "level" => EnumLoggerLevel::ERROR,
+        ],
+
+        self::USER_NOT_EXISTS => [
+            "message" => "用户不存在，请核实后再试",
+            "level" =>  EnumLoggerLevel::INFO,
+        ],
+
+    ];
+
+    public static function exceptionClassPrefix()
+    {
+        return __NAMESPACE__ . "\\Exception\\";
+    }
+}
+
+            </code>
+        </pre>
+    </div>
+    <div class="col-md-6 col-sm-6">
+        <pre><strong>异常枚举使用</strong>
+            <code>
+// 通过异常码唤醒异常
+throw \Demo\Protos\EnumExceptionCode::newException(10001, $this->di->getLogger());
+            </code>
+        </pre>
+        <pre><strong>此异常类根据异常枚举类自动生成</strong>
+            <code>
+namespace Demo\Protos\Exception;
+/**
+ * 此类由代码自动生成，请不要修改
+ */
+class UserNotExists extends \PhalconPlus\Base\Exception
+{
+    protected $code = 10001;
+    protected $message = '用户不存在，请核实后再试';
+    protected $level = 6;
+}
             </code>
         </pre>
     </div>

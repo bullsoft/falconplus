@@ -30,14 +30,17 @@ if(isset($_GET['_url'])) {
 
 // register rules for router
 $di->set('router', function () use ($config) {
-    $router = new \Phalcon\Mvc\Router();
-    $router->add('/:controller/:action/:params', array(
+    $router = new \Phalcon\Mvc\Router(false);
+    $router->removeExtraSlashes(true);
+
+    $router->add('/:controller/([a-zA-Z0-9_\-]+)/:params', array(
         'controller' => 1,
         'action'     => 2,
         'params'     => 3,
-    ))->beforeMatch(function ($uri, $route) {
-        // support '-' in controllers and actions
-        // $_GET['_url'] = str_replace('-', '', $_GET['_url']);
+    ))->convert('action', function ($action) {
+        // return str_replace('-', '', $action);
+        // transform action from foo-bar -> fooBar
+        return lcfirst(Phalcon\Text::camelize($action));
     });
     $router->handle();
     return $router;
