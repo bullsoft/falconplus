@@ -17,11 +17,11 @@
                 <li>
                     <a href="http://phalconphp.org" target="_blank">社区</a>
                 </li>
-                <li>
-                    <a href="#quick-start">快速开始</a>
+                <li{% if dispatcher.getControllerName() == "quick-start" %} class="active"{% endif %}>
+                    <a href="/quick-start.html">快速开始</a>
                 </li>
                 <li>
-                    <a href="#manual">手册</a>
+                    <a href="#manual"{% if dispatcher.getControllerName() == "manual" %} class="active"{% endif %}>手册</a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">博客 <b class="caret"></b></a>

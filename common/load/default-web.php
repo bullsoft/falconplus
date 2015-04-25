@@ -42,6 +42,11 @@ $di->set('router', function () use ($config) {
         // transform action from foo-bar -> fooBar
         return lcfirst(Phalcon\Text::camelize($action));
     });
+
+    $router->add('/:controller', array(
+        'controller' => 1,
+    ));
+
     $router->handle();
     return $router;
 });

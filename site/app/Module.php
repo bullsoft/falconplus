@@ -43,6 +43,7 @@ class Module extends PlusModule
             $dispatcher = new \Phalcon\Mvc\Dispatcher();
             $dispatcher->setEventsManager($evtManager);
             $dispatcher->setDefaultNamespace(__NAMESPACE__."\\Controllers\\");
+            $dispatcher->setDefaultAction("index");
             return $dispatcher;
         });   
 
