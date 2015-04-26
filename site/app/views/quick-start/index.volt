@@ -12,7 +12,7 @@
                 <a href="#dependency" class="list-group-item active">依赖安装</a>
                 <a href="#install" class="list-group-item">Phalcon+安装</a>
                 <a href="#project" class="list-group-item">构建项目</a>
-                <a href="#config" class="list-group-item">配置</a>
+                <a href="#config" class="list-group-item">nginx配置</a>
                 <a href="#model" class="list-group-item">生成模型</a>
             </div>
         </div>
@@ -105,14 +105,21 @@ Finish.⏎
     └── index.php
                 </code>
             </pre>
+            注意: config/dev.php 是该模块的默认配置文件, 你可以在php.ini中更改默认选项, 如线上环境我们一般配成:
+            <pre>
+                <code>
+phalconplus.env=production
+                </code>
+            </pre>
+            然后你需要新增config/production.php配置文件.
             </p>
 
             <hr />
 
-<h2 id="config">配置</h2>
+<h2 id="config">nginx配置</h2>
 
 <p>
-这个时候你应当开始配置nginx了，先看看咱们的项目在哪个目录下：
+好了, 我们开始配置nginx吧，先看看咱们的项目在哪个目录下：
     <pre>
         <code>
 ➜ pwd

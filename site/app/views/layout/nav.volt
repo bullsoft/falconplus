@@ -14,14 +14,14 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="http://phalconphp.org" target="_blank">社区</a>
-                </li>
                 <li{% if dispatcher.getControllerName() == "quick-start" %} class="active"{% endif %}>
                     <a href="/quick-start.html">快速开始</a>
                 </li>
                 <li>
                     <a href="#manual"{% if dispatcher.getControllerName() == "manual" %} class="active"{% endif %}>手册</a>
+                </li>
+                <li>
+                    <a href="http://phalconphp.org" target="_blank">社区</a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">博客 <b class="caret"></b></a>
