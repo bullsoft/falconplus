@@ -14,7 +14,7 @@ class Module extends PlusModule
             __NAMESPACE__.'\\Controllers' => __DIR__.'/controllers/',
             __NAMESPACE__.'\\Models'      => __DIR__.'/models/',
             "Zend" => APP_ROOT_COMMON_DIR . "/vendor/Zend/",
-            "Demo\\Protos"                => APP_ROOT_COMMON_DIR.'/protos/',
+            "Common\\Protos"              => APP_ROOT_COMMON_DIR.'/protos/',
         ))->register();
     }
     

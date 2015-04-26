@@ -1,5 +1,5 @@
 <?php
-namespace Demo\Protos;
+namespace Common\Protos;
 use \PhalconPlus\Enum\Exception as EnumException;
 use \PhalconPlus\Assert\Assertion as Assert;
 

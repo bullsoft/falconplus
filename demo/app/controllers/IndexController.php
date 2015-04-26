@@ -44,14 +44,14 @@ class IndexController extends \Phalcon\Mvc\Controller
      */
     public function rpcAction()
     {
-        $request = new \Demo\Protos\RequestDemo();
+        $request = new \Common\Protos\RequestDemo();
         $request->setFoo("hello")
                 ->setBar("world");
 
-        $protoUser = new \Demo\Protos\ProtoUser();
+        $protoUser = new \Common\Protos\ProtoUser();
         $protoUser->setUsername("guweigang")
                   ->setPassword("123456")
-                  ->setStatus(new \Demo\Protos\EnumUserStatus(3));
+                  ->setStatus(new \Common\Protos\EnumUserStatus(3));
 
         $request->setUser($protoUser);
 
@@ -154,7 +154,7 @@ class IndexController extends \Phalcon\Mvc\Controller
         
         // 0, 1, 2, 3, 4 才是合法的枚举值
         try {
-            $a = new \Demo\Protos\EnumUserStatus($userStatus);
+            $a = new \Common\Protos\EnumUserStatus($userStatus);
             echo "Valid user Status is: " . $a;
         } catch (\Exception $e) {
             echo "Exception: " . $e->getMessage();
@@ -166,11 +166,10 @@ class IndexController extends \Phalcon\Mvc\Controller
      */
     public function eAction()
     {
-        $logger = new \Phalcon\Logger\Adapter\File($this->di->getConfig()->application->logFilePath);
         try {
             // throw new \PhalconPlus\Base\Exception("Test Exception");
             // throw new \Demo\Protos\ExceptionUserNotExists("User 3 not exists in database");
-            throw new \Demo\Protos\Exception\UserNotExists("User 3 not exists in database", $logger);
+            throw new \Common\Protos\Exception\UserNotExists("User 3 not exists in database", $this->logger);
         } catch (\Exception $e) {
             echo $e->getMessage() . "<br />";
             echo $e->getCode() . "<br />";
@@ -183,7 +182,7 @@ class IndexController extends \Phalcon\Mvc\Controller
      */
     public function wakeExceptionAction()
     {
-        throw \Demo\Protos\EnumExceptionCode::newException(10001, $this->di->getLogger());
+        throw \Common\Protos\EnumExceptionCode::newException(10001, $this->di->getLogger());
         //var_dump(\Demo\Protos\EnumExceptionCode::getByCode(10001));
     }
 
@@ -193,7 +192,7 @@ class IndexController extends \Phalcon\Mvc\Controller
         $this->logger->log("我是日志2");
         $this->logger->log("但是我们是同一个请求产生的日志");
 
-        throw new \Demo\Protos\Exception\UserNotExists("User 3 not exists in database", $this->di->getLogger());
+        throw new \Common\Protos\Exception\UserNotExists("User 3 not exists in database", $this->di->getLogger());
 
     }
 }

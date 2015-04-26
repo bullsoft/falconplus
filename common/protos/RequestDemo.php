@@ -1,5 +1,5 @@
 <?php
-namespace Demo\Protos;
+namespace Common\Protos;
 use \PhalconPlus\Base\ProtoBuffer;
 
 class RequestDemo extends ProtoBuffer
@@ -17,7 +17,7 @@ class RequestDemo extends ProtoBuffer
     private $bar;
 
     /**
-     * @var \Demo\Protos\ProtoUser
+     * @var \Common\Protos\ProtoUser
      * @optional
      */
     private $user = null;
@@ -44,7 +44,7 @@ class RequestDemo extends ProtoBuffer
         return $this->bar;
     }
 
-    public function setUser(\Demo\Protos\ProtoUser $user)
+    public function setUser(\Common\Protos\ProtoUser $user)
     {
         $this->user = $user;
         return $this;

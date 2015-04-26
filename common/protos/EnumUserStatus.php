@@ -1,5 +1,5 @@
 <?php
-namespace Demo\Protos;
+namespace Common\Protos;
 use \PhalconPlus\Enum\AbstractEnum;
 
 class EnumUserStatus extends AbstractEnum

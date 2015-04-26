@@ -11,7 +11,7 @@ class Srv extends PlusModule
         $loader->registerNamespaces(array(
             __NAMESPACE__.'\\Services' => __DIR__.'/services/',
             __NAMESPACE__.'\\Models'   => __DIR__.'/models/',
-            "Demo\\Protos"             => APP_ROOT_COMMON_DIR.'/protos/',
+            "Common\\Protos"             => APP_ROOT_COMMON_DIR.'/protos/',
         ))->register();
     }
     

@@ -1,5 +1,5 @@
 <?php
-namespace Demo\Protos;
+namespace Common\Protos;
 use \PhalconPlus\Base\ProtoBuffer;
 
 class ProtoUser extends ProtoBuffer

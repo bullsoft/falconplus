@@ -1,7 +1,7 @@
 <?php
 namespace Demo\Server\Services;
-use Demo\Protos\RequestDemo;
-use Demo\Protos\ResponseDemo;
+use Common\Protos\RequestDemo;
+use Common\Protos\ResponseDemo;
 
 class DemoService extends \PhalconPlus\Base\Service
 {
