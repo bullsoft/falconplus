@@ -28,4 +28,7 @@ return array(
         "http://server.phalconplus.com",
     ),
     'debugRPC' => false,
+    'uCenterServerUrl' => array(
+        "http://ucenter.phalconplus.com",
+    ),
 );

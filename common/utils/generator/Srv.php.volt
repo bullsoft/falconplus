@@ -1,4 +1,4 @@
-namespace {{rootNs}}}\{{mode}};
+namespace {{rootNs}}\{{mode}};
 
 use PhalconPlus\Base\AbstractModule as PlusModule;
 

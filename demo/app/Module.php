@@ -82,6 +82,19 @@ class Module extends PlusModule
             }
             return $client;
         });
+
+        $di->set("ucRpc", function() use ($di, $config, $bootstrap) {
+            $client = null;
+            if($config->debugRPC == true) {
+                $bootstrap->dependModule("ucenter");
+                $client = new \PhalconPlus\RPC\Client\Adapter\Local($di);
+            } else {
+                $remoteUrls = $config->uCenterServerUrl;
+                $client = new \PhalconPlus\RPC\Client\Adapter\Remote($remoteUrls->toArray());
+                $client->SetOpt(\YAR_OPT_CONNECT_TIMEOUT, 5);
+            }
+            return $client;
+        });
         
         // set view with volt
         $di->set('view', function() use ($di) {
