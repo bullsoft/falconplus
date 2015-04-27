@@ -12,6 +12,7 @@ class Module extends PlusModule
         $loader->registerNamespaces(array(
             __NAMESPACE__.'\\Controllers' => __DIR__.'/controllers/',
             __NAMESPACE__.'\\Models'      => __DIR__.'/models/',
+            "Common\\Protos"             => APP_ROOT_COMMON_DIR.'/protos/',
             "Zend" => APP_ROOT_COMMON_DIR . "/vendor/Zend/",
         ))->register();
     }

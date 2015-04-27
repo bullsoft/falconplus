@@ -171,7 +171,8 @@ class ModelTask extends \Phalcon\CLI\Task
             case \Phalcon\Db\Column::TYPE_DATETIME:
                 return "datetime";
             case \Phalcon\Db\Column::TYPE_FLOAT:
-            case \Phalcon\Db\Column::TYPE_DOUBLE:
+            // phalcon 2.0 not support this type
+            // case \Phalcon\Db\Column::TYPE_DOUBLE:
             case \Phalcon\Db\Column::TYPE_DECIMAL:
                 return "float";
             case \Phalcon\Db\Column::TYPE_BOOLEAN:
