@@ -77,6 +77,7 @@ class IndexController extends \Phalcon\Mvc\Controller
             "service" => "\\Demo\\Server\\Services\\Demo",
             "method" => "simple",
             "args" => $request,
+            "logId" => $this->logger->getFormatter()->uid,
         ));
         var_dump($response);
     }
@@ -192,7 +193,12 @@ class IndexController extends \Phalcon\Mvc\Controller
         $this->logger->log("我是日志2");
         $this->logger->log("但是我们是同一个请求产生的日志");
 
-        throw new \Common\Protos\Exception\UserNotExists("User 3 not exists in database", $this->di->getLogger());
+        // throw new \Common\Protos\Exception\UserNotExists("User 3 not exists in database", $this->di->getLogger());
 
+    }
+
+    public function testDIAction()
+    {
+        $this->di->get("requestCheck", ["hello", "world"]);
     }
 }

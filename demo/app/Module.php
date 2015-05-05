@@ -130,5 +130,9 @@ class Module extends PlusModule
             $logger->setFormatter($formatter);
             return $logger;
         });
+
+        $di->set("requestCheck", function($serivce, $method) {
+            error_log("Service::Method: ". $serivce . "::" . $method);
+        });
     }
 }
