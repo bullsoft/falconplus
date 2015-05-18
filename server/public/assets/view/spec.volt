@@ -70,7 +70,7 @@
                     <td><span style="color:#693"></span> ${{ prop.name }}</td>
                     {% if prop.getDocBlock() %}
                         <td>{{ ltrim(prop.getDocBlock().getTag("var").getContent(), "\\") }}</td>
-                        <td>{{ prop.getDocBlock().hasTag("required") }}</td>
+                        <td>{{ intval(prop.getDocBlock().hasTag("required")) }}</td>
                         <td></td>
                     {% else %}
                         <td></td>
