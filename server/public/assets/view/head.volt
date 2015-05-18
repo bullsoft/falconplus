@@ -17,7 +17,7 @@
     <body class="docs " data-gclp-initialized="true" data-gistbox-initialized="true">
         <nav id="head-nav" class="navbar navbar-fixed-top">
             <div class="navbar-inner clearfix">
-                <a href="service.php" class="brand"><img src="/assets/logo.png" width="" height="24" alt="php"></a>
+                <a href="list.php" class="brand"><img src="/assets/logo.png" width="" height="24" alt="php"></a>
                 <div id="mainmenu-toggle-overlay"></div>
                 <input type="checkbox" id="mainmenu-toggle">
                 <ul class="nav">
