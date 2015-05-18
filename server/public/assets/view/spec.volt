@@ -41,11 +41,11 @@
         </thead>
 
         <tbody class="tbody">
-            {% for name, value in consts %}
+            {% for const in consts %}
                 <tr>
-                    <td>{{ name }}</td>
-                    <td>{{ value }}</td>
-                    <td></td>
+                    <td>{{ const.getName() }}</td>
+                    <td>{{ const.getValue() }}</td>
+                    <td>{{ const.getDocComment() }}</td>
                 </tr>
             {% endfor %}
             <tr><td colspan=3>&nbsp;</td></tr>

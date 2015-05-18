@@ -271,7 +271,7 @@ class ClassReflection extends ReflectionClass implements ReflectionInterface
      *
      * @return FileScanner
      */
-    protected function createFileScanner($filename)
+    public function createFileScanner($filename)
     {
         return new FileScanner($filename);
     }

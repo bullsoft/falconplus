@@ -26,7 +26,9 @@ if($classReflection->isInternal()) {
 
 $indent = "    ";
 
-$consts = $classReflection->getConstants();
+$fileScanner = $classReflection->createFileScanner($classReflection->getFileName());
+$classScanner = $fileScanner->getClass($classReflection->getName());
+$consts = $classScanner->getConstants(false);
 
 // 设置模板变量
 $view->setVar('classReflection', $classReflection);

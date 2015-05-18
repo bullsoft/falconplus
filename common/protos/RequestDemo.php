@@ -4,6 +4,18 @@ use \PhalconPlus\Base\ProtoBuffer;
 
 class RequestDemo extends ProtoBuffer
 {
+    /** 正常 */
+    const STATUS_OK = 0;
+
+    /** 失败 */
+    const STATUS_FAIL = 1;
+    
+    /** 暂存 */
+    const STATUS_STASH = 2;
+
+    /** 删除 */
+    const STATUS_DELETE = 3;
+    
     /**
      * @var string
      * @required
