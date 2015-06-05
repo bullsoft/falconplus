@@ -13,6 +13,10 @@ class IndexController extends \Phalcon\Mvc\Controller
         $this->view->setVar("world", array("foo" => "bar"));
     }
 
+    public function batchAction()
+    {
+    }
+    
     /**
      * Query Builder查询示例
      */
@@ -170,7 +174,7 @@ class IndexController extends \Phalcon\Mvc\Controller
         try {
             // throw new \PhalconPlus\Base\Exception("Test Exception");
             // throw new \Demo\Protos\ExceptionUserNotExists("User 3 not exists in database");
-            throw new \Common\Protos\Exception\UserNotExists("User 3 not exists in database", $this->logger);
+            throw new \Common\Protos\Exception\UserNotExists(["User 3 not exists in database", 7], $this->logger);
         } catch (\Exception $e) {
             echo $e->getMessage() . "<br />";
             echo $e->getCode() . "<br />";
@@ -183,8 +187,11 @@ class IndexController extends \Phalcon\Mvc\Controller
      */
     public function wakeExceptionAction()
     {
-        throw \Common\Protos\EnumExceptionCode::newException(10001, $this->di->getLogger());
-        //var_dump(\Demo\Protos\EnumExceptionCode::getByCode(10001));
+        try {
+            throw new \Exception("用户不存在哈", 10001);
+        } catch(\Exception $e) {
+            throw \Common\Protos\EnumExceptionCode::newException($e, $this->di->getLogger());
+        }
     }
 
     public function loggerAction()
@@ -192,9 +199,7 @@ class IndexController extends \Phalcon\Mvc\Controller
         $this->logger->log("我是日志1");
         $this->logger->log("我是日志2");
         $this->logger->log("但是我们是同一个请求产生的日志");
-
         // throw new \Common\Protos\Exception\UserNotExists("User 3 not exists in database", $this->di->getLogger());
-
     }
 
     public function testDIAction()

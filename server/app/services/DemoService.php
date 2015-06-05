@@ -14,7 +14,7 @@ class DemoService extends \PhalconPlus\Base\Service
      * @param RequestDemo $request
      * @return ResponseDemo
      */
-    public function demo(RequestDemo $request)
+    public function demo(array $request)
     {
         $response = new ResponseDemo();
         error_log("Service get input: " . var_export($request, true));

@@ -37,7 +37,7 @@ class EnumExceptionCode extends EnumException
         ],
         
         self::USER_NOT_EXISTS => [
-            "message" => "用户不存在，请核实后再试",
+            "message" => "用户(%s)不存在，请核实后再试",
             "level" =>  EnumLoggerLevel::INFO,
         ],
         
