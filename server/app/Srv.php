@@ -32,8 +32,14 @@ class Srv extends PlusModule
             return $mysql->getConnection();
         });
 
-        $di->set("requestCheck", function($serivce, $method, $request) use ($di, $config) {
-            error_log("Request Check: " . $serivce . ":" . $method . "::::" . var_export($request, true));
+        $di->set("serviceListener", function() {
+            $evtManager = $this->di->getShared("eventsManager");
+            $evtManager->attach("backend-server:requestCheck", function($event, $server, $request) {
+                error_log("Request Check: ... " .  var_export($request, true));
+            });
+            $evtManager->attach("backend-server:afterDispatch", function($event, $server, $mix) {
+                error_log("After dispatcher: ... " .  var_export($mix, true));
+            });
         });
 
         $di->setShared("logger", function() use ($di, $config){

@@ -70,7 +70,10 @@ if($targetService) {
         $requestPrototype = reset($prototype["arguments"]);
         $paramClass = $requestPrototype["type"];
 
-        $sampleCodes = <<<EOT
+        $sampleCodes = "Sorry, no codes here now.";
+        
+        if(class_exists($paramClass)) {
+            $sampleCodes = <<<EOT
 <?php
 // ... 此处省略若干框架启动代码
 // ...
@@ -80,14 +83,14 @@ if($targetService) {
 // 构造合法的Request
 \$request
 EOT;
-        $reflectionParam = new \ReflectionClass($paramClass);
-        $sampleSetter = [];
-        foreach ($reflectionParam->getProperties() as $prop) {
-            $sampleSetter[] = 'set'.ucfirst($prop->name)."(\${$prop->name})";
-        }
-        $sampleCodes .= '->'.implode("\n->", $sampleSetter) . ";";
-        $srvName = substr($targetService, 0 ,-7);
-        $sampleCodes .= "
+            $reflectionParam = new \ReflectionClass($paramClass);
+            $sampleSetter = [];
+            foreach ($reflectionParam->getProperties() as $prop) {
+                $sampleSetter[] = 'set'.ucfirst($prop->name)."(\${$prop->name})";
+            }
+            $sampleCodes .= '->'.implode("\n->", $sampleSetter) . ";";
+            $srvName = substr($targetService, 0 ,-7);
+            $sampleCodes .= "
 
 // 发起RPC请求，并获得Response
 // \$this->sa 为注入DI的Service Agent
@@ -100,8 +103,8 @@ EOT;
 // Response可以轻松转成数组
 // \$response->toArray()
 ";
+        }
         $methods[$k]['sampleCode'] = $sampleCodes;
-
     }
     $view->setVar('methods', $methods);
 }
