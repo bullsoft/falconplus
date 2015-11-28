@@ -21,7 +21,7 @@
                     <a href="#manual"{% if dispatcher.getControllerName() == "manual" %} class="active"{% endif %}>手册</a>
                 </li>
                 <li>
-                    <a href="http://phalconphp.org" target="_blank">社区</a>
+                    <a href="http://forum.bullsoft.org" target="_blank">社区</a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">博客 <b class="caret"></b></a>

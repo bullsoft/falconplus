@@ -13,7 +13,9 @@ class Srv extends PlusModule
         $loader->registerNamespaces(array(
             __NAMESPACE__.'\\Services' => __DIR__.'/services/',
             __NAMESPACE__.'\\Models'   => __DIR__.'/models/',
-            "Common\\Protos"             => APP_ROOT_COMMON_DIR.'/protos/',
+            __NAMESPACE__."\\Plugins"  => __DIR__.'/plugins/',
+            "Common\\Protos"           => APP_ROOT_COMMON_DIR.'/protos/',
+            "Zend"                     => APP_ROOT_COMMON_DIR.'/vendor/Zend/', 
         ))->register();
     }
     
@@ -25,21 +27,37 @@ class Srv extends PlusModule
         $bootstrap = $di->get('bootstrap');
         // get config
         $config = $di->get('config');
-        
+
+        $di->setShared("profiler", function(){
+            $profiler = new \Phalcon\Db\Profiler();
+            return $profiler;
+        });
+
         // register db service 
         $di->setShared('dbDemo', function() use ($di) {
             $mysql = new \PhalconPlus\Db\Mysql($di, "dbDemo");
-            return $mysql->getConnection();
+            $db = $mysql->getConnection();
+            $profiler = $di->get("profiler");
+            $logger = $di->get("logger");
+            $evtManager = $di->getShared("eventsManager");
+            $evtManager->attach('db', function ($event, $connection) use ($profiler) {
+                if ($event->getType() == 'beforeQuery') {
+                    $sql = getRealSql($connection); // function getRealSql() is defined in common/load/default.php
+                    $profiler->startProfile($sql);
+                }
+                if ($event->getType() == 'afterQuery') {
+                    $profiler->stopProfile();
+                }
+            });
+            // Assign the eventsManager to the db adapter instance
+            $db->setEventsManager($evtManager);
+            return $db;
         });
-
+        
         $di->set("serviceListener", function() {
             $evtManager = $this->di->getShared("eventsManager");
-            $evtManager->attach("backend-server:requestCheck", function($event, $server, $request) {
-                error_log("Request Check: ... " .  var_export($request, true));
-            });
-            $evtManager->attach("backend-server:afterDispatch", function($event, $server, $mix) {
-                error_log("After dispatcher: ... " .  var_export($mix, true));
-            });
+            $rpcListener = new \Demo\Server\Plugins\RpcListener($this->di, $evtManager);
+            $evtManager->attach("backend-server", $rpcListener);
         });
 
         $di->setShared("logger", function() use ($di, $config){

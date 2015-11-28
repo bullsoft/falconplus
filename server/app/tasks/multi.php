@@ -15,8 +15,6 @@ function invoke($input)
     $di->set("dispatched", function() {
         return true;
     });
-    $rootPath = APP_ROOT_DIR;
-    $bootstrap->initConf();
     $loader = new \Phalcon\Loader();
     $loader->registerDirs(array(__DIR__))
            ->register();
@@ -35,8 +33,7 @@ function invoke($input)
         $arguments['action'] = "main";
     }
     $arguments['params'][] = $input;
-    $config = $bootstrap->getConfig();
-    $bootstrap->execTask($arguments, $di, false);
+    $bootstrap->execTask($arguments, $di);
 }
 
 function generate() // -> array
@@ -50,8 +47,6 @@ function generate() // -> array
     $di->set("dispatched", function() {
         return true;
     });
-    $rootPath = APP_ROOT_DIR;
-    $bootstrap->initConf();
     $loader = new \Phalcon\Loader();
     $loader->registerDirs(array(__DIR__))
            ->register();
@@ -72,9 +67,10 @@ function generate() // -> array
     if(empty($arguments['action'])) {
         $arguments['action'] = "mainAction";
     }
-    $config = $bootstrap->getConfig();
-    $bootstrap->execTask([], $di, false, false);
-    return call_user_func_array([$arguments['task'], $arguments["action"]], [$arguments["params"]]);
+    $bootstrap->execTask([], $di, false);
+    return call_user_func_array([$arguments['task'],
+                                 $arguments["action"]],
+                                [$arguments["params"]]);
 }
 
 $workers = [];
@@ -116,5 +112,3 @@ function child_sync(swoole_process $worker)
     sleep(2);
     $worker->exit(0);
 }
-
-

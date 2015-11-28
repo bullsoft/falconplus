@@ -18,4 +18,10 @@ class UserController extends \Phalcon\Mvc\Controller
 
         var_dump($response);
     }
+
+    public function dAction()
+    {
+        $this->session->destroy();
+        echo "OK";
+    }
 }
