@@ -7,15 +7,44 @@ use PhalconPlus\Logger\Processor\Uid as UidProcessor;
 
 class Module extends PlusModule
 {
+    public function __construct(\Phalcon\DI $di)
+    {
+        parent::__construct($di);
+        set_exception_handler(function($exception) use ($di) {
+            $response = $di->get("response");
+            $msg = $exception->getMessage();
+            $data = new \stdClass();
+            if(substr($msg, 0, 8) == "__DATA__") {
+                $msg = substr($msg, 8);
+                $data = json_decode($msg, true);
+                $msg = implode(";", $data);
+            }
+            $error = array(
+                'errorCode' => max(1, $exception->getCode()),
+                'errorMsg'  => $msg,
+                'data'      => $data,
+                'sessionId' => '',
+            );
+            $response->setHeader('Content-Type', 'application/json');
+            $response->setJsonContent($error);
+            $response->send();
+        });
+    }
+
     public function registerAutoloaders()
     {
         $loader = new \Phalcon\Loader();
         $loader->registerNamespaces(array(
             __NAMESPACE__.'\\Controllers' => __DIR__.'/controllers/',
             __NAMESPACE__.'\\Models'      => __DIR__.'/models/',
-            "Zend" => APP_ROOT_COMMON_DIR . "/vendor/Zend/",
-            "Common\\Protos"              => APP_ROOT_COMMON_DIR.'/protos/',
+            __NAMESPACE__."\\Plugins"     => __DIR__.'/plugins/',
+            "Zend"                        => APP_ROOT_COMMON_DIR . "/vendor/Zend/",
+            "Common\\Protos"              => APP_ROOT_COMMON_DIR . "/protos/",
+            "Gregwar\\Captcha"            => APP_ROOT_COMMON_DIR . "/vendor/Captcha/",
         ))->register();
+
+        // load composer library
+        require_once APP_ROOT_COMMON_DIR . "/vendor/vendor/autoload.php";
     }
     
     public function registerServices()
@@ -39,8 +68,14 @@ class Module extends PlusModule
                             'action'     => 'show404'
                         ));
                         return false;
+                    default:
+                        throw $exception;
                 }
             });
+
+            $interceptor = new \Demo\Web\Plugins\DispatcherInterceptor($di, $evtManager);
+            $evtManager->attach('dispatch', $interceptor);
+
             $dispatcher = new \Phalcon\Mvc\Dispatcher();
             $dispatcher->setEventsManager($evtManager);
             $dispatcher->setDefaultNamespace(__NAMESPACE__."\\Controllers\\");
@@ -78,7 +113,7 @@ class Module extends PlusModule
             } else {
                 $remoteUrls = $config->demoServerUrl;
                 $client = new \PhalconPlus\RPC\Client\Adapter\Remote($remoteUrls->toArray());
-                $client->SetOpt(\YAR_OPT_CONNECT_TIMEOUT, 5);
+                $client->SetOpt(\YAR_OPT_CONNECT_TIMEOUT, 50000);
             }
             return $client;
         });
@@ -98,14 +133,17 @@ class Module extends PlusModule
         
         // set view with volt
         $di->set('view', function() use ($di) {
+            $tpl = "dianrong";
             $view = new \Phalcon\Mvc\View();
-            $view->setViewsDir(__DIR__.'/views/');
+            $view->setViewsDir(__DIR__."/views/{$tpl}/");
             $view->registerEngines(array(
                 ".volt" => function($view, $di) {
                     $volt = new \Phalcon\Mvc\View\Engine\Volt($view, $di);
                     $volt->setOptions(array(
                         "compiledPath"      => $di->get('config')->view->compiledPath,
                         "compiledExtension" => $di->get('config')->view->compiledExtension,
+                        // in dev
+                        "compileAlways"     => true,
                     ));
                     // 如果模板缓存目录不存在，则创建它
                     if(!file_exists($di->get('config')->view->compiledPath)) {
@@ -133,6 +171,15 @@ class Module extends PlusModule
 
         $di->set("requestCheck", function($serivce, $method) {
             error_log("Service::Method: ". $serivce . "::" . $method);
+        });
+
+        $di->set("url", function(){
+            $url = new \Phalcon\Mvc\Url();
+            // Dynamic URIs are
+            $url->setBaseUri('/');
+            // Static resources go through a CDN
+            $url->setStaticBaseUri('http://static.mywebsite.com/');
+            return $url;
         });
     }
 }

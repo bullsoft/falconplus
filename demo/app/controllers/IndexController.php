@@ -1,8 +1,9 @@
 <?php
 namespace Demo\Web\Controllers;
 use Demo\Web\Models\DealRecord;
+use Gregwar\Captcha\CaptchaBuilder;
 
-class IndexController extends \Phalcon\Mvc\Controller
+class IndexController extends BaseController
 {
     /**
      * 模板使用示例
@@ -77,6 +78,7 @@ class IndexController extends \Phalcon\Mvc\Controller
         $request->setParam("foo");
         $request->setParam("bar");
         $request->setParam(array("hello", "world"));
+
         $response = $this->rpc->callByObject(array(
             "service" => "\\Demo\\Server\\Services\\Demo",
             "method" => "simple",
@@ -205,5 +207,14 @@ class IndexController extends \Phalcon\Mvc\Controller
     public function testDIAction()
     {
         $this->di->get("requestCheck", ["hello", "world"]);
+    }
+
+    public function testCaptchaAction()
+    {
+        $builder = new CaptchaBuilder;
+        $builder->build();
+
+        header('Content-type: image/jpeg');
+        $builder->output();
     }
 }

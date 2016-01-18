@@ -8,7 +8,7 @@ namespace Demo\Server\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Server\Models
- * @version $Rev:2015-10-25 18:26:30$
+ * @version $Rev:2016-01-12 17:30:52$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class DealRecord extends \PhalconPlus\Base\Model
@@ -45,6 +45,12 @@ class DealRecord extends \PhalconPlus\Base\Model
     public $amount = null;
 
     /**
+     * @var integer
+     * @table deal_record
+     */
+    public $status = null;
+
+    /**
      * @var unknown
      * @table deal_record
      */
@@ -56,6 +62,12 @@ class DealRecord extends \PhalconPlus\Base\Model
      */
     public $mtime = null;
 
+    public function initialize()
+    {
+        parent::initialize();
+        $this->setConnectionService("dbDemo");
+    }
+
     /**
      * When an instance created, it would be executed
      */
@@ -66,6 +78,7 @@ class DealRecord extends \PhalconPlus\Base\Model
         $this->investorId = NULL;
         $this->borrowerId = NULL;
         $this->amount = NULL;
+        $this->status = NULL;
         $this->ctime = NULL;
         $this->mtime = NULL;
     }
@@ -81,15 +94,10 @@ class DealRecord extends \PhalconPlus\Base\Model
             'investor_id' => 'investorId', 
             'borrower_id' => 'borrowerId', 
             'amount' => 'amount', 
+            'status' => 'status', 
             'ctime' => 'ctime', 
             'mtime' => 'mtime', 
         );
-    }
-
-    public function initialize()
-    {
-        parent::initialize();
-        $this->setConnectionService("dbDemo");
     }
 
     /**

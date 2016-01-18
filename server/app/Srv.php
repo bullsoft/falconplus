@@ -17,6 +17,8 @@ class Srv extends PlusModule
             "Common\\Protos"           => APP_ROOT_COMMON_DIR.'/protos/',
             "Zend"                     => APP_ROOT_COMMON_DIR.'/vendor/Zend/', 
         ))->register();
+
+        require_once APP_ROOT_COMMON_DIR . "/vendor/random_compat-1.1.5/lib/random.php";
     }
     
     public function registerServices()

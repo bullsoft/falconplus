@@ -7,6 +7,7 @@ class RpcListener extends Plugin
     public function requestCheck($event, $server, $request)
     {
         error_log("!!!!Request Check: ... " .  var_export($request, true));
+
     }
 
     public function afterDispatch($event, $server, $mix)

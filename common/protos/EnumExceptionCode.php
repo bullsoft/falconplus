@@ -29,6 +29,9 @@ class EnumExceptionCode extends EnumException
     const AUTH_FAILED = 10002;
     const NEED_LOGIN = 10003;
 
+    const SYSTEM_BUSY = 20000;
+    const FORM_INPUT_INVALID = 20001;
+
     protected static $details = [
 
         self::UNKNOWN => [
@@ -40,6 +43,16 @@ class EnumExceptionCode extends EnumException
             "message" => "用户(%s)不存在，请核实后再试",
             "level" =>  EnumLoggerLevel::INFO,
         ],
+
+        self::SYSTEM_BUSY => [
+            "message" => "系统繁忙",
+            "level" => EnumLoggerLevel::ERROR
+        ],
+
+        self::FORM_INPUT_INVALID => [
+            "message" => "__DATA__%s",
+            "level" => EnumLoggerLevel::INFO
+        ]
         
     ];
    

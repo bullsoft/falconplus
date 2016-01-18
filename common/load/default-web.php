@@ -46,8 +46,9 @@ $di->set('router', function () use ($config) {
     $router->add('/:controller', array(
         'controller' => 1,
     ));
-
-    $router->handle();
+    
+    // no need to handle() here, Phalcon will handle it in application::start()
+    // $router->handle();
     return $router;
 });
 

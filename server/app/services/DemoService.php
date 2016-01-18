@@ -49,11 +49,6 @@ class DemoService extends \PhalconPlus\Base\Service
         $response->result = reset($request->toArray());
         return $response;
     }
-
-    public function test(array $a)
-    {
-
-    }
         
 }
 
