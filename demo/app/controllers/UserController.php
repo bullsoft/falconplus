@@ -64,7 +64,7 @@ class UserController extends BaseController
         $form->add($mobile)
              ->add($passwd);
 
-        $this->isFormValid($form, $_POST);
+        $this->formValid($form, $_POST);
 
         $loginInfo = new ProtoLoginInfo();
         $loginInfo->setMobile($mobile->getValue())
