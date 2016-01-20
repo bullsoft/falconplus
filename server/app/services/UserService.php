@@ -10,7 +10,11 @@ namespace Demo\Server\Services;
 use Common\Protos\EnumUserStatus;
 use PhalconPlus\Assert\Assertion as Assert;
 use Common\Protos\ProtoLoginInfo;
+use Common\Protos\ProtoRegInfo;
+
 use Demo\Server\Models;
+use Demo\Server\Daos;
+
 use Common\Protos\Exception\SystemBusy;
 use Common\Protos\Exception\UserNotExists;
 
@@ -20,7 +24,6 @@ use Common\Protos\Exception\UserNotExists;
  */
 class UserService extends \PhalconPlus\Base\Service
 {
-    const DEFAULT_INVITE_CODE = "A0000000";
     const DEFAULT_INVITE_UID = 0;
 
     public function passwdMatch(ProtoLoginInfo $loginInfo)
@@ -28,42 +31,58 @@ class UserService extends \PhalconPlus\Base\Service
         $mobile = $loginInfo->getMobile();
         $passwd = $loginInfo->getPasswd();
 
-        $userInfo = Models\UserInfo::findFirst([
-            "mobile = :mobile:",
-            "bind" => [
-                "mobile" => $mobile,
-            ]
-        ]);
+        $userInfo = Daos\UserDao::exists("mobile", $mobile);
 
         if(empty($userInfo)) {
             throw new UserNotExists(["login failed", $mobile]);
         }
 
-        $hashPasswd = hash("sha256", $userInfo->salt . $passwd);
+        $hashPasswd = hash("sha256", hex2bin($userInfo->salt) . $passwd);
         if($hashPasswd != $userInfo->passwd) {
-            // throw new PasswdNotMatchException();
+            throw new \Exception("密码不匹配");
         }
-
-        // return xxx;
-
+        $response = new \PhalconPlus\Base\SimpleResponse;
+        $response->setResult($userInfo->toArray());
+        return $response;
     }
 
     public function create(ProtoRegInfo $regInfo)
     {
+        // UserInfoModel
         $userInfo = new Models\UserInfo();
-        $userInfo->mobile = $regInfo->mobile;
+        $userInfo->mobile = $regInfo->getMobile();
+
+        // 生成安全密码
         $salt = random_bytes(32);
-        $userInfo->salt = $salt;
-        $passwd = hash("sha256", $salt.$userInfo->getPasswd());
+        $userInfo->salt = bin2hex($salt);
+        $passwd = hash("sha256", $salt.$regInfo->getPasswd());
         $userInfo->passwd = $passwd;
+
+        // 注册设备及来源
         $userInfo->deviceId = 1;
         $userInfo->refer = "HOME";
-        $userInfo->inviteUserId = self::DEFAULT_INVITE_UID;
-        $userInfo->inviteCode = self::DEFAULT_INVITE_CODE;
+
+        // 生成用户邀请码, 把手机号转成36进制([0-9][A-Z])
+        $userInfo->inviteCode = strtoupper(base_convert($regInfo->getMobile(), 10, 36));
+
+        // 通过手机验证码,合法用户
         $userInfo->status = EnumUserStatus::NORMAL;
+        $userInfo->email = $regInfo->getEmail();
+
+        // 处理邀请人信息
+        $userInfo->inviteUserId = self::DEFAULT_INVITE_UID;
+        if(!$regInfo->isNull("inviteCode")) {
+            $inviteUser = Daos\UserDao::exists("inviteCode", $regInfo->getInviteCode());
+            if($inviteUser != false) {
+                $userInfo->inviteUserId = $inviteUser->id;
+            }
+        }
+
         if($userInfo->save() == false) {
             throw new SystemBusy(["failed to create user, userInfo: ", $userInfo->toArray()], $this->logger);
         }
+
+        return [];
         // return response
     }
 

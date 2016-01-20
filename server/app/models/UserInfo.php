@@ -8,7 +8,7 @@ namespace Demo\Server\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Server\Models
- * @version $Rev:2016-01-12 17:30:52$
+ * @version $Rev:2016-01-19 18:12:24$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class UserInfo extends \PhalconPlus\Base\Model
@@ -24,13 +24,19 @@ class UserInfo extends \PhalconPlus\Base\Model
      * @var string
      * @table user_info
      */
-    public $mobile = null;
+    public $mobile = '';
 
     /**
      * @var string
      * @table user_info
      */
-    public $passwd = null;
+    public $salt = '';
+
+    /**
+     * @var string
+     * @table user_info
+     */
+    public $passwd = '';
 
     /**
      * @var string
@@ -66,7 +72,7 @@ class UserInfo extends \PhalconPlus\Base\Model
      * @var unknown
      * @table user_info
      */
-    public $points = null;
+    public $points = '0';
 
     /**
      * @var unknown
@@ -86,20 +92,27 @@ class UserInfo extends \PhalconPlus\Base\Model
      */
     public $status = null;
 
+    public function initialize()
+    {
+        parent::initialize();
+        $this->setConnectionService("dbDemo");
+    }
+
     /**
      * When an instance created, it would be executed
      */
     public function onConstruct()
     {
         $this->id = NULL;
-        $this->mobile = NULL;
-        $this->passwd = NULL;
+        $this->mobile = '';
+        $this->salt = '';
+        $this->passwd = '';
         $this->email = NULL;
         $this->nickname = NULL;
         $this->openId = NULL;
         $this->deviceId = NULL;
         $this->refer = NULL;
-        $this->points = NULL;
+        $this->points = '0';
         $this->inviteUserId = NULL;
         $this->inviteCode = NULL;
         $this->status = NULL;
@@ -113,6 +126,7 @@ class UserInfo extends \PhalconPlus\Base\Model
         return array(
             'id' => 'id', 
             'mobile' => 'mobile', 
+            'salt' => 'salt', 
             'passwd' => 'passwd', 
             'email' => 'email', 
             'nickname' => 'nickname', 
@@ -124,12 +138,6 @@ class UserInfo extends \PhalconPlus\Base\Model
             'invite_code' => 'inviteCode', 
             'status' => 'status', 
         );
-    }
-
-    public function initialize()
-    {
-        parent::initialize();
-        $this->setConnectionService("dbDemo");
     }
 
     /**

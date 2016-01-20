@@ -14,6 +14,7 @@ class Srv extends PlusModule
             __NAMESPACE__.'\\Services' => __DIR__.'/services/',
             __NAMESPACE__.'\\Models'   => __DIR__.'/models/',
             __NAMESPACE__."\\Plugins"  => __DIR__.'/plugins/',
+            __NAMESPACE__."\\Daos"     => __DIR__.'/daos/',
             "Common\\Protos"           => APP_ROOT_COMMON_DIR.'/protos/',
             "Zend"                     => APP_ROOT_COMMON_DIR.'/vendor/Zend/', 
         ))->register();

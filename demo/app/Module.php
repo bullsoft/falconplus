@@ -10,25 +10,31 @@ class Module extends PlusModule
     public function __construct(\Phalcon\DI $di)
     {
         parent::__construct($di);
-        set_exception_handler(function($exception) use ($di) {
-            $response = $di->get("response");
-            $msg = $exception->getMessage();
-            $data = new \stdClass();
-            if(substr($msg, 0, 8) == "__DATA__") {
-                $msg = substr($msg, 8);
-                $data = json_decode($msg, true);
-                $msg = implode(";", $data);
-            }
-            $error = array(
-                'errorCode' => max(1, $exception->getCode()),
-                'errorMsg'  => $msg,
-                'data'      => $data,
-                'sessionId' => '',
-            );
-            $response->setHeader('Content-Type', 'application/json');
-            $response->setJsonContent($error);
-            $response->send();
-        });
+        if(APP_ENV != "dev") {
+            set_exception_handler(function ($exception) use ($di) {
+                $response = $di->get("response");
+                $msg = $exception->getMessage();
+                $data = new \stdClass();
+                if (substr($msg, 0, 8) == "__DATA__") {
+                    $msg = substr($msg, 8);
+                    $data = json_decode($msg, true);
+                    $msgs = [];
+                    foreach ($data as $item) {
+                        $msgs[] = implode(",", $item);
+                    }
+                    $msg = implode(";", $msgs);
+                }
+                $error = array(
+                    'errorCode' => max(1, $exception->getCode()),
+                    'errorMsg' => $msg,
+                    'data' => $data,
+                    'sessionId' => '',
+                );
+                $response->setHeader('Content-Type', 'application/json');
+                $response->setJsonContent($error);
+                $response->send();
+            });
+        }
     }
 
     public function registerAutoloaders()
@@ -113,7 +119,8 @@ class Module extends PlusModule
             } else {
                 $remoteUrls = $config->demoServerUrl;
                 $client = new \PhalconPlus\RPC\Client\Adapter\Remote($remoteUrls->toArray());
-                $client->SetOpt(\YAR_OPT_CONNECT_TIMEOUT, 50000);
+                $client->SetOpt(\YAR_OPT_CONNECT_TIMEOUT, 5);
+                $client->SetOpt(\CURLOPT_NOSIGNAL, 1);
             }
             return $client;
         });
@@ -127,6 +134,7 @@ class Module extends PlusModule
                 $remoteUrls = $config->uCenterServerUrl;
                 $client = new \PhalconPlus\RPC\Client\Adapter\Remote($remoteUrls->toArray());
                 $client->SetOpt(\YAR_OPT_CONNECT_TIMEOUT, 5);
+                $client->SetOpt(\CURLOPT_NOSIGNAL, 1);
             }
             return $client;
         });

@@ -8,7 +8,7 @@ namespace Demo\Server\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Server\Models
- * @version $Rev:2016-01-12 17:30:52$
+ * @version $Rev:2016-01-19 18:12:24$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class PaySp extends \PhalconPlus\Base\Model
@@ -56,6 +56,12 @@ class PaySp extends \PhalconPlus\Base\Model
      */
     public $sk = null;
 
+    public function initialize()
+    {
+        parent::initialize();
+        $this->setConnectionService("dbDemo");
+    }
+
     /**
      * When an instance created, it would be executed
      */
@@ -84,12 +90,6 @@ class PaySp extends \PhalconPlus\Base\Model
             'ak' => 'ak', 
             'sk' => 'sk', 
         );
-    }
-
-    public function initialize()
-    {
-        parent::initialize();
-        $this->setConnectionService("dbDemo");
     }
 
     /**

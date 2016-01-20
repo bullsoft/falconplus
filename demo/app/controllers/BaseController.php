@@ -17,10 +17,11 @@ class BaseController extends \Phalcon\Mvc\Controller
         $whichAction = $this->dispatcher->getActionName();
 
         $siteTitle = include_once(APP_MODULE_DIR . "app/config/siteTitle.php");
+
         $titles = new \Phalcon\Config($siteTitle);
 
         $this->view->setVar("whichController", $whichController);
-        $this->view->setVar("whichAction", $whichController);
+        $this->view->setVar("whichAction", $whichAction);
         $this->view->setVar("title", $titles->get("{$whichController}:{$whichAction}", "网站标题"));
         $this->view->setVar("headDesc", $titles->get("headDesc", "网站描述"));
         $this->view->setVar("headKeywords", $titles->get("headKeywords", "网站关键词"));
@@ -29,14 +30,14 @@ class BaseController extends \Phalcon\Mvc\Controller
 
     }
 
-    protected function formValid(\Phalcon\Forms\Form $form, $input)
+    protected function formValid(\Phalcon\Forms\Form $form, array $input)
     {
         if(!$form->isValid($input)) {
             $details = [];
             foreach ($form->getMessages() as $val) {
-                $details[$val->getField()] = $val->getMessage();
+                $details[$val->getField()][] = $val->getMessage();
             }
-            throw new \Common\Protos\Exception\FormInputInvalid(["json", json_encode($details)], $this->logger);
+            throw new \Common\Protos\Exception\FormInputInvalid(["json", json_encode($details, \JSON_UNESCAPED_UNICODE)], $this->logger);
         }
         return true;
     }

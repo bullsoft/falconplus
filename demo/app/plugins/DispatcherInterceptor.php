@@ -52,7 +52,7 @@ class DispatcherInterceptor extends Plugin
             );
             $response = new \Phalcon\Http\Response();
             $response->setHeader('Content-Type', 'application/json');
-            $response->setJsonContent($returnValue);
+            $response->setJsonContent($returnValue, \JSON_UNESCAPED_UNICODE);
             $dispatcher->setReturnedValue($response);
         }
         return true;

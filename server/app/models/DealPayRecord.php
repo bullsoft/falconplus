@@ -8,7 +8,7 @@ namespace Demo\Server\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Server\Models
- * @version $Rev:2016-01-12 17:30:52$
+ * @version $Rev:2016-01-19 18:12:24$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class DealPayRecord extends \PhalconPlus\Base\Model
@@ -19,6 +19,12 @@ class DealPayRecord extends \PhalconPlus\Base\Model
      * @table deal_pay_record
      */
     public $id = null;
+
+    public function initialize()
+    {
+        parent::initialize();
+        $this->setConnectionService("dbDemo");
+    }
 
     /**
      * When an instance created, it would be executed
@@ -36,12 +42,6 @@ class DealPayRecord extends \PhalconPlus\Base\Model
         return array(
             'id' => 'id', 
         );
-    }
-
-    public function initialize()
-    {
-        parent::initialize();
-        $this->setConnectionService("dbDemo");
     }
 
     /**
