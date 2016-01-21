@@ -11,12 +11,14 @@ use Common\Protos\EnumUserStatus;
 use PhalconPlus\Assert\Assertion as Assert;
 use Common\Protos\ProtoLoginInfo;
 use Common\Protos\ProtoRegInfo;
+use PhalconPlus\Base\SimpleRequest;
 
 use Demo\Server\Models;
 use Demo\Server\Daos;
 
 use Common\Protos\Exception\SystemBusy;
 use Common\Protos\Exception\UserNotExists;
+use Common\Protos\Exception\UserAlreadyExists;
 
 /**
  * Class UserService
@@ -25,6 +27,23 @@ use Common\Protos\Exception\UserNotExists;
 class UserService extends \PhalconPlus\Base\Service
 {
     const DEFAULT_INVITE_UID = 0;
+
+    public function getUserById(SimpleRequest $request)
+    {
+        $userId = $request->getParam(0);
+        $userInfo = Models\UserInfo::findFirstById($userId);
+        return $userInfo->toProtoBuffer([
+            "id",
+            "mobile",
+            "email",
+            "isEmailVerified",
+            "nickname",
+            "points",
+            "inviteUserId",
+            "inviteCode",
+            "status",
+        ]);
+    }
 
     public function passwdMatch(ProtoLoginInfo $loginInfo)
     {
@@ -41,9 +60,18 @@ class UserService extends \PhalconPlus\Base\Service
         if($hashPasswd != $userInfo->passwd) {
             throw new \Exception("密码不匹配");
         }
-        $response = new \PhalconPlus\Base\SimpleResponse;
-        $response->setResult($userInfo->toArray());
-        return $response;
+
+        return $userInfo->toProtoBuffer([
+            "id",
+            "mobile",
+            "email",
+            "isEmailVerified",
+            "nickname",
+            "points",
+            "inviteUserId",
+            "inviteCode",
+            "status",
+        ]);
     }
 
     public function create(ProtoRegInfo $regInfo)
@@ -51,6 +79,10 @@ class UserService extends \PhalconPlus\Base\Service
         // UserInfoModel
         $userInfo = new Models\UserInfo();
         $userInfo->mobile = $regInfo->getMobile();
+        // 手机号是否已经被占用
+        if(Daos\UserDao::exists("mobile", $regInfo->getMobile()) != false) {
+            throw new UserAlreadyExists(["user mobile alreay exists", $regInfo->getMobile()], $this->logger);
+        }
 
         // 生成安全密码
         $salt = random_bytes(32);
@@ -68,6 +100,11 @@ class UserService extends \PhalconPlus\Base\Service
         // 通过手机验证码,合法用户
         $userInfo->status = EnumUserStatus::NORMAL;
         $userInfo->email = $regInfo->getEmail();
+        $userInfo->isEmailVerified = 0;
+        // 邮箱是否已被占用
+        if(Daos\UserDao::exists("email", $regInfo->getEmail()) != false) {
+            throw new UserAlreadyExists(["user email alreay exists", $regInfo->getEmail()], $this->logger);
+        }
 
         // 处理邀请人信息
         $userInfo->inviteUserId = self::DEFAULT_INVITE_UID;
@@ -82,8 +119,9 @@ class UserService extends \PhalconPlus\Base\Service
             throw new SystemBusy(["failed to create user, userInfo: ", $userInfo->toArray()], $this->logger);
         }
 
-        return [];
-        // return response
+        return $userInfo->toProtoBuffer([
+            "id",
+        ]);
     }
 
     public function changeStatus()

@@ -28,6 +28,7 @@ class EnumExceptionCode extends EnumException
     const USER_NOT_EXISTS = 10001;
     const AUTH_FAILED = 10002;
     const NEED_LOGIN = 10003;
+    const USER_ALREADY_EXISTS = 10004;
 
     const SYSTEM_BUSY = 20000;
     const FORM_INPUT_INVALID = 20001;
@@ -52,6 +53,11 @@ class EnumExceptionCode extends EnumException
         self::FORM_INPUT_INVALID => [
             "message" => "__DATA__%s",
             "level" => EnumLoggerLevel::INFO
+        ],
+
+        self::USER_ALREADY_EXISTS => [
+            "message" => "用户资料(%s)已存在",
+            "level"   => EnumLoggerLevel::INFO,
         ]
         
     ];

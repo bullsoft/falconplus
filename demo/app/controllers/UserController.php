@@ -19,24 +19,12 @@ use Phalcon\Validation\Validator\Url as UrlValidator;
 
 class UserController extends BaseController
 {
-    public function indexAction()
+    /**
+     * @disableGuest
+     */
+    public function webHomeAction()
     {
-        $request = new SimpleRequest();
-        $request->setParam("foo");
-        $request->setParam("bar");
-        $response = $this->ucRpc->callByObject(array(
-            "service" => "\\UCenter\\Srv\\Services\\Dummy",
-            "method" => "demo",
-            "args" => $request,
-        ));
-
-        var_dump($response);
-    }
-
-    public function dAction()
-    {
-        $this->session->destroy();
-        echo "OK";
+        var_dump($this->user);
     }
 
     public function webLoginAction()
@@ -49,6 +37,17 @@ class UserController extends BaseController
      */
     public function doLoginAction()
     {
+        if($this->session->get('identity') > 0) {
+            $request = new SimpleRequest();
+            $request->setParam($this->session->get('identity'));
+            return $this->rpc->callByObject(array(
+                    "service" => "\\Demo\\Server\\Services\\User",
+                    "method" => "getUserById",
+                    "args" => $request,
+                    "logId" => $this->logger->getFormatter()->uid,
+            ));
+        }
+
         $form = new Form();
         $mobile = new Text("mobile");
         $passwd = new Text("passwd");
@@ -78,9 +77,7 @@ class UserController extends BaseController
             "args" => $loginInfo,
             "logId" => $this->logger->getFormatter()->uid,
         ));
-
-        // $this->session->set('identity', $response->getMobile());
-
+        $this->session->set('identity', $response->id);
         return $response;
     }
 
@@ -154,6 +151,6 @@ class UserController extends BaseController
             "logId" => $this->logger->getFormatter()->uid,
         ));
 
-        var_dump($response);
+        return $response;
     }
 }

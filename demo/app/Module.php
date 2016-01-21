@@ -10,7 +10,7 @@ class Module extends PlusModule
     public function __construct(\Phalcon\DI $di)
     {
         parent::__construct($di);
-        if(APP_ENV != "dev") {
+        if(APP_ENV != "product") {
             set_exception_handler(function ($exception) use ($di) {
                 $response = $di->get("response");
                 $msg = $exception->getMessage();
@@ -44,6 +44,7 @@ class Module extends PlusModule
             __NAMESPACE__.'\\Controllers' => __DIR__.'/controllers/',
             __NAMESPACE__.'\\Models'      => __DIR__.'/models/',
             __NAMESPACE__."\\Plugins"     => __DIR__.'/plugins/',
+            "Detection"                   => APP_ROOT_COMMON_DIR . "/vendor/Mobile-Detect/namespaced/Detection/",
             "Zend"                        => APP_ROOT_COMMON_DIR . "/vendor/Zend/",
             "Common\\Protos"              => APP_ROOT_COMMON_DIR . "/protos/",
             "Gregwar\\Captcha"            => APP_ROOT_COMMON_DIR . "/vendor/Captcha/",

@@ -26,8 +26,7 @@ return array(
     'demoServerUrl' => array(
         //"http://server.phalconphp.org",
         //"http://server.phalconplus.com",
-        //"http://127.0.0.1:8083/",
-        "http://server.phalconplus.com:8083/",
+        "http://127.0.0.1:8083/",
     ),
     'debugRPC' => false,
     'uCenterServerUrl' => array(

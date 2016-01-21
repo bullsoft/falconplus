@@ -11,6 +11,7 @@ namespace Demo\Web\Plugins;
 use Phalcon\Events\Event;
 use Phalcon\Mvc\User\Plugin;
 use Phalcon\Mvc\Dispatcher;
+use PhalconPlus\Base\SimpleRequest;
 
 class DispatcherInterceptor extends Plugin
 {
@@ -35,8 +36,32 @@ class DispatcherInterceptor extends Plugin
         $annotations = new \Phalcon\Annotations\Adapter\Memory();
         $method = $dispatcher->getActiveMethod();
         $anno = $annotations->getMethod(get_class($dispatcher->getActiveController()), $method);
-        if ($anno->has('disableView')) {
+
+        // 禁止模板
+        if($anno->has('disableView')) {
             $this->view->disable();
+        }
+
+        // 不允许匿名
+        if($anno->has('disableGuest')) {
+            if(!$this->session->has('identity')) {
+                $response = new \Phalcon\Http\Response();
+                $response->redirect("user/web-login");
+                $dispatcher->setReturnedValue($response);
+                return false;
+            } else {
+                $request = new SimpleRequest();
+                $request->setParam($this->session->get('identity'));
+                $response = $this->rpc->callByObject(array(
+                    "service" => "\\Demo\\Server\\Services\\User",
+                    "method" => "getUserById",
+                    "args" => $request,
+                    "logId" => $this->logger->getFormatter()->uid,
+                ));
+                $this->di->setShared("user", function() use ($response) {
+                    return $response;
+                });
+            }
         }
         return true;
     }
@@ -52,7 +77,7 @@ class DispatcherInterceptor extends Plugin
             );
             $response = new \Phalcon\Http\Response();
             $response->setHeader('Content-Type', 'application/json');
-            $response->setJsonContent($returnValue, \JSON_UNESCAPED_UNICODE);
+            $response->setJsonContent($return, \JSON_UNESCAPED_UNICODE);
             $dispatcher->setReturnedValue($response);
         }
         return true;

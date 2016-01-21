@@ -11,10 +11,13 @@ namespace Demo\Web\Controllers;
 
 class BaseController extends \Phalcon\Mvc\Controller
 {
+    protected $controller;
+    protected $action;
+
     public function initialize()
     {
-        $whichController = $this->dispatcher->getControllerName();
-        $whichAction = $this->dispatcher->getActionName();
+        $this->controller = $whichController = $this->dispatcher->getControllerName();
+        $this->action = $whichAction = $this->dispatcher->getActionName();
 
         $siteTitle = include_once(APP_MODULE_DIR . "app/config/siteTitle.php");
 
@@ -37,7 +40,8 @@ class BaseController extends \Phalcon\Mvc\Controller
             foreach ($form->getMessages() as $val) {
                 $details[$val->getField()][] = $val->getMessage();
             }
-            throw new \Common\Protos\Exception\FormInputInvalid(["json", json_encode($details, \JSON_UNESCAPED_UNICODE)], $this->logger);
+            $msg = "{$this->controller}:{$this->action} form failed to validate";
+            throw new \Common\Protos\Exception\FormInputInvalid([$msg, json_encode($details, \JSON_UNESCAPED_UNICODE)], $this->logger);
         }
         return true;
     }

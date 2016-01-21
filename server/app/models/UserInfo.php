@@ -8,7 +8,7 @@ namespace Demo\Server\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Server\Models
- * @version $Rev:2016-01-19 18:12:24$
+ * @version $Rev:2016-01-21 16:52:01$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class UserInfo extends \PhalconPlus\Base\Model
@@ -42,31 +42,37 @@ class UserInfo extends \PhalconPlus\Base\Model
      * @var string
      * @table user_info
      */
-    public $email = null;
-
-    /**
-     * @var string
-     * @table user_info
-     */
-    public $nickname = null;
-
-    /**
-     * @var string
-     * @table user_info
-     */
-    public $open_id = null;
+    public $email = '';
 
     /**
      * @var integer
      * @table user_info
      */
-    public $device_id = null;
+    public $is_email_verified = '0';
 
     /**
      * @var string
      * @table user_info
      */
-    public $refer = null;
+    public $nickname = '';
+
+    /**
+     * @var string
+     * @table user_info
+     */
+    public $open_id = '';
+
+    /**
+     * @var integer
+     * @table user_info
+     */
+    public $device_id = '0';
+
+    /**
+     * @var string
+     * @table user_info
+     */
+    public $refer = 'HOME';
 
     /**
      * @var unknown
@@ -78,19 +84,19 @@ class UserInfo extends \PhalconPlus\Base\Model
      * @var unknown
      * @table user_info
      */
-    public $invite_user_id = null;
+    public $invite_user_id = '0';
 
     /**
      * @var string
      * @table user_info
      */
-    public $invite_code = null;
+    public $invite_code = '';
 
     /**
      * @var integer
      * @table user_info
      */
-    public $status = null;
+    public $status = '0';
 
     public function initialize()
     {
@@ -107,15 +113,16 @@ class UserInfo extends \PhalconPlus\Base\Model
         $this->mobile = '';
         $this->salt = '';
         $this->passwd = '';
-        $this->email = NULL;
-        $this->nickname = NULL;
-        $this->openId = NULL;
-        $this->deviceId = NULL;
-        $this->refer = NULL;
+        $this->email = '';
+        $this->isEmailVerified = '0';
+        $this->nickname = '';
+        $this->openId = '';
+        $this->deviceId = '0';
+        $this->refer = 'HOME';
         $this->points = '0';
-        $this->inviteUserId = NULL;
-        $this->inviteCode = NULL;
-        $this->status = NULL;
+        $this->inviteUserId = '0';
+        $this->inviteCode = '';
+        $this->status = '0';
     }
 
     /**
@@ -129,6 +136,7 @@ class UserInfo extends \PhalconPlus\Base\Model
             'salt' => 'salt', 
             'passwd' => 'passwd', 
             'email' => 'email', 
+            'is_email_verified' => 'isEmailVerified', 
             'nickname' => 'nickname', 
             'open_id' => 'openId', 
             'device_id' => 'deviceId', 
