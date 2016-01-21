@@ -34,6 +34,7 @@ class UserController extends BaseController
 
     /**
      * @disableView
+     * @api
      */
     public function doLoginAction()
     {
@@ -88,6 +89,7 @@ class UserController extends BaseController
 
     /**
      * @disableView
+     * @api
      */
     public function doCreateAction()
     {

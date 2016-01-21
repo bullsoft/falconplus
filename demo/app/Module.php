@@ -10,7 +10,7 @@ class Module extends PlusModule
     public function __construct(\Phalcon\DI $di)
     {
         parent::__construct($di);
-        if(APP_ENV != "product") {
+        if(APP_ENV == "product") {
             set_exception_handler(function ($exception) use ($di) {
                 $response = $di->get("response");
                 $msg = $exception->getMessage();

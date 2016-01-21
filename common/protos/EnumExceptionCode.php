@@ -45,6 +45,11 @@ class EnumExceptionCode extends EnumException
             "level" =>  EnumLoggerLevel::INFO,
         ],
 
+        self::NEED_LOGIN => [
+            "message" => "需要登录",
+            "level" => EnumLoggerLevel::INFO,
+        ],
+
         self::SYSTEM_BUSY => [
             "message" => "系统繁忙",
             "level" => EnumLoggerLevel::ERROR

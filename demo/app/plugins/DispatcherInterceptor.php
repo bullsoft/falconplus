@@ -12,6 +12,7 @@ use Phalcon\Events\Event;
 use Phalcon\Mvc\User\Plugin;
 use Phalcon\Mvc\Dispatcher;
 use PhalconPlus\Base\SimpleRequest;
+use Common\Protos\Exception\NeedLogin;
 
 class DispatcherInterceptor extends Plugin
 {
@@ -45,10 +46,14 @@ class DispatcherInterceptor extends Plugin
         // 不允许匿名
         if($anno->has('disableGuest')) {
             if(!$this->session->has('identity')) {
-                $response = new \Phalcon\Http\Response();
-                $response->redirect("user/web-login");
-                $dispatcher->setReturnedValue($response);
-                return false;
+                if(!$anno->has('api')) {
+                    $response = new \Phalcon\Http\Response();
+                    $response->redirect("user/web-login");
+                    $dispatcher->setReturnedValue($response);
+                    return false;
+                } else {
+                    throw new NeedLogin(["user need login to access this resource"]);
+                }
             } else {
                 $request = new SimpleRequest();
                 $request->setParam($this->session->get('identity'));
@@ -63,6 +68,7 @@ class DispatcherInterceptor extends Plugin
                 });
             }
         }
+
         return true;
     }
 
