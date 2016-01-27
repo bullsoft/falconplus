@@ -1,3 +1,15 @@
+.form-username, .form-password {
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    vertical-align: middle;
+}
+
+.form-login-btn {
+    line-height: 50px;
+    font-size: 16px;
+    vertical-align: middle;
+}
 
 a, a:hover, a:focus {
     color: #de615e;

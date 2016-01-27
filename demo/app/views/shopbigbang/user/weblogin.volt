@@ -19,7 +19,7 @@
                     <label class="sr-only" for="form-password">Password</label>
                     <input type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="form-password">
                 </div>
-                <button type="submit" class="btn">登录</button>
+                <button type="submit" class="btn form-login-btn">登录</button>
             </form>
         </div>
     </div>
