@@ -89,6 +89,11 @@ class Module extends PlusModule
             return $dispatcher;
         });
 
+        $di->setShared('siteConf', function() {
+            $siteConfs = include_once(APP_MODULE_DIR . "app/config/siteTitle.php");
+            return new \Phalcon\Config($siteConfs);
+        });
+
         $di->set('profiler', function(){
             return new \Phalcon\Db\Profiler();
         }, true);
@@ -142,7 +147,7 @@ class Module extends PlusModule
         
         // set view with volt
         $di->set('view', function() use ($di) {
-            $tpl = "dianrong";
+            $tpl = $di->get("siteConf")->template;
             $view = new \Phalcon\Mvc\View();
             $view->setViewsDir(__DIR__."/views/{$tpl}/");
             $view->registerEngines(array(

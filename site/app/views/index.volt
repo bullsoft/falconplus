@@ -17,7 +17,7 @@
     <footer>
         <div class="row">
             <div class="col-lg-12">
-                <p>Copyright &copy; Phalcon+ 2015. A member of <a href="http://bullsoft.org">BullSoft</a>.</p>
+                <p>Copyright &copy; Phalcon+ 2015 - 2016. A member of <a href="http://bullsoft.org">BullSoft</a>.</p>
             </div>
         </div>
     </footer>

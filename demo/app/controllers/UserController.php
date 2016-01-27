@@ -119,9 +119,9 @@ class UserController extends BaseController
             'message' => '密码不能为空',
         )));
         $passwd->addValidator(new StringLength(array(
-            'max' => 12,
+            'max' => 20,
             'min' => 8,
-            'messageMaximum' => '密码长度不能超过 36 ',
+            'messageMaximum' => '密码长度不能超过 20 ',
             'messageMinimum' => '密码长度不能小于 8 '
         )));
         $passwd->addValidator(new RegexValidator(array(

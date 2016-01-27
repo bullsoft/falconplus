@@ -39,7 +39,7 @@ class DispatcherInterceptor extends Plugin
         $anno = $annotations->getMethod(get_class($dispatcher->getActiveController()), $method);
 
         // 禁止模板
-        if($anno->has('disableView')) {
+        if($anno->has('disableView') || $anno->has('api')) {
             $this->view->disable();
         }
 

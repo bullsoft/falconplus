@@ -8,13 +8,13 @@
                 <div class="header-content-wrapper">
                     <div class="avatar-row">
                         <a href="index.html" class="profile-avatar">
-                            <img width="100%" ng-src="images/green-head.jpg" ng-clock="" src="images/green-head.jpg">
+                            <img width="100%" ng-src="{{ url('/tpls/'~tpl~'/images/green-head.jpg') }}" ng-clock="" src="{{ url('/tpls/'~tpl~'/images/green-head.jpg') }}">
                         </a>
                         <!--<sl-avatar size="70" class="avatar"></sl-avatar>-->
                         <div class="profile">
                             <h6 class="user-name ng-binding">
                                 晚上好!
-                                <p class="say-hi ng-binding">{{ $this->user->mobile }}</p>
+                                <p class="say-hi ng-binding">{{ this.user.mobile }}</p>
                             </h6>
                         </div>
                     </div>

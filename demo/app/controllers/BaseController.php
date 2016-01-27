@@ -19,15 +19,14 @@ class BaseController extends \Phalcon\Mvc\Controller
         $this->controller = $whichController = $this->dispatcher->getControllerName();
         $this->action = $whichAction = $this->dispatcher->getActionName();
 
-        $siteTitle = include_once(APP_MODULE_DIR . "app/config/siteTitle.php");
-
-        $titles = new \Phalcon\Config($siteTitle);
+        $titles = $this->di->get("siteConf");
 
         $this->view->setVar("whichController", $whichController);
         $this->view->setVar("whichAction", $whichAction);
         $this->view->setVar("title", $titles->get("{$whichController}:{$whichAction}", "网站标题"));
         $this->view->setVar("headDesc", $titles->get("headDesc", "网站描述"));
         $this->view->setVar("headKeywords", $titles->get("headKeywords", "网站关键词"));
+
         $this->view->setVar("tpl",  $titles->get("template", "dianrong"));
         $this->view->setVar("version", date("Ymd").rand(10000, 99990));
 
