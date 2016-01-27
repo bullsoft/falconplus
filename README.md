@@ -5,6 +5,7 @@
 2. mkdir /tmp/compiled/
 
 3. git clone https://github.com/bullsoft/falconplus.git
+
 git submodule update --init --recursive
 
 4. Nginx配置
