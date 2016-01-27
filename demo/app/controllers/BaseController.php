@@ -22,7 +22,7 @@ class BaseController extends \Phalcon\Mvc\Controller
         $titles = $this->di->get("siteConf");
 
         $this->view->setVar("whichController", $whichController);
-        $this->view->setVar("whichAction", $whichAction);
+        $this->view->setVar("whichAction", strtolower($whichAction));
         $this->view->setVar("title", $titles->get("{$whichController}:{$whichAction}", "网站标题"));
         $this->view->setVar("headDesc", $titles->get("headDesc", "网站描述"));
         $this->view->setVar("headKeywords", $titles->get("headKeywords", "网站关键词"));

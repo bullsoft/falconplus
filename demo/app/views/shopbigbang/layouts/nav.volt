@@ -21,23 +21,23 @@
                     <a href="#">排行榜</a>
                 </li>
                 <li>
-                    <a href="#">已购项目</a>
+                    <a href="{{ url('user/web-purchased') }}">已购项目</a>
                 </li>
                 <li>
                     <a href="#">更新</a>
                 </li>
             </ul>
 
-            <ul class="col-lg-3 pull-right navbar-nav">
-                <li>
+            <div class="col-lg-3 pull-right navbar-nav navbar-form">
+
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="查找应用">
                       <span class="input-group-btn">
                         <button class="btn btn-default" type="button">搜索</button>
                       </span>
                 </div><!-- /input-group -->
-                </li>
-            </ul><!-- /.col-lg-6 -->
+
+            </div><!-- /.col-lg-6 -->
 
         </div>
 

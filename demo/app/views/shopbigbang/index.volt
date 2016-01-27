@@ -10,12 +10,15 @@
     <meta name="author" content="">
 
     <title>雪品大爆炸</title>
+    <link rel="shortcut icon" href="{{ url("/tpls/"~tpl~"/favicon.png") }}" />
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ url('/tpls/'~tpl~'/css/bootstrap.min.css') }}" rel="stylesheet">
 
+    <link href="{{ url('/tpls/'~tpl~'/css/form-elements.css') }}" rel="stylesheet">
+
     <!-- Custom CSS -->
-    <link href="{{ url('/tpls/'~tpl~'/css/shop-homepage.css') }}" rel="stylesheet">
+    <link href="{{ url('/tpls/'~tpl~'/yourcss/'~whichController~'/'~whichAction~'.css') }}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,22 +39,7 @@
 <div class="container">
 
     <div class="row">
-
-        <div class="col-md-3">
-            <p class="lead">类别</p>
-            <div class="list-group">
-                <a href="#" class="list-group-item">金融软件</a>
-                <a href="#" class="list-group-item">交流社区</a>
-                <a href="#" class="list-group-item">电商网站</a>
-            </div>
-        </div>
-
-        <div class="col-md-9">
-
-            {{ content() }}
-
-        </div>
-
+        {{ content() }}
     </div>
 
 </div>
@@ -78,6 +66,11 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="{{ url('/tpls/'~tpl~'/js/bootstrap.min.js') }}"></script>
+
+<script src="{{ url('/tpls/'~tpl~'/js/jquery.backstretch.min.js') }}"></script>
+
+
+<script src="{{ url('/tpls/'~tpl~'/yourjs/'~whichController~'/'~whichAction~'.js') }}"></script>
 
 </body>
 

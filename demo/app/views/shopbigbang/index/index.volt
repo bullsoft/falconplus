@@ -1,3 +1,6 @@
+{% extends "nav_base.volt" %}
+
+{% block right %}
 <div class="row carousel-holder">
 
     <div class="col-md-12">
@@ -142,3 +145,5 @@
     </div>
 
 </div>
+
+{% endblock %}

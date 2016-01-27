@@ -20,6 +20,7 @@ use Phalcon\Validation\Validator\Url as UrlValidator;
 class UserController extends BaseController
 {
     /**
+     * 用户中心页
      * @disableGuest
      */
     public function webHomeAction()
@@ -27,12 +28,16 @@ class UserController extends BaseController
         var_dump($this->user);
     }
 
+    /**
+     * 用户登录页
+     */
     public function webLoginAction()
     {
 
     }
 
     /**
+     * 用户登录接口
      * @disableView
      * @api
      */
@@ -82,6 +87,9 @@ class UserController extends BaseController
         return $response;
     }
 
+    /**
+     * 用户注册页面
+     */
     public function webCreateAction()
     {
 
@@ -154,5 +162,15 @@ class UserController extends BaseController
         ));
 
         return $response;
+    }
+
+    /**
+     *
+     * @disableGuest
+     *
+     */
+    public function webPurchasedAction()
+    {
+
     }
 }
