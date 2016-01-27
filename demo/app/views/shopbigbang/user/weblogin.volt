@@ -1,4 +1,4 @@
-<div class="row" style="margin-top: 40px;">
+<div class="row">
     <div class="col-sm-6 col-sm-offset-3 form-box">
         <div class="form-top">
             <div class="form-top-left">

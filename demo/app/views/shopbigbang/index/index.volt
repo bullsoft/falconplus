@@ -39,7 +39,7 @@
             <img src="{{ url('/tpls/'~tpl~'/thumb/p2p.png') }}" alt="">
             <div class="caption">
                 <h4 class="pull-right">RMB 60W</h4>
-                <h4><a href="#">P2P系统</a>
+                <h4><a href="{{ url("product/web-item/1") }}">P2P系统</a>
                 </h4>
                 <p>P2P是peer-to-peer的缩写，peer在英语里有（地位、能力等）同等者、同事和伙伴等意义。P2P直接将人们联系起来，让人们通过互联网直接交互。使得网络上的沟通变得容易、更直接共享和交互，真正地消除中间商，为企业与个人提供更大的方便。</p>
             </div>

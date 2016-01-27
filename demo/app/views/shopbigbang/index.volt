@@ -15,6 +15,7 @@
     <!-- Bootstrap Core CSS -->
     <link href="{{ url('/tpls/'~tpl~'/css/bootstrap.min.css') }}" rel="stylesheet">
 
+    <link href="{{ url('/tpls/'~tpl~'/yourcss/default.css') }}" rel="stylesheet">
     <link href="{{ url('/tpls/'~tpl~'/css/form-elements.css') }}" rel="stylesheet">
 
     <!-- Custom CSS -->

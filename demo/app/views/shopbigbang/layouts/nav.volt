@@ -9,22 +9,22 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">雪品应用</a>
+            <a class="navbar-brand" href="{{ url("/") }}">雪品应用</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#">精选</a>
+                    <a href="{{ url("product/web-recommend") }}">精选</a>
                 </li>
                 <li>
-                    <a href="#">排行榜</a>
+                    <a href="{{ url("product/web-ranking") }}">排行榜</a>
                 </li>
                 <li>
                     <a href="{{ url('user/web-purchased') }}">已购项目</a>
                 </li>
                 <li>
-                    <a href="#">更新</a>
+                    <a href="{{ url("user/web-product-updates") }}">更新</a>
                 </li>
             </ul>
 
