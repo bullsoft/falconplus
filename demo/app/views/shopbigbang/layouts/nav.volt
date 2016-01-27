@@ -30,6 +30,48 @@
 
 
             <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">已登录
+                        <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="navbar-content">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <img src="http://placehold.it/120x120"
+                                             alt="Alternate Text" class="img-responsive" />
+                                        <p class="text-center small">
+                                            <a href="#">Change Photo</a></p>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <span>BullSoft</span>
+                                        <p class="text-muted small">
+                                            bullsoft@outook.com
+                                        </p>
+                                        <div class="divider">
+                                        </div>
+                                        <a href="#" class="btn btn-primary btn-sm active">View Profile</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navbar-footer">
+                                <div class="navbar-footer-content">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <a href="#" class="btn btn-default btn-sm">Change Passowrd</a>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <a href="http://www.jquery2dotnet.com" class="btn btn-default btn-sm pull-right">Sign Out</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+
+            <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>登录</b> <span class="caret"></span></a>
                     <ul id="login-dp" class="dropdown-menu">

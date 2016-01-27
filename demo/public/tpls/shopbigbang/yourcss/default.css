@@ -53,6 +53,8 @@ footer {
     margin: 50px 0;
 }
 
+
+/* 未登录下拉 */
 #login-dp{
     min-width: 250px;
     padding: 14px 14px 0;
@@ -103,3 +105,45 @@ footer {
         border-top:0 none;
     }
 }
+
+
+
+
+/* 已登录下拉 */
+
+/* Flip around the padding for proper display in narrow viewports */
+.navbar-wrapper .container {
+    padding-left: 0;
+    padding-right: 0;
+}
+.navbar-wrapper .navbar {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.navbar-content
+{
+    width:320px;
+    padding: 15px;
+    padding-bottom:0px;
+}
+.navbar-content:before, .navbar-content:after
+{
+    display: table;
+    content: "";
+    line-height: 0;
+}
+.navbar-nav.navbar-right:last-child {
+    margin-right: 15px !important;
+}
+.navbar-footer
+{
+    background-color:#ddd
+}
+.navbar-footer-content { padding:15px 15px 15px 15px; }
+.dropdown-menu {
+    padding: 0px;
+    overflow: hidden;
+}
+
+
