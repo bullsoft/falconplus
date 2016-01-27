@@ -1,0 +1,347 @@
+body {
+    background: #16a085;
+    font-family: 'Roboto', sans-serif;
+}
+
+.dashboard {
+    padding: 0 30px;
+}
+
+.dashboard-tabs {
+    background-color: #ecf0f1;
+
+    padding: 0;
+
+    border: 0 solid #ecf0f1;
+    border-radius: 5px;
+}
+
+.dashboard-tabs:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.dashboard-tabs > li {
+    list-style: none;
+    display: inline-block;
+    width: 20%;
+    float: left;
+    padding: 0;
+}
+
+.dashboard-tabs > li:first-of-type {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.dashboard-tabs > li:last-of-type {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.dashboard-tabs > li > a {
+    vertical-align: middle;
+    text-align: center;
+    background-color: #ecf0f1;
+    width: 100%;
+
+    text-decoration: none;
+    color: #333;
+
+    border: 0 solid #8e44ad;
+    border-radius: 0;
+    padding: 10px 0 4px 0;
+}
+
+.dashboard-tabs > li.active > a {
+    color: #8e44ad;
+
+    border-width: 8px 0;
+    padding: 0;
+    margin: -4px 0;
+}
+
+.dashboard-tabs > li:first-of-type > a {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.dashboard-tabs > li:last-of-type > a {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.dashboard-tabs > li.active > a:before {
+    content: '';
+    position: relative;
+    border-style: solid;
+    border-width: 6px 6px 0;
+    border-color: #8E44AD transparent;
+    display: block;
+    width: 0;
+    z-index: 1;
+    margin-left: -6px;
+    top: 0;
+    left: 50%;
+}
+
+.dashboard-tabs > li > a .glyphicon {
+    color: #1abc9c;
+    padding-top: 16px;
+    font-size: 40px;
+}
+
+.dashboard .tab-content {
+    margin: 40px 0;
+}
+
+.dashboard .jumbotron {
+    margin-top: 0px;
+    background: #8e44ad;
+    color: #fff;
+    border-radius: 5px 5px 0 0;
+}
+
+.dashboard .jumbotron small {
+    color: #fff;
+}
+
+.dashboard .jumbotron-sm {
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+
+.help-pane {
+    background: #ecf0f1;
+    border-radius: 5px;
+}
+
+.profile-pane {
+    width: 100%;
+    display: table;
+    border-spacing: 10px;
+}
+
+.profile-pane > div {
+    display: table-row;
+}
+
+.profile-pane > div > div {
+    width: 50%;
+    display: table-cell;
+}
+
+.profile-pane .header {
+    background: #8e44ad;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 10px 10px 0 0;
+}
+
+.profile-pane .content {
+    background: #ecf0f1;
+    border-radius: 0 0 10px 10px;
+    padding: 5px 15px;
+}
+
+.profile-pane h4.col {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.profile-pane button.col {
+    text-align: center;
+    padding: 0;
+}
+
+.profile-pane .title {
+    margin-top: 0;
+    padding: 10px;
+    border-bottom: 1px solid #aaa;
+}
+
+#supportedCauses {
+    padding: 0;
+}
+
+.cause-info {
+    margin-bottom: 5px;
+    padding: 5px;
+    background: #fff;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.cause-info a:hover {
+    cursor: pointer;
+}
+
+.cause-info > div:nth-of-type(3) {
+    width: 16.66666666%;
+    float: left;
+}
+
+.cause-info > div:nth-of-type(3) > * {
+    padding: 0 15px;
+    float: right;
+}
+
+.cause-info > div:nth-of-type(3) a > .glyphicon {
+    transition: transform .5s;
+}
+
+.cause-info:not(.expanded) > div:nth-of-type(1) {
+    width: 83.33333333%;
+    float: left;
+    display: inline-block;
+}
+
+.cause-info:not(.expanded) > div:nth-of-type(1) > img {
+    width: 20%;
+    float: left;
+}
+
+.cause-info:not(.expanded) > div:nth-of-type(1) > div {
+    width: 40%;
+    float: left;
+    padding: 0 15px;
+}
+
+.cause-info:not(.expanded) > div:nth-of-type(1) > div:nth-of-type(2):before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.cause-info:not(.expanded) > div:nth-of-type(2) {
+    display: none;
+}
+
+.cause-info.expanded > div:nth-of-type(1) {
+    width: 25%;
+    float: left;
+}
+
+.cause-info.expanded > div:nth-of-type(1) > img {
+    width: 66.66666667%;
+}
+
+.cause-info.expanded > div:nth-of-type(2) {
+    width: 58.33333333%;
+    float: left;
+}
+
+.cause-info.expanded > div:nth-of-type(3) a > .glyphicon {
+    transform: rotate(180deg);
+}
+
+.profile-pane article {
+    background: #fff;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 40px;
+}
+
+.search-bar {
+    position: relative;
+    display: table;
+    border-collapse: collapse;
+}
+
+.search-bar > input {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.search-select {
+    border-radius: 4px;
+    border-color: #ccc;
+    height: 34px;
+    font-size: 14px;
+    color: #555;
+    background: #fff;
+    padding-right: 0;
+}
+
+.reciept-infos {
+    border: 1px solid #000;
+    padding: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.reciept-infos > div:last-of-type {
+    border-bottom: none;
+}
+
+.reciept-infos > div {
+    display: inline-block;
+    border-bottom: 1px solid #000;
+}
+
+.reciept-infos > div > * {
+    float: left;
+}
+
+.reciept-infos > div > img {
+    width: 18%;
+    margin: 1%;
+}
+
+.reciept-infos > div > div {
+    width: 80%;
+    padding: 0 15px;
+}
+
+
+
+/* profile */
+
+.profile {
+    background-color: #FF766C;
+    border: 1px solid #ff766c;
+}
+
+.profile img {
+    display: block;
+    border: 10px solid rgba(255, 255, 255, 0.3);
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.profile p {
+    text-align: center;
+    color: #fff;
+}
+
+.list-group-item {
+    background-color: #fff;
+    border-radius: 0px !important;
+    border: 1px solid #DDD;
+}
+
+.list-group-item.active, .list-group-item:hover {
+    border-left: 3px solid #FF766C;
+    background-color: #F8F7F5;
+}
+
+/*Ignore this tag. It is to give space.*/
+#space {padding: 10px;}

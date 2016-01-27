@@ -21,11 +21,11 @@ class UserController extends BaseController
 {
     /**
      * 用户中心页
-     * @disableGuest
+     *
      */
     public function webHomeAction()
     {
-        var_dump($this->user);
+
     }
 
     /**
