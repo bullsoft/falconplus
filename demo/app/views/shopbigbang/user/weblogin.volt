@@ -15,16 +15,16 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-12">
-                        <form id="login-form" action="http://phpoll.com/login/process" method="post" role="form" style="display: block;">
+                        <form id="login-form" action="{{ url('user/do-login') }}" method="post" role="form" style="display: block;">
                             <div class="form-group">
-                                <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                                <input type="text" name="mobile" id="username" tabindex="1" class="form-control" placeholder="手机号" value="">
                             </div>
                             <div class="form-group">
-                                <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                                <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="密码">
                             </div>
                             <div class="form-group text-center">
                                 <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-                                <label for="remember"> Remember Me</label>
+                                <label for="remember"> 记住我</label>
                             </div>
                             <div class="form-group">
                                 <div class="row">
@@ -37,15 +37,15 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="text-center">
-                                            <a href="http://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
+                                            <a href="#" tabindex="5" class="forgot-password">忘记密码?</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </form>
-                        <form id="register-form" action="http://phpoll.com/register/process" method="post" role="form" style="display: none;">
+                        <form id="register-form" action="#" method="post" role="form" style="display: none;">
                             <div class="form-group">
-                                <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                                <input type="text" name="mobile" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                             </div>
                             <div class="form-group">
                                 <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">

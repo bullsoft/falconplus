@@ -45,8 +45,8 @@ class DispatcherInterceptor extends Plugin
 
         // 不允许匿名
         if($anno->has('disableGuest')) {
-            if(!$this->session->has('identity')) {
-                if(!$anno->has('api')) {
+            if (!$this->session->has('identity')) {
+                if (!$anno->has('api')) {
                     $response = new \Phalcon\Http\Response();
                     $response->redirect("user/web-login");
                     $dispatcher->setReturnedValue($response);
@@ -54,19 +54,21 @@ class DispatcherInterceptor extends Plugin
                 } else {
                     throw new NeedLogin(["user need login to access this resource"]);
                 }
-            } else {
-                $request = new SimpleRequest();
-                $request->setParam($this->session->get('identity'));
-                $response = $this->rpc->callByObject(array(
-                    "service" => "\\Demo\\Server\\Services\\User",
-                    "method" => "getUserById",
-                    "args" => $request,
-                    "logId" => $this->logger->getFormatter()->uid,
-                ));
-                $this->di->setShared("user", function() use ($response) {
-                    return $response;
-                });
             }
+        }
+
+        if($this->session->has('identity')) {
+            $request = new SimpleRequest();
+            $request->setParam($this->session->get('identity'));
+            $response = $this->rpc->callByObject(array(
+                "service" => "\\Demo\\Server\\Services\\User",
+                "method" => "getUserById",
+                "args" => $request,
+                "logId" => $this->logger->getFormatter()->uid,
+            ));
+            $this->di->setShared("user", function () use ($response) {
+                return $response;
+            });
         }
 
         return true;

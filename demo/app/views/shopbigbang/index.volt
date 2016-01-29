@@ -46,21 +46,10 @@
 </div>
 <!-- /.container -->
 
-<div class="container">
+<!-- Footer -->
+{% include "layouts/footer.volt" %}
 
-    <hr>
 
-    <!-- Footer -->
-    <footer>
-        <div class="row">
-            <div class="col-lg-12">
-                <p>Copyright &copy; <a href="http://bullsoft.org" target="_blank">BullSoft.org</a> 2016</p>
-            </div>
-        </div>
-    </footer>
-
-</div>
-<!-- /.container -->
 
 <!-- jQuery -->
 <script src="{{ url('/tpls/'~tpl~'/js/jquery.js') }}"></script>

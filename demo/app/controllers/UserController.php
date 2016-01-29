@@ -56,7 +56,7 @@ class UserController extends BaseController
 
         $form = new Form();
         $mobile = new Text("mobile");
-        $passwd = new Text("passwd");
+        $passwd = new Text("password");
         $mobile->addValidator(
             new PresenceOf([
                 'message' => "手机号不能为空",
@@ -85,6 +85,12 @@ class UserController extends BaseController
         ));
         $this->session->set('identity', $response->id);
         return $response;
+    }
+
+    public function doLogoutAction()
+    {
+        $this->session->remove("identity");
+        return [];
     }
 
     /**
@@ -170,6 +176,14 @@ class UserController extends BaseController
      *
      */
     public function webPurchasedAction()
+    {
+
+    }
+
+    /**
+     * @disableGuest
+     */
+    public function webMessageAction()
     {
 
     }
