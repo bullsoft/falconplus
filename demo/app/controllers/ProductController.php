@@ -24,6 +24,11 @@ class ProductController extends BaseController
 
     }
 
+    public function webRecommendAction()
+    {
+
+    }
+
     /**
      * 商品评星接口
      * @disableView
