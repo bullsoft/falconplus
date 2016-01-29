@@ -18,6 +18,6 @@
     </div>
 </div>
 
-{% block homeList %}
+{% block bottom %}
 
 {% endblock %}

@@ -128,7 +128,7 @@ class UserController extends BaseController
         )));
 
         // 密码
-        $passwd = new Text("passwd");
+        $passwd = new Text("password");
         $passwd->addValidator(new PresenceOf(array(
             'message' => '密码不能为空',
         )));
@@ -184,6 +184,11 @@ class UserController extends BaseController
      * @disableGuest
      */
     public function webMessageAction()
+    {
+
+    }
+
+    public function webForgotPasswordAction()
     {
 
     }

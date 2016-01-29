@@ -7,7 +7,7 @@
                         <a href="#" class="active" id="login-form-link">登录</a>
                     </div>
                     <div class="col-xs-6">
-                        <a href="#" id="register-form-link">还没账号?</a>
+                        <a href="#" id="register-form-link">注册</a>
                     </div>
                 </div>
                 <hr>
@@ -37,7 +37,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="text-center">
-                                            <a href="#" tabindex="5" class="forgot-password">忘记密码?</a>
+                                            <a href="{{ url('user/web-forgot-password') }}" tabindex="5" class="forgot-password">忘记密码?</a>
                                         </div>
                                     </div>
                                 </div>

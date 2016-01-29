@@ -33,7 +33,7 @@
 
 {% endblock %}
 
-{% block homeList %}
+{% block bottom %}
 
 <div class="row">
 

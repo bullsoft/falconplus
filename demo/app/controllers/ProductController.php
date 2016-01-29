@@ -19,6 +19,11 @@ class ProductController extends BaseController
 
     }
 
+    public function webRankingAction()
+    {
+
+    }
+
     /**
      * 商品评星接口
      * @disableView

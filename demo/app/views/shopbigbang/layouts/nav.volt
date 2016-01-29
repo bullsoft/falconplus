@@ -51,7 +51,7 @@
                                         <div class="form-group">
                                             <label class="sr-only" for="navInputPassword">密码</label>
                                             <input type="password" name="password" class="form-control" id="navInputPassword" placeholder="输入密码" required>
-                                            <div class="help-block text-right"><a href="">忘记密码 ?</a></div>
+                                            <div class="help-block text-right"><a href="{{ url('user/web-forgot-password') }}">忘记密码 ?</a></div>
                                         </div>
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary btn-block">登 录</button>

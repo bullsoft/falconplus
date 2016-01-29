@@ -17,6 +17,8 @@
 
     <link href="{{ url('/tpls/'~tpl~'/yourcss/default.css') }}" rel="stylesheet">
     <link href="{{ url('/tpls/'~tpl~'/css/form-elements.css') }}" rel="stylesheet">
+    <link href="{{ url('/tpls/'~tpl~'/css/datatables.min.css') }}" rel="stylesheet">
+
 
     <!-- Custom CSS -->
     <link href="{{ url('/tpls/'~tpl~'/yourcss/'~whichController~'/'~whichAction~'.css') }}" rel="stylesheet">
@@ -58,6 +60,8 @@
 <script src="{{ url('/tpls/'~tpl~'/js/bootstrap.min.js') }}"></script>
 
 <script src="{{ url('/tpls/'~tpl~'/js/jquery.backstretch.min.js') }}"></script>
+<script src="{{ url('/tpls/'~tpl~'/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url('/tpls/'~tpl~'/js/dataTables.bootstrap.min.js') }}"></script>
 
 
 <script src="{{ url('/tpls/'~tpl~'/yourjs/'~whichController~'/'~whichAction~'.js') }}"></script>
