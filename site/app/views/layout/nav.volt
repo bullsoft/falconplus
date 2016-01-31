@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url('/index.html') }}">Phalcon+</a>
+            <a class="navbar-brand" href="/index.html">Phalcon+</a>
             <img src="http://phalcon.b0.upaiyun.com/photo/logo.gif" height="50px" />
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -31,10 +31,10 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">博客 <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="{{ url('/blog/index.html') }}">首页</a>
+                            <a href="{{ url('blog/index.html') }}">首页</a>
                         </li>
                         <li>
-                            <a href="{{ url('/blog/category.html') }}">分类</a>
+                            <a href="{{ url('blog/category.html') }}">分类</a>
                         </li>
                     </ul>
                 </li>
