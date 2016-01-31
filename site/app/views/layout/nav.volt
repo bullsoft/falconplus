@@ -10,6 +10,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="{{ url('/index.html') }}">Phalcon+</a>
+            <img src="http://phalcon.b0.upaiyun.com/photo/logo.gif" height="50px" />
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -22,6 +23,9 @@
                 </li>
                 <li>
                     <a href="http://forum.bullsoft.org" target="_blank">社区</a>
+                </li>
+                <li>
+                    <a href="http://bullsoft.org/donate" target="_blank">捐助我们</a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">博客 <b class="caret"></b></a>
