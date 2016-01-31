@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">Phalcon+</a>
+            <a class="navbar-brand" href="{{ url('/index.html') }}">Phalcon+</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -27,10 +27,10 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">博客 <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="blog-home-1.html">首页</a>
+                            <a href="{{ url('/blog/index.html') }}">首页</a>
                         </li>
                         <li>
-                            <a href="blog-home-2.html">分类</a>
+                            <a href="{{ url('/blog/category.html') }}">分类</a>
                         </li>
                     </ul>
                 </li>
@@ -42,6 +42,9 @@
                         </li>
                         <li>
                             <a href="http://www.firstp2p.com" target="_blank">网信理财</a>
+                        </li>
+                        <li>
+                            <a href="http://shopbigbang.com" target="_blank">雪品应用</a>
                         </li>
                     </ul>
                 </li>
