@@ -4,8 +4,8 @@ return array(
         "name"  => "site",
         "ns"    => "Plus\\Web\\",
         "mode"  => "Web",
-        "staticUri" => "",
-        "url" => "http//plus.phalconphp.org/",
+        "staticUri" => "/",
+        "url" => "http//phalconphp.org/",
         "logFilePath" => "/tmp/Plus_site.log",
     ),
     "view" => array(
