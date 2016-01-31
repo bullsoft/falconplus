@@ -19,7 +19,7 @@
                     <a href="/quick-start.html">快速开始</a>
                 </li>
                 <li>
-                    <a href="#manual"{% if dispatcher.getControllerName() == "manual" %} class="active"{% endif %}>手册</a>
+                    <a href="/manual"{% if dispatcher.getControllerName() == "manual" %} class="active"{% endif %}>手册</a>
                 </li>
                 <li>
                     <a href="http://forum.bullsoft.org" target="_blank">社区</a>
