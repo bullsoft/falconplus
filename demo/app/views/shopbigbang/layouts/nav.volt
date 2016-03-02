@@ -75,6 +75,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">欢迎, {{ user.mobile }} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
+                        <li><a href="{{ url("cart/web-index") }}"><i class="icon-cog"></i>我的购物车</a></li>
                         <li><a href="{{ url("user/web-home") }}"><i class="icon-cog"></i>用户中心</a></li>
                         <li><a href="{{ url("user/web-message") }}"><i class="icon-envelope"></i>消息中心</a></li>
                         <li class="divider"></li>

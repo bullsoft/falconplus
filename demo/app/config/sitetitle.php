@@ -14,6 +14,7 @@ if(strpos($host, "shopbigbang") !== false) {
     $tpl = "dianrong";
 }
 
+$tpl = "shopbigbang";
 
 return [
     // Default

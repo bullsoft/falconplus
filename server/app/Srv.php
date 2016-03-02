@@ -4,6 +4,7 @@ namespace Demo\Server;
 use PhalconPlus\Base\AbstractModule as PlusModule;
 use PhalconPlus\Logger\Processor\Trace as TraceProcessor;
 use PhalconPlus\Logger\Processor\Uid as UidProcessor;
+use Phalcon\Mvc\Model\Transaction\Manager as TransactionManager;
 
 class Srv extends PlusModule
 {
@@ -16,7 +17,9 @@ class Srv extends PlusModule
             __NAMESPACE__."\\Plugins"  => __DIR__.'/plugins/',
             __NAMESPACE__."\\Daos"     => __DIR__.'/daos/',
             "Common\\Protos"           => APP_ROOT_COMMON_DIR.'/protos/',
-            "Zend"                     => APP_ROOT_COMMON_DIR.'/vendor/Zend/', 
+            "Zend"                     => APP_ROOT_COMMON_DIR.'/vendor/Zend/',
+            "BullSoft"                 => APP_ROOT_COMMON_DIR . "/vendor/BullSoft/"
+
         ))->register();
 
         require_once APP_ROOT_COMMON_DIR . "/vendor/random_compat-1.1.5/lib/random.php";
@@ -61,6 +64,16 @@ class Srv extends PlusModule
             $evtManager = $this->di->getShared("eventsManager");
             $rpcListener = new \Demo\Server\Plugins\RpcListener($this->di, $evtManager);
             $evtManager->attach("backend-server", $rpcListener);
+        });
+
+        $di->setShared("redis", function(){
+            $redis = new \Redis();
+            $redis->connect('127.0.0.1', 6379);
+            return $redis;
+        });
+
+        $di->setShared('txm', function () {
+            return new TransactionManager();
         });
 
         $di->setShared("logger", function() use ($di, $config){

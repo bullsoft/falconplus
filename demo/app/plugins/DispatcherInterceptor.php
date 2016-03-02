@@ -29,6 +29,11 @@ class DispatcherInterceptor extends Plugin
     {
         $controller = $dispatcher->getControllerName();
         $action = $dispatcher->getActionName();
+
+        if(isset($_POST['sessionId'])) {
+            $this->session->setId($_POST['sessionId']);
+        }
+
         return true;
     }
 
@@ -66,6 +71,7 @@ class DispatcherInterceptor extends Plugin
                 "args" => $request,
                 "logId" => $this->logger->getFormatter()->uid,
             ));
+
             $this->di->setShared("user", function () use ($response) {
                 return $response;
             });
@@ -83,6 +89,7 @@ class DispatcherInterceptor extends Plugin
                 'data' => (array) $returnValue,
                 'msg' => '',
             );
+            $return["sessionId"] = $this->session->getId();
             $response = new \Phalcon\Http\Response();
             $response->setHeader('Content-Type', 'application/json');
             $response->setJsonContent($return, \JSON_UNESCAPED_UNICODE);

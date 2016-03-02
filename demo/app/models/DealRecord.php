@@ -8,23 +8,11 @@ namespace Demo\Web\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Web\Models
- * @version $Rev:2015-04-23 23:42:43$
+ * @version $Rev:2016-02-27 19:22:01$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class DealRecord extends \PhalconPlus\Base\Model
 {
-
-    /**
-     * @var integer
-     * @table deal_record
-     */
-    public $id = null;
-
-    /**
-     * @var integer
-     * @table deal_record
-     */
-    public $deal_id = null;
 
     /**
      * @var integer
@@ -42,19 +30,49 @@ class DealRecord extends \PhalconPlus\Base\Model
      * @var integer
      * @table deal_record
      */
+    public $id = null;
+
+    /**
+     * @var integer
+     * @table deal_record
+     */
+    public $deal_id = null;
+
+    /**
+     * @var integer
+     * @table deal_record
+     */
+    public $buyer_id = null;
+
+    /**
+     * @var integer
+     * @table deal_record
+     */
+    public $seller_id = null;
+
+    /**
+     * @var integer
+     * @table deal_record
+     */
     public $amount = null;
 
     /**
-     * @var date
+     * @var integer
      * @table deal_record
      */
-    public $ctime = '0000-00-00 00:00:00';
+    public $status = null;
 
     /**
-     * @var date
+     * @var unknown
      * @table deal_record
      */
-    public $mtime = '0000-00-00 00:00:00';
+    public $ctime = null;
+
+    /**
+     * @var datetime
+     * @table deal_record
+     */
+    public $mtime = null;
 
     public function initialize()
     {
@@ -69,11 +87,12 @@ class DealRecord extends \PhalconPlus\Base\Model
     {
         $this->id = NULL;
         $this->dealId = NULL;
-        $this->investorId = NULL;
-        $this->borrowerId = NULL;
+        $this->buyerId = NULL;
+        $this->sellerId = NULL;
         $this->amount = NULL;
-        $this->ctime = '0000-00-00 00:00:00';
-        $this->mtime = '0000-00-00 00:00:00';
+        $this->status = NULL;
+        $this->ctime = NULL;
+        $this->mtime = NULL;
     }
 
     /**
@@ -84,9 +103,10 @@ class DealRecord extends \PhalconPlus\Base\Model
         return array(
             'id' => 'id', 
             'deal_id' => 'dealId', 
-            'investor_id' => 'investorId', 
-            'borrower_id' => 'borrowerId', 
+            'buyer_id' => 'buyerId', 
+            'seller_id' => 'sellerId', 
             'amount' => 'amount', 
+            'status' => 'status', 
             'ctime' => 'ctime', 
             'mtime' => 'mtime', 
         );

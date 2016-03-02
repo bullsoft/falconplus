@@ -33,6 +33,9 @@ class EnumExceptionCode extends EnumException
     const SYSTEM_BUSY = 20000;
     const FORM_INPUT_INVALID = 20001;
 
+    const PRODUCT_NOT_EXISTS = 30001;
+    const PRODUCT_SOLD_OUT = 30002;
+
     protected static $details = [
 
         self::UNKNOWN => [
@@ -63,7 +66,17 @@ class EnumExceptionCode extends EnumException
         self::USER_ALREADY_EXISTS => [
             "message" => "用户资料(%s)已存在",
             "level"   => EnumLoggerLevel::INFO,
-        ]
+        ],
+
+        self::PRODUCT_NOT_EXISTS => [
+            "message" => "商品不存在",
+            "level"   => EnumLoggerLevel::ERROR,
+        ],
+
+        self::PRODUCT_SOLD_OUT => [
+            "message" => "商品已售空",
+            "level"   => EnumLoggerLevel::ERROR,
+        ],
         
     ];
    

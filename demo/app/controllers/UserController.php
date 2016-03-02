@@ -46,12 +46,13 @@ class UserController extends BaseController
         if($this->session->get('identity') > 0) {
             $request = new SimpleRequest();
             $request->setParam($this->session->get('identity'));
-            return $this->rpc->callByObject(array(
+            $response = $this->rpc->callByObject(array(
                     "service" => "\\Demo\\Server\\Services\\User",
                     "method" => "getUserById",
                     "args" => $request,
                     "logId" => $this->logger->getFormatter()->uid,
             ));
+            return $response;
         }
 
         $form = new Form();

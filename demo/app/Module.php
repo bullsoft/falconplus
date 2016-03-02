@@ -48,6 +48,8 @@ class Module extends PlusModule
             "Zend"                        => APP_ROOT_COMMON_DIR . "/vendor/Zend/",
             "Common\\Protos"              => APP_ROOT_COMMON_DIR . "/protos/",
             "Gregwar\\Captcha"            => APP_ROOT_COMMON_DIR . "/vendor/Captcha/",
+            "BullSoft"                    => APP_ROOT_COMMON_DIR . "/vendor/BullSoft/",
+
         ))->register();
 
         // load composer library
@@ -126,7 +128,7 @@ class Module extends PlusModule
                 $remoteUrls = $config->demoServerUrl;
                 $client = new \PhalconPlus\RPC\Client\Adapter\Remote($remoteUrls->toArray());
                 $client->SetOpt(\YAR_OPT_CONNECT_TIMEOUT, 5);
-                $client->SetOpt(\CURLOPT_NOSIGNAL, 1);
+                // $client->SetOpt(\CURLOPT_NOSIGNAL, 1);
             }
             return $client;
         });
