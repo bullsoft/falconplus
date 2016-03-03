@@ -8,7 +8,7 @@ namespace Demo\Server\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Server\Models
- * @version $Rev:2016-03-02 19:02:14$
+ * @version $Rev:2016-03-03 14:24:47$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class DealMoney extends \PhalconPlus\Base\Model
@@ -38,6 +38,18 @@ class DealMoney extends \PhalconPlus\Base\Model
      */
     public $freeze = null;
 
+    /**
+     * @var unknown
+     * @table deal_money
+     */
+    public $ctime = '0000-00-00 00:00:00';
+
+    /**
+     * @var unknown
+     * @table deal_money
+     */
+    public $mtime = '0000-00-00 00:00:00';
+
     public function initialize()
     {
         parent::initialize();
@@ -53,6 +65,8 @@ class DealMoney extends \PhalconPlus\Base\Model
         $this->userId = NULL;
         $this->available = NULL;
         $this->freeze = NULL;
+        $this->ctime = '0000-00-00 00:00:00';
+        $this->mtime = '0000-00-00 00:00:00';
     }
 
     /**
@@ -65,6 +79,8 @@ class DealMoney extends \PhalconPlus\Base\Model
             'user_id' => 'userId', 
             'available' => 'available', 
             'freeze' => 'freeze', 
+            'ctime' => 'ctime', 
+            'mtime' => 'mtime', 
         );
     }
 

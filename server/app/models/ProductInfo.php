@@ -8,7 +8,7 @@ namespace Demo\Server\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Server\Models
- * @version $Rev:2016-03-02 19:02:14$
+ * @version $Rev:2016-03-03 14:24:47$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class ProductInfo extends \PhalconPlus\Base\Model
@@ -54,7 +54,13 @@ class ProductInfo extends \PhalconPlus\Base\Model
      * @var integer
      * @table product_info
      */
-    public $cate_id = null;
+    public $cate_id = '0';
+
+    /**
+     * @var integer
+     * @table product_info
+     */
+    public $brand_id = null;
 
     /**
      * @var unknown
@@ -84,7 +90,8 @@ class ProductInfo extends \PhalconPlus\Base\Model
         $this->price = NULL;
         $this->slogan = NULL;
         $this->intro = NULL;
-        $this->cateId = NULL;
+        $this->cateId = '0';
+        $this->brandId = NULL;
         $this->ctime = '0000-00-00 00:00:00';
         $this->mtime = '0000-00-00 00:00:00';
     }
@@ -101,6 +108,7 @@ class ProductInfo extends \PhalconPlus\Base\Model
             'slogan' => 'slogan', 
             'intro' => 'intro', 
             'cate_id' => 'cateId', 
+            'brand_id' => 'brandId', 
             'ctime' => 'ctime', 
             'mtime' => 'mtime', 
         );

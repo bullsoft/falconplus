@@ -8,7 +8,7 @@ namespace Demo\Server\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Server\Models
- * @version $Rev:2016-03-02 19:02:14$
+ * @version $Rev:2016-03-03 14:24:47$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class PaySp extends \PhalconPlus\Base\Model
@@ -21,40 +21,52 @@ class PaySp extends \PhalconPlus\Base\Model
     public $id = null;
 
     /**
-     * @var integer
+     * @var string
      * @table pay_sp
      */
-    public $name = null;
+    public $name = '';
 
     /**
-     * @var integer
+     * @var string
      * @table pay_sp
      */
-    public $code = null;
+    public $code = '';
 
     /**
-     * @var integer
+     * @var string
      * @table pay_sp
      */
-    public $logo_url = null;
+    public $logo_url = '';
 
     /**
-     * @var integer
+     * @var string
      * @table pay_sp
      */
     public $website = null;
 
     /**
-     * @var integer
+     * @var string
      * @table pay_sp
      */
     public $ak = null;
 
     /**
-     * @var integer
+     * @var string
      * @table pay_sp
      */
     public $sk = null;
+
+    /**
+     * @var unknown
+     * @table pay_sp
+     */
+    public $ctime = '0000-00-00 00:00:00';
+
+    /**
+     * @var unknown
+     * @table pay_sp
+     */
+    public $mtime = '0000-00-00 00:00:00';
 
     public function initialize()
     {
@@ -68,12 +80,14 @@ class PaySp extends \PhalconPlus\Base\Model
     public function onConstruct()
     {
         $this->id = NULL;
-        $this->name = NULL;
-        $this->code = NULL;
-        $this->logoUrl = NULL;
+        $this->name = '';
+        $this->code = '';
+        $this->logoUrl = '';
         $this->website = NULL;
         $this->ak = NULL;
         $this->sk = NULL;
+        $this->ctime = '0000-00-00 00:00:00';
+        $this->mtime = '0000-00-00 00:00:00';
     }
 
     /**
@@ -89,6 +103,8 @@ class PaySp extends \PhalconPlus\Base\Model
             'website' => 'website', 
             'ak' => 'ak', 
             'sk' => 'sk', 
+            'ctime' => 'ctime', 
+            'mtime' => 'mtime', 
         );
     }
 

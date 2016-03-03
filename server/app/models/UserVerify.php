@@ -8,7 +8,7 @@ namespace Demo\Server\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Server\Models
- * @version $Rev:2016-03-02 19:02:14$
+ * @version $Rev:2016-03-03 14:24:47$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class UserVerify extends \PhalconPlus\Base\Model
@@ -21,16 +21,16 @@ class UserVerify extends \PhalconPlus\Base\Model
     public $id = null;
 
     /**
-     * @var integer
+     * @var unknown
      * @table user_verify
      */
     public $user_id = null;
 
     /**
-     * @var integer
+     * @var string
      * @table user_verify
      */
-    public $realname = null;
+    public $realname = '';
 
     /**
      * @var integer
@@ -51,22 +51,34 @@ class UserVerify extends \PhalconPlus\Base\Model
     public $home_addr = null;
 
     /**
-     * @var integer
+     * @var string
      * @table user_verify
      */
-    public $id_card = null;
+    public $id_card = '';
 
     /**
-     * @var integer
+     * @var string
      * @table user_verify
      */
     public $id_avatar = null;
 
     /**
-     * @var integer
+     * @var string
      * @table user_verify
      */
     public $intro = null;
+
+    /**
+     * @var unknown
+     * @table user_verify
+     */
+    public $ctime = '0000-00-00 00:00:00';
+
+    /**
+     * @var unknown
+     * @table user_verify
+     */
+    public $mtime = '0000-00-00 00:00:00';
 
     public function initialize()
     {
@@ -81,13 +93,15 @@ class UserVerify extends \PhalconPlus\Base\Model
     {
         $this->id = NULL;
         $this->userId = NULL;
-        $this->realname = NULL;
+        $this->realname = '';
         $this->sex = NULL;
         $this->birthday = NULL;
         $this->homeAddr = NULL;
-        $this->idCard = NULL;
+        $this->idCard = '';
         $this->idAvatar = NULL;
         $this->intro = NULL;
+        $this->ctime = '0000-00-00 00:00:00';
+        $this->mtime = '0000-00-00 00:00:00';
     }
 
     /**
@@ -105,6 +119,8 @@ class UserVerify extends \PhalconPlus\Base\Model
             'id_card' => 'idCard', 
             'id_avatar' => 'idAvatar', 
             'intro' => 'intro', 
+            'ctime' => 'ctime', 
+            'mtime' => 'mtime', 
         );
     }
 

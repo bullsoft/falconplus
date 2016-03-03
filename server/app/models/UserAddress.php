@@ -8,11 +8,17 @@ namespace Demo\Server\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Server\Models
- * @version $Rev:2016-03-02 19:02:14$
+ * @version $Rev:2016-03-03 14:24:47$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class UserAddress extends \PhalconPlus\Base\Model
 {
+
+    /**
+     * @var integer
+     * @table user_address
+     */
+    public $county = null;
 
     /**
      * @var integer
@@ -27,40 +33,58 @@ class UserAddress extends \PhalconPlus\Base\Model
     public $user_id = null;
 
     /**
-     * @var integer
+     * @var string
      * @table user_address
      */
     public $province = null;
 
     /**
-     * @var integer
+     * @var string
      * @table user_address
      */
     public $city = null;
 
     /**
-     * @var integer
+     * @var string
      * @table user_address
      */
-    public $county = null;
+    public $district = null;
 
     /**
-     * @var integer
+     * @var string
      * @table user_address
      */
     public $detail = null;
 
     /**
-     * @var integer
+     * @var string
      * @table user_address
      */
     public $postcode = null;
 
     /**
-     * @var integer
+     * @var string
+     * @table user_address
+     */
+    public $mobile = null;
+
+    /**
+     * @var string
      * @table user_address
      */
     public $telephone = null;
+
+    /**
+     * @var unknown
+     * @table user_address
+     */
+    public $ctime = '0000-00-00 00:00:00';
+
+    /**
+     * @var unknown
+     * @table user_address
+     */
+    public $mtime = '0000-00-00 00:00:00';
 
     public function initialize()
     {
@@ -77,10 +101,13 @@ class UserAddress extends \PhalconPlus\Base\Model
         $this->userId = NULL;
         $this->province = NULL;
         $this->city = NULL;
-        $this->county = NULL;
+        $this->district = NULL;
         $this->detail = NULL;
         $this->postcode = NULL;
+        $this->mobile = NULL;
         $this->telephone = NULL;
+        $this->ctime = '0000-00-00 00:00:00';
+        $this->mtime = '0000-00-00 00:00:00';
     }
 
     /**
@@ -93,10 +120,13 @@ class UserAddress extends \PhalconPlus\Base\Model
             'user_id' => 'userId', 
             'province' => 'province', 
             'city' => 'city', 
-            'county' => 'county', 
+            'district' => 'district', 
             'detail' => 'detail', 
             'postcode' => 'postcode', 
+            'mobile' => 'mobile', 
             'telephone' => 'telephone', 
+            'ctime' => 'ctime', 
+            'mtime' => 'mtime', 
         );
     }
 

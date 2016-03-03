@@ -8,7 +8,7 @@ namespace Demo\Server\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Server\Models
- * @version $Rev:2016-03-02 19:02:14$
+ * @version $Rev:2016-03-03 14:24:47$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class SkuFieldInfo extends \PhalconPlus\Base\Model
@@ -50,6 +50,18 @@ class SkuFieldInfo extends \PhalconPlus\Base\Model
      */
     public $field_value = null;
 
+    /**
+     * @var unknown
+     * @table sku_field_info
+     */
+    public $ctime = '0000-00-00 00:00:00';
+
+    /**
+     * @var unknown
+     * @table sku_field_info
+     */
+    public $mtime = '0000-00-00 00:00:00';
+
     public function initialize()
     {
         parent::initialize();
@@ -67,6 +79,8 @@ class SkuFieldInfo extends \PhalconPlus\Base\Model
         $this->cateId = NULL;
         $this->fieldId = NULL;
         $this->fieldValue = NULL;
+        $this->ctime = '0000-00-00 00:00:00';
+        $this->mtime = '0000-00-00 00:00:00';
     }
 
     /**
@@ -81,6 +95,8 @@ class SkuFieldInfo extends \PhalconPlus\Base\Model
             'cate_id' => 'cateId', 
             'field_id' => 'fieldId', 
             'field_value' => 'fieldValue', 
+            'ctime' => 'ctime', 
+            'mtime' => 'mtime', 
         );
     }
 

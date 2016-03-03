@@ -8,7 +8,7 @@ namespace Demo\Server\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Server\Models
- * @version $Rev:2016-03-02 19:02:14$
+ * @version $Rev:2016-03-03 14:24:47$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class UserInfo extends \PhalconPlus\Base\Model
@@ -98,6 +98,18 @@ class UserInfo extends \PhalconPlus\Base\Model
      */
     public $status = '0';
 
+    /**
+     * @var unknown
+     * @table user_info
+     */
+    public $ctime = '0000-00-00 00:00:00';
+
+    /**
+     * @var unknown
+     * @table user_info
+     */
+    public $mtime = '0000-00-00 00:00:00';
+
     public function initialize()
     {
         parent::initialize();
@@ -123,6 +135,8 @@ class UserInfo extends \PhalconPlus\Base\Model
         $this->inviteUserId = '0';
         $this->inviteCode = '';
         $this->status = '0';
+        $this->ctime = '0000-00-00 00:00:00';
+        $this->mtime = '0000-00-00 00:00:00';
     }
 
     /**
@@ -145,6 +159,8 @@ class UserInfo extends \PhalconPlus\Base\Model
             'invite_user_id' => 'inviteUserId', 
             'invite_code' => 'inviteCode', 
             'status' => 'status', 
+            'ctime' => 'ctime', 
+            'mtime' => 'mtime', 
         );
     }
 

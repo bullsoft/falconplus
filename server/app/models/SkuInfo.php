@@ -8,11 +8,17 @@ namespace Demo\Server\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Server\Models
- * @version $Rev:2016-03-02 19:02:14$
+ * @version $Rev:2016-03-03 14:24:47$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class SkuInfo extends \PhalconPlus\Base\Model
 {
+
+    /**
+     * @var integer
+     * @table sku_info
+     */
+    public $discount = null;
 
     /**
      * @var unknown
@@ -66,7 +72,7 @@ class SkuInfo extends \PhalconPlus\Base\Model
      * @var integer
      * @table sku_info
      */
-    public $discount = null;
+    public $discount_id = '0';
 
     /**
      * @var integer
@@ -129,7 +135,7 @@ class SkuInfo extends \PhalconPlus\Base\Model
         $this->cateId = NULL;
         $this->price = NULL;
         $this->amount = NULL;
-        $this->discount = NULL;
+        $this->discountId = '0';
         $this->sellType = '1';
         $this->isDelete = '1';
         $this->status = '0';
@@ -153,7 +159,7 @@ class SkuInfo extends \PhalconPlus\Base\Model
             'cate_id' => 'cateId', 
             'price' => 'price', 
             'amount' => 'amount', 
-            'discount' => 'discount', 
+            'discount_id' => 'discountId', 
             'sell_type' => 'sellType', 
             'is_delete' => 'isDelete', 
             'status' => 'status', 

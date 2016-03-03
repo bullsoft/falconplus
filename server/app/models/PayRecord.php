@@ -8,7 +8,7 @@ namespace Demo\Server\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Server\Models
- * @version $Rev:2016-03-02 19:02:14$
+ * @version $Rev:2016-03-03 14:24:47$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class PayRecord extends \PhalconPlus\Base\Model
@@ -48,7 +48,19 @@ class PayRecord extends \PhalconPlus\Base\Model
      * @var integer
      * @table pay_record
      */
-    public $status = null;
+    public $status = '0';
+
+    /**
+     * @var unknown
+     * @table pay_record
+     */
+    public $ctime = '0000-00-00 00:00:00';
+
+    /**
+     * @var unknown
+     * @table pay_record
+     */
+    public $mtime = '0000-00-00 00:00:00';
 
     public function initialize()
     {
@@ -66,7 +78,9 @@ class PayRecord extends \PhalconPlus\Base\Model
         $this->dealId = NULL;
         $this->amount = NULL;
         $this->paySpId = NULL;
-        $this->status = NULL;
+        $this->status = '0';
+        $this->ctime = '0000-00-00 00:00:00';
+        $this->mtime = '0000-00-00 00:00:00';
     }
 
     /**
@@ -81,6 +95,8 @@ class PayRecord extends \PhalconPlus\Base\Model
             'amount' => 'amount', 
             'pay_sp_id' => 'paySpId', 
             'status' => 'status', 
+            'ctime' => 'ctime', 
+            'mtime' => 'mtime', 
         );
     }
 
