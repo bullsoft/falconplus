@@ -120,7 +120,6 @@ body {
 .profile-pane {
     width: 100%;
     display: table;
-    border-spacing: 10px;
 }
 
 .profile-pane > div {
@@ -128,8 +127,7 @@ body {
 }
 
 .profile-pane > div > div {
-    width: 50%;
-    display: table-cell;
+    width: 100%;
 }
 
 .profile-pane .header {
@@ -340,7 +338,6 @@ body {
 
 .list-group-item.active, .list-group-item:hover {
     border-left: 3px solid #FF766C;
-    background-color: #F8F7F5;
 }
 
 /*Ignore this tag. It is to give space.*/

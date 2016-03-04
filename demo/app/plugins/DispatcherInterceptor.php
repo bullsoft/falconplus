@@ -85,9 +85,9 @@ class DispatcherInterceptor extends Plugin
         $returnValue = $dispatcher->getReturnedValue();
         if(is_array($returnValue) || is_object($returnValue)) {
             $return = array(
-                'status' => 200,
+                'errorCode' => 0,
                 'data' => (array) $returnValue,
-                'msg' => '',
+                'errorMsg' => '',
             );
             $return["sessionId"] = $this->session->getId();
             $response = new \Phalcon\Http\Response();

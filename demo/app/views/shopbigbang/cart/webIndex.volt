@@ -35,7 +35,7 @@
                                      alt="User Pic">
                             </div>
                             <div class="col-xs-10 col-sm-10 hidden-md hidden-lg">
-                                <strong>Cyruxx</strong><br>
+                                <strong>顾伟刚</strong><br>
                                 <dl>
                                     <dt>User level:</dt>
                                     <dd>Administrator</dd>
@@ -98,6 +98,9 @@
     </h3>
 
     <div class="col-sm-12 col-md-10 col-md-offset-1">
+        {% if cart.getItems() is empty %}
+        <h4>对不起, 空空如也.</h4>
+        {% else %}
         <table class="table table-hover">
             <thead>
             <tr>
@@ -109,6 +112,7 @@
             </tr>
             </thead>
             <tbody>
+
             {% for key,item in cart.getItems() %}
             <tr>
                 <td class="col-sm-8 col-md-6">
@@ -175,5 +179,6 @@
             </tr>
             </tbody>
         </table>
+        {% endif %}
     </div>
 </div>

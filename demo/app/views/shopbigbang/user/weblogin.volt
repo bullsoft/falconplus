@@ -16,6 +16,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <form id="login-form" action="{{ url('user/do-login') }}" method="post" role="form" style="display: block;">
+
                             <div class="form-group">
                                 <input type="text" name="mobile" id="login-mobile" tabindex="1" class="form-control" placeholder="手机号" value="">
                             </div>

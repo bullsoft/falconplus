@@ -29,16 +29,34 @@ jQuery(document).ready(function() {
     });
 
     $('#login-form').on('submit', function(e) {
-
+        e.preventDefault();
         $(this).find('input[type="text"], input[type="password"]').each(function(){
             if( $(this).val() == "" ) {
-                e.preventDefault();
                 $(this).addClass('input-error');
             }
             else {
                 $(this).removeClass('input-error');
+                $.ajax({
+                    method: "POST",
+                    url: "/user/do-login",
+                    dataType: "json",
+                    data: { mobile: $("#login-mobile").val(), password: $("#login-password").val() }
+                })
+                .done(function( data ) {
+                    if(data.errorCode == 0) {
+                        $(location).attr('href', '/');
+                    } else {
+                        $.each(data.data, function(key, val) {
+                           $("#login-" + key).attr("placeHolder", val);
+                        });
+                        alert(data.errorMsg);
+                    }
+                });
+                return false;
             }
         });
+
+
 
     });
 
