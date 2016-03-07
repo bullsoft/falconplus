@@ -1,5 +1,11 @@
 {
     "require": {
-        "overtrue/wechat": "develop-dev"
+        "overtrue/wechat": "~3.0"
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
     }
 }

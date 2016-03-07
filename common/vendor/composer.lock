@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "19a3c3a32eedef511a564f5147cb9855",
-    "content-hash": "7e8dfd49c4af8ab2d534c595dea26a18",
+    "hash": "b55619c01da53d15e7aaf2e983cc4567",
+    "content-hash": "91fe27aba4252a2dfe4c5b46ba8ec337",
     "packages": [
         {
             "name": "doctrine/cache",
@@ -192,16 +192,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.2.1",
+            "version": "1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "4d0bdbe1206df7440219ce14c972aa57cc5e4982"
+                "reference": "2e89629ff057ebb49492ba08e6995d3a6a80021b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/4d0bdbe1206df7440219ce14c972aa57cc5e4982",
-                "reference": "4d0bdbe1206df7440219ce14c972aa57cc5e4982",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/2e89629ff057ebb49492ba08e6995d3a6a80021b",
+                "reference": "2e89629ff057ebb49492ba08e6995d3a6a80021b",
                 "shasum": ""
             },
             "require": {
@@ -228,7 +228,7 @@
                     "src/functions_include.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.cn/downloads/",
             "license": [
                 "MIT"
             ],
@@ -246,20 +246,20 @@
                 "stream",
                 "uri"
             ],
-            "time": "2015-11-03 01:34:55"
+            "time": "2016-02-18 21:54:00"
         },
         {
             "name": "monolog/monolog",
-            "version": "1.17.2",
+            "version": "1.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "bee7f0dc9c3e0b69a6039697533dca1e845c8c24"
+                "reference": "e19b764b5c855580e8ffa7e615f72c10fd2f99cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/bee7f0dc9c3e0b69a6039697533dca1e845c8c24",
-                "reference": "bee7f0dc9c3e0b69a6039697533dca1e845c8c24",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/e19b764b5c855580e8ffa7e615f72c10fd2f99cc",
+                "reference": "e19b764b5c855580e8ffa7e615f72c10fd2f99cc",
                 "shasum": ""
             },
             "require": {
@@ -288,6 +288,7 @@
                 "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
                 "ext-mongo": "Allow sending log messages to a MongoDB server",
                 "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
+                "mongodb/mongodb": "Allow sending log messages to a MongoDB server via PHP Driver",
                 "php-console/php-console": "Allow sending log messages to Google Chrome",
                 "raven/raven": "Allow sending log messages to a Sentry server",
                 "rollbar/rollbar": "Allow sending log messages to Rollbar",
@@ -297,7 +298,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.16.x-dev"
+                    "dev-master": "2.0.x-dev"
                 }
             },
             "autoload": {
@@ -305,7 +306,7 @@
                     "Monolog\\": "src/Monolog"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.cn/downloads/",
             "license": [
                 "MIT"
             ],
@@ -323,20 +324,20 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-10-14 12:51:02"
+            "time": "2016-03-01 18:00:40"
         },
         {
             "name": "overtrue/socialite",
-            "version": "1.0.4",
+            "version": "1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/socialite.git",
-                "reference": "7c8984c9d452ecddafbfa7e9a3f54a2e0fc35808"
+                "reference": "397cb38625728cf8839a08728e162219e41b99e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/socialite/zipball/7c8984c9d452ecddafbfa7e9a3f54a2e0fc35808",
-                "reference": "7c8984c9d452ecddafbfa7e9a3f54a2e0fc35808",
+                "url": "https://api.github.com/repos/overtrue/socialite/zipball/397cb38625728cf8839a08728e162219e41b99e6",
+                "reference": "397cb38625728cf8839a08728e162219e41b99e6",
                 "shasum": ""
             },
             "require": {
@@ -354,7 +355,7 @@
                     "Overtrue\\Socialite\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.cn/downloads/",
             "license": [
                 "MIT"
             ],
@@ -373,20 +374,20 @@
                 "wechat",
                 "weibo"
             ],
-            "time": "2016-01-13 04:00:28"
+            "time": "2016-02-22 03:53:49"
         },
         {
             "name": "overtrue/wechat",
-            "version": "dev-develop",
+            "version": "3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/wechat.git",
-                "reference": "2a8b9eefb7c5c89aee5b8ab50691c0921e5eaecd"
+                "reference": "d221275d2bde26b59327b65a1a8224755e9a1fdc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/wechat/zipball/2a8b9eefb7c5c89aee5b8ab50691c0921e5eaecd",
-                "reference": "2a8b9eefb7c5c89aee5b8ab50691c0921e5eaecd",
+                "url": "https://packagist.phpcomposer.com/files/overtrue/wechat/d221275d2bde26b59327b65a1a8224755e9a1fdc.zip",
+                "reference": "d221275d2bde26b59327b65a1a8224755e9a1fdc",
                 "shasum": ""
             },
             "require": {
@@ -394,30 +395,9 @@
                 "ext-mcrypt": "*",
                 "ext-openssl": "*",
                 "monolog/monolog": "^1.17",
-                "overtrue/socialite": "^1.0",
+                "overtrue/socialite": ">=1.0.7",
                 "php": ">=5.5.0",
                 "pimple/pimple": "~3.0"
-            },
-            "replace": {
-                "easywechat/card": "self.version",
-                "easywechat/core": "self.version",
-                "easywechat/device": "self.version",
-                "easywechat/encryption": "self.version",
-                "easywechat/js": "self.version",
-                "easywechat/material": "self.version",
-                "easywechat/menu": "self.version",
-                "easywechat/message": "self.version",
-                "easywechat/notice": "self.version",
-                "easywechat/payment": "self.version",
-                "easywechat/poi": "self.version",
-                "easywechat/qrcode": "self.version",
-                "easywechat/semantic": "self.version",
-                "easywechat/server": "self.version",
-                "easywechat/staff": "self.version",
-                "easywechat/stats": "self.version",
-                "easywechat/store": "self.version",
-                "easywechat/url": "self.version",
-                "easywechat/user": "self.version"
             },
             "require-dev": {
                 "mockery/mockery": "^1.0@dev",
@@ -449,7 +429,7 @@
                 "weixin",
                 "weixin-sdk"
             ],
-            "time": "2016-01-13 04:25:12"
+            "time": "2016-03-05 06:09:47"
         },
         {
             "name": "pimple/pimple",
@@ -586,16 +566,16 @@
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v3.0.1",
+            "version": "v3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "939c8c28a5b1e4ab7317bc30c1f9aa881c4b06b5"
+                "reference": "52065702c71743c05d415a8facfcad6d4257e8d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/939c8c28a5b1e4ab7317bc30c1f9aa881c4b06b5",
-                "reference": "939c8c28a5b1e4ab7317bc30c1f9aa881c4b06b5",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/52065702c71743c05d415a8facfcad6d4257e8d7",
+                "reference": "52065702c71743c05d415a8facfcad6d4257e8d7",
                 "shasum": ""
             },
             "require": {
@@ -618,7 +598,7 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.cn/downloads/",
             "license": [
                 "MIT"
             ],
@@ -634,15 +614,13 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2015-12-18 15:43:53"
+            "time": "2016-02-28 16:24:34"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "overtrue/wechat": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

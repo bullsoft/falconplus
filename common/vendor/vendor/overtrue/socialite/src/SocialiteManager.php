@@ -164,7 +164,6 @@ class SocialiteManager implements FactoryInterface
     {
         $request = Request::createFromGlobals();
         $session = new Session();
-        $session->start();
 
         $request->setSession($session);
 
