@@ -23,6 +23,9 @@ class Srv extends PlusModule
         ))->register();
 
         require_once APP_ROOT_COMMON_DIR . "/vendor/random_compat-1.1.5/lib/random.php";
+
+        // load composer library
+        require_once APP_ROOT_COMMON_DIR . "/vendor/vendor/autoload.php";
     }
     
     public function registerServices()

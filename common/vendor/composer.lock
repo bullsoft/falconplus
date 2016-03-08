@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4dda31ec8879bcf382258e4898f0e932",
-    "content-hash": "5325586a3a661541cc0ae059e2e34345",
+    "hash": "e8cc5c81d82e92b7287d83d195a46322",
+    "content-hash": "2ed66fce43db6483bddb2784081d56e4",
     "packages": [
         {
             "name": "doctrine/cache",
@@ -17,7 +17,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/f8af318d14bdb0eff0336795b428b547bd39ccb6",
+                "url": "http://packagist.phpcomposer.com/files/doctrine/cache/f8af318d14bdb0eff0336795b428b547bd39ccb6.zip",
                 "reference": "f8af318d14bdb0eff0336795b428b547bd39ccb6",
                 "shasum": ""
             },
@@ -135,7 +135,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/c6851d6e48f63b69357cbfa55bca116448140e0c",
+                "url": "https://packagist.phpcomposer.com/files/guzzle/guzzle/c6851d6e48f63b69357cbfa55bca116448140e0c.zip",
                 "reference": "c6851d6e48f63b69357cbfa55bca116448140e0c",
                 "shasum": ""
             },
@@ -248,7 +248,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/2e89629ff057ebb49492ba08e6995d3a6a80021b",
+                "url": "http://packagist.phpcomposer.com/files/guzzle/psr7/2e89629ff057ebb49492ba08e6995d3a6a80021b.zip",
                 "reference": "2e89629ff057ebb49492ba08e6995d3a6a80021b",
                 "shasum": ""
             },
@@ -276,7 +276,7 @@
                     "src/functions_include.php"
                 ]
             },
-            "notification-url": "http://packagist.cn/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -360,7 +360,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/e19b764b5c855580e8ffa7e615f72c10fd2f99cc",
+                "url": "https://packagist.phpcomposer.com/files/Seldaek/monolog/e19b764b5c855580e8ffa7e615f72c10fd2f99cc.zip",
                 "reference": "e19b764b5c855580e8ffa7e615f72c10fd2f99cc",
                 "shasum": ""
             },
@@ -408,7 +408,7 @@
                     "Monolog\\": "src/Monolog"
                 }
             },
-            "notification-url": "http://packagist.cn/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -438,7 +438,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/socialite/zipball/397cb38625728cf8839a08728e162219e41b99e6",
+                "url": "http://packagist.phpcomposer.com/files/overtrue/socialite/397cb38625728cf8839a08728e162219e41b99e6.zip",
                 "reference": "397cb38625728cf8839a08728e162219e41b99e6",
                 "shasum": ""
             },
@@ -457,7 +457,7 @@
                     "Overtrue\\Socialite\\": "src/"
                 }
             },
-            "notification-url": "http://packagist.cn/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -591,7 +591,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/a30f7d6e57565a2e1a316e1baf2a483f788b258a",
+                "url": "http://packagist.phpcomposer.com/files/silexphp/Pimple/a30f7d6e57565a2e1a316e1baf2a483f788b258a.zip",
                 "reference": "a30f7d6e57565a2e1a316e1baf2a483f788b258a",
                 "shasum": ""
             },
@@ -637,7 +637,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-message/zipball/85d63699f0dbedb190bbd4b0d2b9dc707ea4c298",
+                "url": "http://packagist.phpcomposer.com/files/php-fig/http-message/85d63699f0dbedb190bbd4b0d2b9dc707ea4c298.zip",
                 "reference": "85d63699f0dbedb190bbd4b0d2b9dc707ea4c298",
                 "shasum": ""
             },
@@ -686,7 +686,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "url": "http://packagist.phpcomposer.com/files/php-fig/log/fe0936ee26643249e916849d48e3a51d5f5e278b.zip",
                 "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
                 "shasum": ""
             },
@@ -715,6 +715,40 @@
             "time": "2012-12-21 11:40:51"
         },
         {
+            "name": "ronnylt/redlock-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ronnylt/redlock-php.git",
+                "reference": "7f75de41b0c6fb7f0653d6588ab800b2f3f9c862"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://packagist.phpcomposer.com/files/ronnylt/redlock-php/7f75de41b0c6fb7f0653d6588ab800b2f3f9c862.zip",
+                "reference": "7f75de41b0c6fb7f0653d6588ab800b2f3f9c862",
+                "shasum": ""
+            },
+            "require": {
+                "ext-redis": "~2.2.5",
+                "php": "~5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RedLock\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Ronny Lopez",
+                    "email": "ronny@tangotree.io"
+                }
+            ],
+            "description": "Redis distributed locks in PHP",
+            "time": "2015-03-06 17:14:12"
+        },
+        {
             "name": "symfony/http-foundation",
             "version": "v3.0.3",
             "source": {
@@ -724,7 +758,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/52065702c71743c05d415a8facfcad6d4257e8d7",
+                "url": "https://packagist.phpcomposer.com/files/symfony/http-foundation/52065702c71743c05d415a8facfcad6d4257e8d7.zip",
                 "reference": "52065702c71743c05d415a8facfcad6d4257e8d7",
                 "shasum": ""
             },
@@ -748,7 +782,7 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "http://packagist.cn/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -770,7 +804,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "ronnylt/redlock-php": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

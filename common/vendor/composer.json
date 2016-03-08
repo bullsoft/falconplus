@@ -3,7 +3,8 @@
         "overtrue/wechat": "~3.0",
         "gregwar/captcha": "~1.1",
         "mobiledetect/mobiledetectlib": "~2.8",
-        "paragonie/random_compat": "~1.2"
+        "paragonie/random_compat": "~1.2",
+	    "ronnylt/redlock-php": "dev-master"
     },
     "repositories": {
         "packagist": {
