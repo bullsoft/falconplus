@@ -47,7 +47,6 @@ class Module extends PlusModule
             "Detection"                   => APP_ROOT_COMMON_DIR . "/vendor/Mobile-Detect/namespaced/Detection/",
             "Zend"                        => APP_ROOT_COMMON_DIR . "/vendor/Zend/",
             "Common\\Protos"              => APP_ROOT_COMMON_DIR . "/protos/",
-            "Gregwar\\Captcha"            => APP_ROOT_COMMON_DIR . "/vendor/Captcha/",
             "BullSoft"                    => APP_ROOT_COMMON_DIR . "/vendor/BullSoft/",
 
         ))->register();
