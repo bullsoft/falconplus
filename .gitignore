@@ -1,3 +1,4 @@
 .idea/*
 .settings/*
 common/vendor/vendor/*
+common/vendor/composer.lock
