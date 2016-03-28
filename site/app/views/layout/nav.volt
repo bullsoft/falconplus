@@ -14,6 +14,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="https://gitter.im/bullsoft/phalconplus?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://camo.githubusercontent.com/a9dd0115afeec813737b6e0a085ee2d5d4716d01/68747470733a2f2f6261646765732e6769747465722e696d2f62756c6c736f66742f7068616c636f6e706c75732e737667" alt="Gitter" data-canonical-src="https://badges.gitter.im/bullsoft/phalconplus.svg" style="max-width:100%;"></a>
+                </li>
                 <li{% if dispatcher.getControllerName() == "quick-start" %} class="active"{% endif %}>
                     <a href="/quick-start.html">快速开始</a>
                 </li>
