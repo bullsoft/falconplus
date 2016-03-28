@@ -1,5 +1,7 @@
 # falconplus - 一个构建在phalconphp之上PHP扩展
 
+[![Gitter](https://badges.gitter.im/bullsoft/phalconplus.svg)](https://gitter.im/bullsoft/phalconplus?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 1. 先安装 phalcon, phalconplus, yar, msgpack
 
 2. mkdir /tmp/compiled/
