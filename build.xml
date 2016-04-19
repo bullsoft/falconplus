@@ -9,7 +9,7 @@
  <property name="phpmd"   value="phpmd"/>
  <property name="phpunit" value="phpunit"/>
 
- <fileset id="package.tar.tz" dir=".">
+ <fileset id="package.tar.gz" dir=".">
    <include name="*.ini"/>
    <include name="*.php"/>
    <include name="*.xml"/>
@@ -256,5 +256,14 @@
    </condition>
   </fail>
  </target>
+
+ <target name="tar" depends="check" description="Create tar file for release">
+   <echo msg="Creating distribution tar for falconplus"/>
+   <delete file="package.tar.gz" failonerror="false"/>
+   <tar destfile="package.tar.gz" compression="gzip">
+     <fileset refid="package.tar.gz" />
+   </tar>
+ </target>
+ 
 </project>
 
