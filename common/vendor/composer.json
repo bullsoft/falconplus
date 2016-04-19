@@ -4,7 +4,10 @@
         "gregwar/captcha": "~1.1",
         "mobiledetect/mobiledetectlib": "~2.8",
         "paragonie/random_compat": "~1.2",
-	    "ronnylt/redlock-php": "dev-master"
+	"ronnylt/redlock-php": "dev-master",
+        "wrench/wrench": "dev-master",
+        "voryx/thruway": "~0.4.2",
+        "klermonte/zerg": "dev-master"
     },
     "repositories": {
         "packagist": {
