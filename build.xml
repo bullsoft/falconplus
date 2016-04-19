@@ -257,7 +257,7 @@
   </fail>
  </target>
 
- <target name="tar" depends="check" description="Create tar file for release">
+ <target name="tar" description="Create tar file for release">
    <echo msg="Creating distribution tar for falconplus"/>
    <delete file="package.tar.gz" failonerror="false"/>
    <tar destfile="package.tar.gz" compression="gzip">
