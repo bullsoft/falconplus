@@ -1,0 +1,19 @@
+#production
+deployment:
+  user: root
+  from: ./
+  to: /path/
+  excludes:
+releases:
+  enabled: true
+  max: 10
+  symlink: current
+  directory: releases
+hosts:
+  - 127.0.0.1
+tasks:
+  pre-deploy:
+    - composer/install
+  on-deploy:
+  post-release:
+  post-deploy:

@@ -9,12 +9,6 @@
  <property name="phpmd"   value="phpmd"/>
  <property name="phpunit" value="phpunit"/>
 
- <fileset id="package.tar.gz" dir=".">
-   <include name="*.ini"/>
-   <include name="*.php"/>
-   <include name="*.xml"/>
- </fileset>
-
  <target name="full-build"
          depends="prepare,static-analysis,phpunit,phpdox,-check-failure"
          description="Performs static analysis, runs the tests, and generates project documentation"/>
@@ -256,14 +250,5 @@
    </condition>
   </fail>
  </target>
-
- <target name="tar" description="Create tar file for release">
-   <echo message="Creating distribution tar for falconplus"/>
-   <delete file="package.tar.gz" failonerror="false"/>
-   <tar destfile="package.tar.gz" compression="gzip">
-     <fileset refid="package.tar.gz" />
-   </tar>
- </target>
- 
 </project>
 
