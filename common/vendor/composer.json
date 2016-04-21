@@ -5,8 +5,7 @@
         "mobiledetect/mobiledetectlib": "~2.8",
         "paragonie/random_compat": "~1.2",
         "wrench/wrench": "dev-master",
-        "voryx/thruway": "~0.4.2",
-        "klermonte/zerg": "dev-master"
+        "voryx/thruway": "~0.4.2"
     },
     "repositories": {
         "packagist": {
