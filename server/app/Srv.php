@@ -4,7 +4,6 @@ namespace Demo\Server;
 use PhalconPlus\Base\AbstractModule as PlusModule;
 use PhalconPlus\Logger\Processor\Trace as TraceProcessor;
 use PhalconPlus\Logger\Processor\Uid as UidProcessor;
-use Phalcon\Mvc\Model\Transaction\Manager as TransactionManager;
 
 class Srv extends PlusModule
 {
@@ -60,9 +59,30 @@ class Srv extends PlusModule
             $db->setEventsManager($evtManager);
             return $db;
         });
-        
-        $di->set("serviceListener", function() {
-            $evtManager = $this->di->getShared("eventsManager");
+
+        // register db service 
+        $di->setShared('r_dbDemo', function() use ($di) {
+            $mysql = new \PhalconPlus\Db\Mysql($di, "dbDemo");
+            $db = $mysql->getConnection();
+            $profiler = $di->get("profiler");
+            $logger = $di->get("logger");
+            $evtManager = $di->getShared("eventsManager");
+            $evtManager->attach('db', function ($event, $connection) use ($profiler) {
+                if ($event->getType() == 'beforeQuery') {
+                    $sql = getRealSql($connection); // function getRealSql() is defined in common/load/default.php
+                    $profiler->startProfile($sql);
+                }
+                if ($event->getType() == 'afterQuery') {
+                    $profiler->stopProfile();
+                }
+            });
+            // Assign the eventsManager to the db adapter instance
+            $db->setEventsManager($evtManager);
+            return $db;
+        });
+
+        $di->set("serviceListener", function() use ($di) {
+            $evtManager = $di->getShared("eventsManager");
             $rpcListener = new \Demo\Server\Plugins\RpcListener($this->di, $evtManager);
             $evtManager->attach("backend-server", $rpcListener);
         });
@@ -73,10 +93,6 @@ class Srv extends PlusModule
             return $redis;
         });
 
-        $di->setShared('txm', function () {
-            return new TransactionManager();
-        });
-
         $di->setShared("logger", function() use ($di, $config){
             $logger = new \PhalconPlus\Logger\Adapter\FilePlus($config->application->logFilePath);
             $logger->registerExtension(".de", [\Phalcon\Logger::DEBUG]);
@@ -84,7 +100,6 @@ class Srv extends PlusModule
             $formatter = new \PhalconPlus\Logger\Formatter\LinePlus("[%date%][%trace%][%uid%][%type%] %message%");
             $formatter->addProcessor("uid", new UidProcessor(18));
             $formatter->addProcessor("trace", new TraceProcessor(TraceProcessor::T_CLASS));
-            
             $logger->setFormatter($formatter);
             return $logger;
         });

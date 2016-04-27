@@ -10,7 +10,7 @@ class Module extends PlusModule
     public function __construct(\Phalcon\DI $di)
     {
         parent::__construct($di);
-        if(APP_ENV != "1") {
+        if(APP_ENV != "dev") {
             set_exception_handler(function ($exception) use ($di) {
                 $response = $di->get("response");
                 $msg = $exception->getMessage();
@@ -179,7 +179,6 @@ class Module extends PlusModule
             $formatter = new \PhalconPlus\Logger\Formatter\LinePlus("[%date%][%trace%][%uid%][%type%] %message%");
             $formatter->addProcessor("uid", new UidProcessor(18));
             $formatter->addProcessor("trace", new TraceProcessor(TraceProcessor::T_CLASS));
-            
             $logger->setFormatter($formatter);
             return $logger;
         });

@@ -24,8 +24,7 @@ return array(
         "retryTimes" => 5, //失败重试次数
     ),
     'demoServerUrl' => array(
-        //"http://server.phalconphp.org",
-        //"http://server.phalconplus.com",
+        "http://server.phalconplus.com:8083/",
         "http://127.0.0.1:8083/",
     ),
     'debugRPC' => false,

@@ -65,7 +65,9 @@ class UserPayinfo extends \PhalconPlus\Base\Model
     public function initialize()
     {
         parent::initialize();
-        $this->setConnectionService("dbDemo");
+        $this->setReadConnectionService("r_dbDemo");
+        $this->setWriteConnectionService("dbDemo");
+
     }
 
     /**

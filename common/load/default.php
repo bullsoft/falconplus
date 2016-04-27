@@ -2,6 +2,7 @@
 /* Code: */
 
 use Phalcon\Logger\Adapter\File as FileLogger;
+use Phalcon\Mvc\Model\Transaction\Manager as TransactionManager;
 
 mb_internal_encoding("UTF-8");
 
@@ -32,6 +33,16 @@ $di->set('logger', function () use ($config) {
 
 $di->setShared('modelsManager', function() {
     return new \Phalcon\Mvc\Model\Manager();
+});
+
+$di->setShared('txm', function () {
+    return new TransactionManager();
+});
+
+$di->set('tx', function ($service, $autoBegin = true) use ($di){
+    $txm = $di->get('txm');
+    $txm->setDbService(strval($service));
+    return $txm->get((bool)$autoBegin);
 });
 
 // global funciton to retrive $di
