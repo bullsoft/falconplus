@@ -21,6 +21,9 @@
                     <a href="/quick-start.html">快速开始</a>
                 </li>
                 <li>
+                    <a href="/api/">API文档</a>
+                </li>
+                <li>
                     <a href="/manual"{% if dispatcher.getControllerName() == "manual" %} class="active"{% endif %}>手册</a>
                 </li>
                 <li>
