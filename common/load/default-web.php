@@ -1,7 +1,7 @@
 <?php
 /* Code: */
 
-require $rootPath."/common/load/default.php";
+require $rootPath."/common/load/html.php";
 
 $di->setShared('cookie', function () {
     $cookie = new \Phalcon\Http\Response\Cookies();
@@ -29,7 +29,7 @@ if(isset($_GET['_url'])) {
 }
 
 // register rules for router
-$di->set('router', function () use ($config) {
+$di->setShared('router', function () use ($config) {
     $router = new \Phalcon\Mvc\Router(false);
     $router->removeExtraSlashes(true);
 
@@ -46,10 +46,10 @@ $di->set('router', function () use ($config) {
     $router->add('/:controller', array(
         'controller' => 1,
     ));
-    
+ 
     // no need to handle() here, Phalcon will handle it in application::start()
     // $router->handle();
     return $router;
 });
 
-/* default-web.php ends here */
+/* html-web.php ends here */

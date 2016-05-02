@@ -41,20 +41,20 @@ class Module extends PlusModule
     {
         $loader = new \Phalcon\Loader();
         $loader->registerNamespaces(array(
-            __NAMESPACE__.'\\Controllers' => __DIR__.'/controllers/',
-            __NAMESPACE__.'\\Models'      => __DIR__.'/models/',
-            __NAMESPACE__."\\Plugins"     => __DIR__.'/plugins/',
-            "Detection"                   => APP_ROOT_COMMON_DIR . "/vendor/Mobile-Detect/namespaced/Detection/",
-            "Zend"                        => APP_ROOT_COMMON_DIR . "/vendor/Zend/",
-            "Common\\Protos"              => APP_ROOT_COMMON_DIR . "/protos/",
-            "BullSoft"                    => APP_ROOT_COMMON_DIR . "/vendor/BullSoft/",
-
+            __NAMESPACE__.'\\Controllers'       => __DIR__.'/controllers/',
+            __NAMESPACE__.'\\Models'            => __DIR__.'/models/',
+            __NAMESPACE__."\\Plugins"           => __DIR__.'/plugins/',
+            "Detection"                         => APP_ROOT_COMMON_DIR . "/vendor/Mobile-Detect/namespaced/Detection/",
+            "Zend"                              => APP_ROOT_COMMON_DIR . "/vendor/Zend/",
+            "Common\\Protos"                    => APP_ROOT_COMMON_DIR . "/protos/",
+            "BullSoft"                          => APP_ROOT_COMMON_DIR . "/vendor/BullSoft/",
+            __NAMESPACE__.'\\Controllers\\Apis' => __DIR__.'/controllers/apis/',
         ))->register();
 
         // load composer library
         require_once APP_ROOT_COMMON_DIR . "/vendor/vendor/autoload.php";
     }
-    
+
     public function registerServices()
     {
         // get di
@@ -63,6 +63,20 @@ class Module extends PlusModule
         $bootstrap = $di->get('bootstrap');
         // get config
         $config = $di->get('config');
+
+        $router = $di->getShared("router");
+        if($router instanceof \Phalcon\Mvc\Router) {
+            $router->add('/api/:controller/([a-zA-Z0-9_\-]+)/:params', array(
+                'controller' => 1,
+                'action'     => 2,
+                'params'     => 3,
+                'namespace'  => __NAMESPACE__ . "\\Controllers\\Apis",
+            ))->convert('action', function ($action) {
+                // return str_replace('-', '', $action);
+                // transform action from foo-bar -> fooBar
+                return lcfirst(\Phalcon\Text::camelize($action));
+            });
+        }
 
         // register a dispatcher
         $di->has("dispatched") || $di->set('dispatcher', function () use ($di) {
@@ -145,7 +159,7 @@ class Module extends PlusModule
             }
             return $client;
         });
-        
+
         // set view with volt
         $di->set('view', function() use ($di) {
             $tpl = $di->get("siteConf")->template;
@@ -165,7 +179,10 @@ class Module extends PlusModule
                         mkdir($di->get('config')->view->compiledPath, 0777, true);
                     }
                     $compiler = $volt->getCompiler();
-                    $compiler->addExtension(new \PhalconPlus\Volt\Extension\PhpFunction());
+                    $ext = new \PhalconPlus\Volt\Extension\PhpFunction();
+                    $ext->setCustNamespace(__NAMESPACE__ . "\\Plugins\\");
+                    // $ext->setCustFuncName("haha");
+                    $compiler->addExtension($ext);
                     return $volt;
                 }
             ));

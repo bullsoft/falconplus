@@ -104,7 +104,7 @@ abstract class StringUtils
     }
 
     /**
-     * Reset all registered wrappers so the default wrappers will be used
+     * Reset all registered wrappers so the html wrappers will be used
      *
      * @return void
      */

@@ -62,7 +62,7 @@ class DiscountCondition
     }
 
     /**
-     * Reset/init default values
+     * Reset/init html values
      *
      * @return DiscountCondition
      */
@@ -272,7 +272,7 @@ class DiscountCondition
                 break;
         }
 
-        return $this->getIsNot() ? true : false; // false by default
+        return $this->getIsNot() ? true : false; // false by html
     }
 
     /**

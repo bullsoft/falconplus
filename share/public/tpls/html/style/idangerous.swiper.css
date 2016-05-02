@@ -1,0 +1,237 @@
+/*
+ * Swiper 2.7.6
+ * Mobile touch slider and framework with hardware accelerated transitions
+ *
+ * http://www.idangero.us/sliders/swiper/
+ *
+ * Copyright 2010-2015, Vladimir Kharlampidi
+ * The iDangero.us
+ * http://www.idangero.us/
+ *
+ * Licensed under GPL & MIT
+ *
+ * Released on: February 11, 2015
+*/
+/* ===============================================================
+Basic Swiper Styles 
+================================================================*/
+.swiper-container {
+	margin:0 auto;
+	position:relative;
+	overflow:hidden;
+	direction:ltr;
+	-webkit-backface-visibility:hidden;
+	-moz-backface-visibility:hidden;
+	-ms-backface-visibility:hidden;
+	-o-backface-visibility:hidden;
+	backface-visibility:hidden;
+	/* Fix of Webkit flickering */
+	z-index:1;
+	height: auto!important;
+}
+.swiper-active-switch{
+	background: #0d58c8;
+}
+.swiper-wrapper {
+	position:relative;
+	width:100%;
+	float: left;
+	height: inherit !important;
+	-webkit-transition-property:-webkit-transform, left, top;
+	-webkit-transition-duration:0s;
+	-webkit-transform:translate3d(0px,0,0);
+	-webkit-transition-timing-function:ease;
+	
+	-moz-transition-property:-moz-transform, left, top;
+	-moz-transition-duration:0s;
+	-moz-transform:translate3d(0px,0,0);
+	-moz-transition-timing-function:ease;
+	
+	-o-transition-property:-o-transform, left, top;
+	-o-transition-duration:0s;
+	-o-transform:translate3d(0px,0,0);
+	-o-transition-timing-function:ease;
+	-o-transform:translate(0px,0px);
+	
+	-ms-transition-property:-ms-transform, left, top;
+	-ms-transition-duration:0s;
+	-ms-transform:translate3d(0px,0,0);
+	-ms-transition-timing-function:ease;
+	
+	transition-property:transform, left, top;
+	transition-duration:0s;
+	transform:translate3d(0px,0,0);
+	transition-timing-function:ease;
+
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+
+	cursor:url(../img/drag.png) 16 9, ew-resize!important;
+	margin: 0 auto;
+	height: inherit!important;
+}
+.pagination-hidden .swiper-wrapper{
+	-webkit-transform:translate3d(0px,0,0)!important;
+	-moz-transform:translate3d(0px,0,0)!important;
+	-o-transform:translate3d(0px,0,0)!important;
+	-o-transform:translate(0px,0px)!important;
+	-ms-transform:translate3d(0px,0,0)!important;
+	transform:translate3d(0px,0,0)!important;
+	left: 0!important;
+	cursor: auto!important;
+}
+.swiper-free-mode > .swiper-wrapper {
+	-webkit-transition-timing-function: ease-out;
+	-moz-transition-timing-function: ease-out;
+	-ms-transition-timing-function: ease-out;
+	-o-transition-timing-function: ease-out;
+	transition-timing-function: ease-out;
+	margin: 0 auto;
+}
+.swiper-slide {
+	float: left;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+
+	height: inherit!important;
+}
+
+/* IE10 Windows Phone 8 Fixes */
+.swiper-wp8-horizontal {
+	-ms-touch-action: pan-y;
+}
+.swiper-wp8-vertical {
+	-ms-touch-action: pan-x;
+}
+
+/* ===============================================================
+Your custom styles, here you need to specify container's and slide's
+sizes, pagination, etc.
+================================================================*/
+.swiper-container {
+	/* Specify Swiper's Size: */
+
+	/*width:200px;
+	height: 100px;*/
+}
+.swiper-slide {
+	/* Specify Slides's Size: */
+	
+	/*width: 100%;
+	height: 100%;*/
+}
+.swiper-slide-active {
+	/* Specific active slide styling: */
+	
+}
+.swiper-slide-visible {
+	/* Specific visible slide styling: */	
+
+}
+/* ===============================================================
+Pagination Styles
+================================================================*/
+.swiper-container .pagination{
+	text-align: center;
+	width: 100%;
+	margin-bottom: 35px !important;
+}
+.swiper-container.pagination-hidden .pagination{
+	display: none!important;
+}
+.swiper-pagination-switch {
+	/* Stylize pagination button: */	
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	display: inline-block;
+	position: relative;
+	margin: 0 5px;
+	cursor: pointer;
+	background: #F6F6F6;
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+}
+
+.swiper-active-switch {
+	/* Specific active button style: */	
+	background: #0d58c8;
+}
+
+.swiper-visible-switch {
+	/* Specific visible button style: */	
+
+}
+
+.swiper-pagination-switch{
+	-moz-transition:all 300ms ease-out;
+	-o-transition:all 300ms ease-out;
+	-webkit-transition:all 300ms ease-out;
+	transition:all 300ms ease-out;
+	-ms-transition:all 300ms ease-out;
+}
+
+/* ===============================================================
+Arrows Styles
+================================================================*/
+.swiper-arrow-left, .swiper-arrow-right{
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	border-radius: 50%;
+	top: 50%;
+	cursor: pointer;
+	background: rgba(255,255,255,0.5);
+	transform: translteY(-50%);
+	-webkit-transform:translateY(-50%);
+	-moz-transform:translateY(-50%);
+	-ms-transform:translateY(-50%);
+	-webkit-transition:ease-out 0.15s all;
+	-moz-transition:ease-out 0.15s all;
+	-o-transition:ease-out 0.15s all;
+	transition: ease-out 0.15s all;
+}
+.swiper-arrow-left:after, .swiper-arrow-right:after{
+	position: absolute;
+	top: 50%;
+	font-family: FontAwesome;
+	left: 50%;
+	font-size: 18px;
+	font-weight: bolder;
+	color: rgba(38,38,38,0.5);
+	transform: translteY(-50%) translateX(-50%);
+	-webkit-transform:translateY(-50%) translateX(-50%);
+	-moz-transform:translateY(-50%) translateX(-50%);
+	-ms-transform:translateY(-50%) translateX(-50%);
+	-webkit-transition:ease-out 0.15s all;
+	-moz-transition:ease-out 0.15s all;
+	-o-transition:ease-out 0.15s all;
+	transition: ease-out 0.15s all;
+}
+.swiper-arrow-left:hover:after, .swiper-arrow-right:hover:after{
+	color: #262626;
+}
+.swiper-arrow-left:after{
+	content: "\f104";
+}
+.swiper-arrow-right:after{
+	content: "\f105";
+}
+.swiper-arrow-left:hover, .swiper-arrow-right:hover{
+	background: #FFF;
+}
+.swiper-arrow-left{
+	left: 25px;
+}
+
+.swiper-arrow-right{
+	right: 25px;
+}
+
+.swiper-container.pagination-hidden .swiper-arrow-left, .swiper-container.pagination-hidden .swiper-arrow-right{
+	display: none!important;
+}

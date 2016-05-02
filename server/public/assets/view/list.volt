@@ -37,7 +37,7 @@
                             <a href="spec.php?class={{ str_replace("\\", "_", param["type"]) }}">{{ param["type"] }}</a> {% if param["by_ref"] %}&{% endif %}${{ paramName }}
                             {% if param["required"] %}
                             {% else %}
-                                = {{ var_export(param["default"], true) }}
+                                = {{ var_export(param["html"], true) }}
                             {% endif %}
                             {% if loop.last == false %}
                                 ,
