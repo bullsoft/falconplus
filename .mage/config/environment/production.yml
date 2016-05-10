@@ -1,8 +1,8 @@
 #production
 deployment:
-  user: root
+  user: work 
   from: ./
-  to: /path/
+  to: /home/work/deployment/falconplus/
   excludes:
 releases:
   enabled: true
@@ -10,7 +10,9 @@ releases:
   symlink: current
   directory: releases
 hosts:
-  - 127.0.0.1
+  - 115.28.223.103
+  - 115.28.13.165
+  - 139.162.53.205
 tasks:
   pre-deploy:
     - composer/install

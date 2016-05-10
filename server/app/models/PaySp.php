@@ -8,7 +8,7 @@ namespace Demo\Server\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Server\Models
- * @version $Rev:2016-03-03 14:24:47$
+ * @version $Rev:2016-05-10 18:02:33$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class PaySp extends \PhalconPlus\Base\Model
@@ -43,6 +43,12 @@ class PaySp extends \PhalconPlus\Base\Model
      * @table pay_sp
      */
     public $website = null;
+
+    /**
+     * @var string
+     * @table pay_sp
+     */
+    public $partner_id = null;
 
     /**
      * @var string
@@ -84,6 +90,7 @@ class PaySp extends \PhalconPlus\Base\Model
         $this->code = '';
         $this->logoUrl = '';
         $this->website = NULL;
+        $this->partnerId = NULL;
         $this->ak = NULL;
         $this->sk = NULL;
         $this->ctime = '0000-00-00 00:00:00';
@@ -101,6 +108,7 @@ class PaySp extends \PhalconPlus\Base\Model
             'code' => 'code', 
             'logo_url' => 'logoUrl', 
             'website' => 'website', 
+            'partner_id' => 'partnerId', 
             'ak' => 'ak', 
             'sk' => 'sk', 
             'ctime' => 'ctime', 
