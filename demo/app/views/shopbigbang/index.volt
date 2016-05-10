@@ -21,7 +21,7 @@
 
 
     <!-- Custom CSS -->
-    <link href="{{ url('/tpls/'~tpl~'/yourcss/'~whichController~'/'~whichAction~'.css') }}" rel="stylesheet">
+    {{__invoke__('Volt::yourCss', whichController, whichAction)}}
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -63,8 +63,7 @@
 <script src="{{ url('/tpls/'~tpl~'/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ url('/tpls/'~tpl~'/js/dataTables.bootstrap.min.js') }}"></script>
 
-
-<script src="{{ url('/tpls/'~tpl~'/yourjs/'~whichController~'/'~whichAction~'.js') }}"></script>
+{{__invoke__('Volt::yourJs', whichController, whichAction)}}
 
 </body>
 

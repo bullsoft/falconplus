@@ -64,6 +64,21 @@ class Module extends PlusModule
         // get config
         $config = $di->get('config');
 
+        $router = $di->getShared("router");
+        if($router instanceof \Phalcon\Mvc\Router) {
+            $router->add('/apis/:controller/([a-zA-Z0-9_\-]+)/:params', array(
+                'controller' => 1,
+                'action'     => 2,
+                'params'     => 3,
+                'namespace'  => __NAMESPACE__ . "\\Controllers\\Apis",
+            ))->convert('action', function ($action) {
+                // transform action from foo-bar -> foo_bar
+                $a = str_replace('-', '_', $action);
+                // transform action from foo_bar -> fooBar
+                return lcfirst(\Phalcon\Text::camelize($a));
+            });
+        }
+
         // register a dispatcher
         $di->has("dispatched") || $di->set('dispatcher', function () use ($di) {
             $evtManager = $di->getShared('eventsManager');
@@ -98,12 +113,12 @@ class Module extends PlusModule
         $di->set('profiler', function(){
             return new \Phalcon\Db\Profiler();
         }, true);
-        
-        // register db service 
+
+        // register db service
         $di->setShared('dbDemo', function() use ($di) {
             $mysql = new \PhalconPlus\Db\Mysql($di, "dbDemo");
             $connection = $mysql->getConnection();
-            
+
             $eventsManager = new \Phalcon\Events\Manager();
             $profiler = $di->getProfiler();
             $eventsManager->attach('db', function($event, $connection) use ($profiler) {
@@ -145,7 +160,7 @@ class Module extends PlusModule
             }
             return $client;
         });
-        
+
         // set view with volt
         $di->set('view', function() use ($di) {
             $tpl = $di->get("siteConf")->template;
@@ -157,7 +172,8 @@ class Module extends PlusModule
                     $volt->setOptions(array(
                         "compiledPath"      => $di->get('config')->view->compiledPath,
                         "compiledExtension" => $di->get('config')->view->compiledExtension,
-                        // in dev
+                        "compiledSeparator" => "_",
+                        // in dev only
                         "compileAlways"     => true,
                     ));
                     // 如果模板缓存目录不存在，则创建它
@@ -165,7 +181,9 @@ class Module extends PlusModule
                         mkdir($di->get('config')->view->compiledPath, 0777, true);
                     }
                     $compiler = $volt->getCompiler();
-                    $compiler->addExtension(new \PhalconPlus\Volt\Extension\PhpFunction());
+                    $ext = new \PhalconPlus\Volt\Extension\PhpFunction();
+                    $ext->setCustNamespace('\Demo\Web\Plugins\\');
+                    $compiler->addExtension($ext);
                     return $volt;
                 }
             ));

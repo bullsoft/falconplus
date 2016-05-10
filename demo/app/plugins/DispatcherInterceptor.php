@@ -84,9 +84,16 @@ class DispatcherInterceptor extends Plugin
     {
         $returnValue = $dispatcher->getReturnedValue();
         if(is_array($returnValue) || is_object($returnValue)) {
+            if(is_object($returnValue)) {
+                if(method_exists($returnValue, "getResult")) {
+                    $returnValue = $returnValue->getResult();
+                } else if(method_exists($returnValue, "toArray")) {
+                    $returnValue = $returnValue->toArray();
+                }
+            }
             $return = array(
                 'errorCode' => 0,
-                'data' => (array) $returnValue,
+                'data' => $returnValue,
                 'errorMsg' => '',
             );
             $return["sessionId"] = $this->session->getId();

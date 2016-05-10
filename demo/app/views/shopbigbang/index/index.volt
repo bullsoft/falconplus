@@ -130,7 +130,7 @@
             <img src="http://placehold.it/320x150" alt="">
             <div class="caption">
                 <h4 class="pull-right">$94.99</h4>
-                <h4><a href="#">Fifth Product</a>
+                <h4><a href="#">{{__invoke__('Volt::getTemplate')}}</a>
                 </h4>
                 <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>

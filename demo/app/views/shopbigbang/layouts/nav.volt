@@ -14,8 +14,11 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li{{ whichController == "product" and whichAction == "webRecommend" ? " class=active":"" }}>
+                <li{{ whichController == "product" and whichAction == "webRecommend" ? " class=active ":"" }}>
                     <a href="{{ url("product/web-recommend") }}">精选</a>
+                </li>
+                <li{{ whichController == "product" and whichAction == "list" ? " class=active":"" }}>
+                    <a href="{{ url("product/list") }}">产品列表</a>
                 </li>
                 <li{{ whichController == "product" and whichAction == "webRanking" ? " class=active":"" }}>
                     <a href="{{ url("product/web-ranking") }}">排行榜</a>

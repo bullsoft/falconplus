@@ -14,7 +14,7 @@ use Demo\Server\Models\CartInfo;
 use Demo\Server\Models\DealRecord;
 use \PhalconPlus\Db\UnitOfWork;
 
-class CartService
+class CartService extends BaseService
 {
     public function getBySessionId(SimpleRequest $request)
     {
@@ -37,7 +37,8 @@ class CartService
         $cart = CartDao::getCart($sessionId);
         $item = CartDao::newItem($skuId, $qty);
         $cart->setItem($item);
-        return CartDao::cache($cart);
+        $this->response->pushItem(CartDao::cache($cart));
+        return $this->response;
     }
 
     public function delItem(SimpleRequest $request)
@@ -73,13 +74,14 @@ class CartService
 
         $order = new DealRecord();
         $order->buyerId = $userId;
-        $order->sellerId = $item->getProvider();
+        $order->sellerId = 0;
         $order->cartUuid = $cartId;
         $order->amount = $cart->getTotals()["grand_total"];
         $work->save("order-".$cartId, $order);
 
         $work->exec();
 
+        return $this->response;
         // CartDao::clear($sessionId);
     }
 

@@ -1,0 +1,661 @@
+/* Slideshow (jQuery Cycle)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+.slider-section .row {
+	overflow: hidden;
+	margin: 20px auto auto;
+	background: #262626;
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06), 1px 1px #D8DADB, 2px 2px #D8DADB, 3px 3px #D9DBDC, 4px 4px #D9DBDC, 5px 5px #DADCDD, 6px 6px #DADCDD, 7px 7px #DADCDD, 8px 8px #DBDDDE, 9px 9px #DBDDDE, 10px 10px #DCDEDF, 11px 11px #DCDEDF, 12px 12px #DCDEDF, 13px 13px #DDDFE0, 14px 14px #DDDFE0, 15px 15px #DEE0E1, 16px 16px #DEE0E1, 17px 17px #DEE0E1, 18px 18px #DFE1E2, 19px 19px #DFE1E2, 20px 20px #E0E2E3, 21px 21px #E0E2E3, 22px 22px #E0E2E3, 23px 23px #E1E3E4, 24px 24px #E1E3E4, 25px 25px #E2E4E5, 26px 26px #E2E4E5, 27px 27px #E2E4E5, 28px 28px #E3E5E6, 29px 29px #E3E5E6, 30px 30px #E4E6E7, 31px 31px #E4E6E7, 32px 32px #E4E6E7, 33px 33px #E5E7E8, 34px 34px #E5E7E8, 35px 35px #E6E8E9, 36px 36px #E6E8E9, 37px 37px #E6E8E9, 38px 38px #E7E9EA, 39px 39px #E7E9EA, 40px 40px #E8EAEB, 41px 41px #E8EAEB, 42px 42px #E8EAEB, 43px 43px #E9EBEC, 44px 44px #E9EBEC, 45px 45px #EAECED, 46px 46px #EAECED, 47px 47px #EAECED, 48px 48px #EBEDEE, 49px 49px #EBEDEE, 50px 50px #ECEEEF, 51px 51px #ECEEEF, 52px 52px #ECEEEF, 53px 53px #EDEFF0, 54px 54px #EDEFF0, 55px 55px #EEF0F1, 56px 56px #EEF0F1, 57px 57px #EEF0F1, 58px 58px #EFF1F2, 59px 59px #EFF1F2, 60px 60px #F0F2F3
+}
+.controls {
+	margin: 0;
+	padding: 0;
+	list-style: none
+}
+ul.slideshow {
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
+	/* Slideshow: */
+	position: relative;
+	width: 1170px;
+	height: 470px;
+	margin: auto
+}
+.slideshow .slide {
+	display: block;
+	width: 1160px;
+	height: 470px;
+	left: 0;
+	top: 0;
+}
+/* Navigation */
+.slideshow-wrapper .browse-button {
+	text-decoration: none;
+	text-indent: -999px;
+	overflow: hidden;
+}
+.slideshow-wrapper:hover .browse-button {
+	visibility: visible;
+}
+.slideshow-wrapper .backward {
+	position: absolute;
+	left: -40px;
+	top: 45%;
+	background: url(../images/slideshow-arrows.png) 0 0 no-repeat;
+	width: 50px;
+	height: 50px;
+	display: none;
+}
+.slideshow-wrapper .backward:hover {
+	background-position: 0 -66px;
+}
+.slideshow-wrapper .forward {
+	position: absolute;
+	right: -40px;
+	top: 45%;
+	background: url(../images/slideshow-arrows.png) -50px 0 no-repeat;
+	width: 50px;
+	height: 50px;
+	display: none;
+}
+.slideshow-wrapper .forward:hover {
+	background-position: -50px -66px;
+}
+/* Navigation goes up (Z-axis) */
+.slideshow-wrapper .browse-button, .slideshow-wrapper .tab-pager {
+	z-index: 50;
+}
+/* Main slideshow on home page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.the-slideshow .tab-pager {
+	position: absolute;
+	bottom: 15px;
+	
+}
+.the-slideshow .slideshow {
+	background-color: #fff;
+}
+/* Fix: prevent showing all slides while loading */
+.the-slideshow .slideshow .slide {
+	display: none;
+	overflow: hidden;
+}
+.the-slideshow .slideshow .slide.first {
+	display: block;
+}
+.the-slideshow .slideshow .slide img {
+}
+/* Elements in slides
+-------------------------------------------------------------- */
+.the-slideshow {
+	color: #333;/*	text-shadow:1px 1px 2px rgba(0, 0, 0, 0.4);
+	font-size:18px;*/
+}
+.the-slideshow h2, .the-slideshow h3, .the-slideshow h4, .the-slideshow h5, .the-slideshow h6, .the-slideshow a {
+	color: #333;
+}
+/* Universal navigation pager for tabs and slideshow
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.tab-pager a {
+	float: left;
+	width: 20px;
+	height: 20px;
+	margin-right: 3px;
+	text-align: center;
+	overflow: hidden;
+	text-indent: -999px;
+}
+/* Tab pager: simple gray rounded rectangles
+-------------------------------------------------------------- */
+.tab-pager.tab-pager-simple a {
+	background-color: #eee;
+	color: #333;
+	border-radius: 2px;
+	box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.2);
+}
+.tab-pager.tab-pager-simple a.current, /*jQuery Tools*/ .tab-pager.tab-pager-simple a.activeSlide, /*jQuery Cycle plugin*/ .tab-pager.tab-pager-simple a:hover {
+	background-color: #ccc;
+}
+/* Tab pager: image background
+-------------------------------------------------------------- */
+.tab-pager.tab-pager-img a {
+	background: 0 0 no-repeat transparent;
+}
+.tab-pager.tab-pager-img a.current, .tab-pager.tab-pager-img a.activeSlide {
+	background-position: 0 -30px;
+}
+.tab-pager.tab-pager-img a:hover {
+	background-position: 0 -60px;
+}
+/* Light gray rounded squares */
+.tab-pager.tab-pager-rounded-lgray a {
+	background: url(../images/tab-pager-rounded-lgray.png) 0 0 no-repeat transparent;
+}
+/* Light gray circles */
+.tab-pager.tab-pager-circle-lgray a {
+	background: url(../images/tab-pager-circle-lgray.png) 0 0 no-repeat transparent;
+}
+/* Light gray rings */
+.tab-pager.tab-pager-ring-lgray a {
+	background: url(../images/tab-pager-ring-lgray.png) 0 0 no-repeat transparent;
+}
+/* Caption
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.caption {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	width: 550px;
+	margin: auto;
+	padding: 0;
+	padding-top: 0px;
+	top: 8%;
+	left: 0%;
+}
+.caption .caption-inner {
+	padding: 10px 0px;
+	text-align: center;
+	margin-left: 12px;
+}
+.dark2 {
+	width: 360px;
+	left: 300px!important;
+	padding: 10px 30px;
+	top: 30px;
+	background: rgba(0, 0, 0, 0.3);
+	border-radius: 250px;
+	height: 405px
+}
+/* Caption position
+-------------------------------------------------------------- */
+.caption.top {
+	top: 0;
+	bottom: auto;
+	width: 80%;
+}
+.caption.top-right {
+	top: 0;
+	bottom: auto;
+	right: 0;
+	padding-top: 8%;
+	margin-right: 0px
+}
+.light .intro-btn a {
+	color: #fff;
+	padding: 15px 45px;
+	letter-spacing: 2px;
+	font-size: 20px;
+	font-weight: normal;
+	background: #000000!important;
+	font-family: 'Open Sans', sans-serif;
+}
+.caption.top-left {
+	top: 12%;
+	bottom: auto;
+	right: 0;
+	width: 100%;
+	float: left;
+	padding-top: 12%;
+	padding-left: 5%;
+}
+.caption.bottom-right {
+	right: 0;
+	width: 58%;
+}
+.light2 {
+	margin: auto!important
+}
+/* Caption elements
+-------------------------------------------------------------- */
+.caption > * {
+	margin-bottom: 1px;
+}
+.caption .heading {
+	padding: 0;
+	margin-bottom: 0.2em;
+	font-size: 42px;
+	line-height: 1em;
+	font-weight: 900;
+	padding: 20px 10px;
+	font-family: 'Open Sans', sans-serif;
+	color: #000;
+	text-align: center!important;
+}
+.caption p {
+	clear: left;
+	padding: 15px 0px;
+	margin-bottom: 1px;
+	font-size: 28px;
+	line-height: 1em;
+	font-weight: 300;
+	color: #000 !important
+}
+.caption .intro-btn {
+	margin-top: 10px;
+	display: block;
+}
+.caption .intro-btn a {
+	color: #fff;
+	padding: 10px 25px;
+	letter-spacing: 2px;
+	font-size: 18px;
+	font-weight: 300;
+	font-family: 'Open Sans', sans-serif;
+	border: 2px #fff solid;
+	text-transform: uppercase
+}
+.caption .normal-text {
+	font-size: 20px;
+	letter-spacing: 6px;
+	color: #fff;
+	font-weight: normal;
+	padding-top: 0px;
+	border-bottom: 1px #000 solid;
+	margin-bottom: 7px;
+	text-transform: uppercase
+}
+.caption .normal-text1 {
+	clear: left;
+	padding: 15px 0px;
+	margin-bottom: 1px;
+	font-size: 20px;
+	line-height: 1em;
+	font-weight: 300;
+	text-transform: uppercase;
+	letter-spacing: 10px;
+	color: #000 !important;
+	border-top: 1px #000 solid;
+}
+/* Caption layout
+-------------------------------------------------------------- */
+.caption.centered {
+	text-align: center;
+}
+.caption.centered > * {
+	display: inline-block;
+	float: none;
+}
+/* Floating (text alignment) */
+.caption.right > * {
+	text-align: right;
+	float: right !important;
+}
+/* Caption additional styles
+-------------------------------------------------------------- */
+/* Width */
+.caption.full-width {
+	width: 88%;
+	margin: 6%;
+}
+.caption.narrow {
+	width: 38%;
+}
+/* Prevent from hiding elements of the caption on narrow screens */
+.caption .permanent {
+	display: block !important;
+}
+/* Skin
+-------------------------------------------------------------- */
+.caption .heading, .caption p {
+	transition: color 450ms ease-in-out, background-color 450ms ease-in-out;
+}
+a:hover .caption .heading, a:hover .caption p {
+	transition: color 200ms ease-in-out, background-color 200ms ease-in-out;
+}
+/* Dark + white text */
+.caption.dark1 .heading, .caption.dark1 p {
+	background-color: rgba(0, 0, 0, 0.35);
+	color: #fff;
+}
+a:hover .caption.dark1 .heading, a:hover .caption.dark1 p {
+	background-color: rgba(0, 0, 0, 0.7);
+	color: #fff;
+}
+/* Dark + white text */
+.caption.dark2 .heading {
+	padding: 10px;
+	margin-bottom: 0em;
+	font-size: 48px;
+	line-height: 1em;
+	font-weight: 900;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+	padding-bottom: 10px;
+	color: #fff;
+	text-align: center;
+	padding-top: 50px
+}
+.caption.dark2 .intro-btn a {
+	text-align: center;
+	display: inline-block;
+	float: none
+}
+.caption.dark2 .permanent {
+	font-size: 18px;
+	line-height: 30px;
+	font-weight: 300;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	color: #fff!important;
+	text-align: center;
+	border-top: 1px #fff solid;
+	margin-top: 5px
+}
+a:hover .caption.dark2 .heading, a:hover .caption.dark2 p {
+	color: #fff;
+}
+/* Dark + white text */
+.caption.dark3 .heading, .caption.dark3 p {
+	background-color: rgba(0, 0, 0, 0.65);
+	color: #fff;
+}
+a:hover .caption.dark3 .heading, a:hover .caption.dark3 p {
+	background-color: rgba(0, 0, 0, 1);
+	color: #fff;
+}
+/* Light + black text */
+.caption.light1 .heading, .caption.light1 p {
+	color: #fff!important;
+}
+.caption.light1 {
+	width: 635px;
+	margin-top: 10%;
+	left: 0;
+	/*	background-color:rgba(255, 255, 255, 0.7);*/
+	height: 470px;
+	margin-left: 0px;
+	padding: 30px;
+}
+.caption.light1 .heading {
+	font-size: 40px;
+	text-shadow: none;
+	font-weight: 300;
+	font-family: 'Open Sans', sans-serif;
+	line-height: 1.4em;
+	border-bottom: 1px #fff dashed;
+	text-transform: uppercase
+}
+.caption.light1 .heading1 {
+	display: inline-block;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 17px;
+	font-weight: 300;
+	letter-spacing: normal;
+	text-align: center;
+	text-shadow: none;
+	text-transform: none;
+	padding: 10px 0px;
+	line-height: 25px;
+	color: #fff!important
+}
+.caption.light1 .badge {
+	background: #000000;
+	color: #fff;
+	font-family: 'Open Sans', sans-serif;
+	border-radius: 120px;
+	font-size: 34px;
+	width: 130px;
+	height: 130px;
+	position: absolute;
+	z-index: 1000;
+	margin-left: 940px;
+	border: 5px #fff solid;
+	margin-top: -180px;
+	line-height: normal;
+	padding: 0;
+	font-weight: normal;
+}
+.caption.light1 .badge em {
+	font-size: 12px;
+	font-weight: normal;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	padding-top: 20px
+}
+.caption.light1 .badge span {
+	font-size: 24px;
+	font-weight: normal;
+	display: block
+}
+a:hover .caption.light1 .heading, a:hover .caption.light1 .btn-intro {
+	color: #333;
+}
+/* Light + black text */
+.caption.light2 .heading {
+	color: #fff!important;
+	font-size: 50px;
+	margin-top: 120px;
+	letter-spacing: 2px
+}
+a:hover .caption.light2 .heading, a:hover .caption.light2 p {
+	background-color: rgba(255, 255, 255, 0.85);
+	color: #000;
+}
+/* Light + black text */
+.caption.light3 .heading, .caption.light3 p {
+	background-color: rgba(255, 255, 255, 0.8);
+	color: #000;
+}
+a:hover .caption.light3 .heading, a:hover .caption.light3 p {
+	background-color: rgba(255, 255, 255, 1);
+	color: #000;
+}
+/* slide-show */
+/* Slider */
+
+
+.slides_container {
+	width: 860px;
+	height: 320px;
+	position: relative;
+	padding-left: 0px;
+}
+.slides_container div {
+	width: 860px;
+	height: 320px;
+	display: block;
+	position: relative;
+	z-index: 20;
+	color: #fff;
+}
+.slides_container div img {
+	z-index: 20;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+.slides_container div p {
+	z-index: 40;
+	position: absolute;
+	top: 124px;
+	left: 246px;
+	padding-right: 10px;
+	color: #560e78;
+	font-size: 14px;
+}
+#slides {
+	position: relative;
+	overflow: hidden;
+	width: 845px;
+	z-index: 0;
+}
+#slides a.prev {
+	z-index: 50;
+	position: absolute;
+	left: 10px;
+	top: 0px;
+	padding: 8px 6px 10px 5px;
+	color: #222;
+	font-size: 16px;
+	font-weight: 600;
+	text-decoration: none;
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+	font-size: 0px;
+	height: 30px;
+	width: 35px;
+	text-align: center;
+	border-radius: 0px;
+	background: #fff;
+	opacity: 0.5;
+	border: 2px #ddd solid;
+}
+#slides a.prev:before {
+	content: '\f104';
+	font-size: 30px;
+	font-family: FontAwesome;
+	font-weight: normal;
+	line-height: normal;
+}
+#slides a.prev:hover {
+	background: #222;
+	opacity: 1;
+	border: 2px #ddd solid;
+	color: #fff;
+}
+#slides a.next {
+	z-index: 50;
+	position: absolute;
+	right: 20px;
+	top: 0px;
+	padding: 8px 6px 10px 5px;
+	color: #222;
+	font-size: 16px;
+	font-weight: 600;
+	text-decoration: none;
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+	font-size: 0px;
+	height: 30px;
+	width: 35px;
+	text-align: center;
+	border-radius: 0px;
+	opacity: 0.5;
+	background: #fff;
+	border: 2px #ddd solid;
+}
+#slides a.next:before {
+	content: '\f105';
+	font-size: 30px;
+	font-family: FontAwesome;
+	font-weight: normal;
+	line-height: normal;
+}
+#slides a.next:hover {
+	background: #222;
+	opacity: 1;
+	border: 2px #ddd solid;
+	color: #fff;
+}
+.slides_container div p {
+	top: 175px;
+	left: 320px;
+}
+#slides a.prev, #slides a.next {
+	margin: 125px 6px 0px 5px;
+}
+.cat-block.pro-block.col-xs-12 {
+	padding: 0;
+}
+.slider-intro.col-lg-7 {
+	padding: 0;
+}
+.pro-block .pro1-block ul.top-cat-box {
+	margin : 0;
+	padding : 5px;
+	list-style : none;
+}
+.pro-block .pro1-block ul.top-cat-box li {
+	width : 272px;
+	height : 125px;
+	float : left;
+	padding : 15px 20px 10px;
+	-webkit-box-sizing : border-box;
+	-moz-box-sizing : border-box;
+	box-sizing : border-box;
+	-webkit-transition : all 0.3s;
+	transition : all 0.3s;
+	-webkit-transform: translateZ(0);
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+}
+.pro-block .pro1-block ul.top-cat-box li:nth-child(1) {
+	background: #98d070;
+}
+.pro-block .pro1-block ul.top-cat-box li:nth-child(2) {
+	background: #fadf46;
+}
+.pro-block .pro1-block ul.top-cat-box li:nth-child(3) {
+	background: #fbaf70;
+}
+.pro-block .pro1-block ul.top-cat-box li:nth-child(4) {
+	background: #6dced7;
+}
+.pro-block .pro1-block ul.top-cat-box li a {
+	background : rgba(0, 0, 0, 0.5);
+	color : #fff;
+	padding : 8px 15px;
+	font-size : 12px;
+	letter-spacing : .5px;
+	position: relative;
+	bottom : 54px;
+	opacity : 0;
+	filter : alpha(opacity=0);
+	-webkit-transition : all 0.3s;
+	transition : all 0.3s;
+	font-family: 'Open Sans', sans-serif;
+	text-transform: uppercase;
+	border: 4px rgba(255, 255, 255, 0.5) solid
+}
+.pro-block .pro1-block ul.top-cat-box li a:hover {
+	text-decoration : none;
+	color : #333;
+	background : #fff;
+}
+.pro-block .pro1-block ul.top-cat-box li:hover a {
+	left : 0px;
+	opacity : 1;
+	filter : alpha(opacity=100);
+	transition: all 0.5s ease-in-out;
+}
+.pro-block .pro1-block ul.top-cat-box li:hover:nth-child(1) {
+	-webkit-box-shadow : 0 0 0 12px #82bc58;
+	box-shadow : 0 0 0 12px #82bc58;
+	z-index : 7;
+}
+.pro-block .pro1-block ul.top-cat-box li:hover:nth-child(2) {
+	-webkit-box-shadow : 0 0 0 12px #e8cc2f;
+	box-shadow : 0 0 0 12px #e8cc2f;
+	z-index : 7;
+}
+.pro-block .pro1-block ul.top-cat-box li:hover:nth-child(3) {
+	-webkit-box-shadow : 0 0 0 12px #ec9751;
+	box-shadow : 0 0 0 12px #ec9751;
+	z-index : 7;
+}
+.pro-block .pro1-block ul.top-cat-box li:hover:nth-child(4) {
+	-webkit-box-shadow : 0 0 0 12px #51bac4;
+	box-shadow : 0 0 0 12px #51bac4;
+	z-index : 7;
+}
+.pro-block .pro1-block ul.top-cat-box li h2 {
+	font-size : 18px;
+	letter-spacing : 1px;
+	margin : 5px 0 10px;
+	color : rgba(255, 255, 255, 0.9);
+	text-transform: uppercase;
+	font-weight: 300;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.pro-block .pro1-block ul.top-cat-box li p {
+	font-size : 14px;
+	color : #fff;
+	font-weight : 300;
+	letter-spacing: 1px
+}

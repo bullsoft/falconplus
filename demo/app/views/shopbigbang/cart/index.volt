@@ -3,9 +3,23 @@
     <h3>邮寄地址</h3>
 
     <div class="well col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+
         <div class="row user-row">
             <div class="col-xs-3 col-sm-2 col-md-1 col-lg-1">
-                <input type="radio" value="1" name="shipmentMethod" checked />
+                <input type="radio" value="0" name="shipmentMethod" checked />
+            </div>
+            <div class="col-xs-8 col-sm-9 col-md-10 col-lg-10">
+                <strong>无需配送</strong><br>
+                <span class="text-muted">...</span>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user" data-for="">
+                <i class="glyphicon glyphicon-chevron-down text-muted"></i>
+            </div>
+        </div>
+
+        <div class="row user-row">
+            <div class="col-xs-3 col-sm-2 col-md-1 col-lg-1">
+                <input type="radio" value="1" name="shipmentMethod" />
             </div>
             <div class="col-xs-8 col-sm-9 col-md-10 col-lg-10">
                 <strong>公司-百度大厦</strong><br>
