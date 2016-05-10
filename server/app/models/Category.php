@@ -8,7 +8,7 @@ namespace Demo\Server\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Server\Models
- * @version $Rev:2016-03-03 14:24:47$
+ * @version $Rev:2016-05-10 18:02:33$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class Category extends \PhalconPlus\Base\Model
@@ -45,6 +45,12 @@ class Category extends \PhalconPlus\Base\Model
     public $rgt = null;
 
     /**
+     * @var string
+     * @table category
+     */
+    public $slug = null;
+
+    /**
      * @var integer
      * @table category
      */
@@ -78,6 +84,7 @@ class Category extends \PhalconPlus\Base\Model
         $this->pid = NULL;
         $this->lft = NULL;
         $this->rgt = NULL;
+        $this->slug = NULL;
         $this->depth = NULL;
         $this->ctime = '0000-00-00 00:00:00';
         $this->mtime = '0000-00-00 00:00:00';
@@ -94,6 +101,7 @@ class Category extends \PhalconPlus\Base\Model
             'pid' => 'pid', 
             'lft' => 'lft', 
             'rgt' => 'rgt', 
+            'slug' => 'slug', 
             'depth' => 'depth', 
             'ctime' => 'ctime', 
             'mtime' => 'mtime', 

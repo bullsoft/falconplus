@@ -8,7 +8,7 @@ namespace Demo\Server\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Server\Models
- * @version $Rev:2016-03-03 14:24:47$
+ * @version $Rev:2016-05-10 18:02:33$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class SkuInfo extends \PhalconPlus\Base\Model
@@ -67,6 +67,24 @@ class SkuInfo extends \PhalconPlus\Base\Model
      * @table sku_info
      */
     public $amount = null;
+
+    /**
+     * @var unknown
+     * @table sku_info
+     */
+    public $left_amount = null;
+
+    /**
+     * @var unknown
+     * @table sku_info
+     */
+    public $least = null;
+
+    /**
+     * @var unknown
+     * @table sku_info
+     */
+    public $most = null;
 
     /**
      * @var integer
@@ -135,6 +153,9 @@ class SkuInfo extends \PhalconPlus\Base\Model
         $this->cateId = NULL;
         $this->price = NULL;
         $this->amount = NULL;
+        $this->leftAmount = NULL;
+        $this->least = NULL;
+        $this->most = NULL;
         $this->discountId = '0';
         $this->sellType = '1';
         $this->isDelete = '1';
@@ -159,6 +180,9 @@ class SkuInfo extends \PhalconPlus\Base\Model
             'cate_id' => 'cateId', 
             'price' => 'price', 
             'amount' => 'amount', 
+            'left_amount' => 'leftAmount', 
+            'least' => 'least', 
+            'most' => 'most', 
             'discount_id' => 'discountId', 
             'sell_type' => 'sellType', 
             'is_delete' => 'isDelete', 

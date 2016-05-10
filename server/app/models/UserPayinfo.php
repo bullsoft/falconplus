@@ -8,7 +8,7 @@ namespace Demo\Server\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Server\Models
- * @version $Rev:2016-03-03 14:24:47$
+ * @version $Rev:2016-05-10 18:02:33$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class UserPayinfo extends \PhalconPlus\Base\Model
@@ -67,7 +67,6 @@ class UserPayinfo extends \PhalconPlus\Base\Model
         parent::initialize();
         $this->setReadConnectionService("r_dbDemo");
         $this->setWriteConnectionService("dbDemo");
-
     }
 
     /**
