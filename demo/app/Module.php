@@ -41,20 +41,20 @@ class Module extends PlusModule
     {
         $loader = new \Phalcon\Loader();
         $loader->registerNamespaces(array(
-            __NAMESPACE__.'\\Controllers' => __DIR__.'/controllers/',
-            __NAMESPACE__.'\\Models'      => __DIR__.'/models/',
-            __NAMESPACE__."\\Plugins"     => __DIR__.'/plugins/',
-            "Detection"                   => APP_ROOT_COMMON_DIR . "/vendor/Mobile-Detect/namespaced/Detection/",
-            "Zend"                        => APP_ROOT_COMMON_DIR . "/vendor/Zend/",
-            "Common\\Protos"              => APP_ROOT_COMMON_DIR . "/protos/",
-            "BullSoft"                    => APP_ROOT_COMMON_DIR . "/vendor/BullSoft/",
-
+            __NAMESPACE__.'\\Controllers'       => __DIR__.'/controllers/',
+            __NAMESPACE__.'\\Models'            => __DIR__.'/models/',
+            __NAMESPACE__."\\Plugins"           => __DIR__.'/plugins/',
+            "Detection"                         => APP_ROOT_COMMON_DIR . "/vendor/Mobile-Detect/namespaced/Detection/",
+            "Zend"                              => APP_ROOT_COMMON_DIR . "/vendor/Zend/",
+            "Common\\Protos"                    => APP_ROOT_COMMON_DIR . "/protos/",
+            "BullSoft"                          => APP_ROOT_COMMON_DIR . "/vendor/BullSoft/",
+            __NAMESPACE__.'\\Controllers\\Apis' => __DIR__.'/controllers/apis/',
         ))->register();
 
         // load composer library
         require_once APP_ROOT_COMMON_DIR . "/vendor/vendor/autoload.php";
     }
-    
+
     public function registerServices()
     {
         // get di
@@ -182,7 +182,12 @@ class Module extends PlusModule
                     }
                     $compiler = $volt->getCompiler();
                     $ext = new \PhalconPlus\Volt\Extension\PhpFunction();
+<<<<<<< HEAD
                     $ext->setCustNamespace('\Demo\Web\Plugins\\');
+=======
+                    $ext->setCustNamespace(__NAMESPACE__ . "\\Plugins\\");
+                    // $ext->setCustFuncName("haha");
+>>>>>>> 5b06741847dada6e462ec55f0b49305b9ab68819
                     $compiler->addExtension($ext);
                     return $volt;
                 }

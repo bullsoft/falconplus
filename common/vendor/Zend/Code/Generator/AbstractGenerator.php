@@ -24,7 +24,7 @@ abstract class AbstractGenerator implements GeneratorInterface
     protected $isSourceDirty = true;
 
     /**
-     * @var int|string 4 spaces by default
+     * @var int|string 4 spaces by html
      */
     protected $indentation = '    ';
 

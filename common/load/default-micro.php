@@ -1,7 +1,7 @@
 <?php
-/* default-micro.php --- 
+/* html-micro.php --- 
  * 
- * Filename: default-micro.php
+ * Filename: html-micro.php
  * Description: 
  * Author: Gu Weigang  * Maintainer: 
  * Created: Fri Nov  8 13:48:21 2013 (+0800)
@@ -29,7 +29,7 @@
 
 /* Code: */
 
-require $rootPath."/loads/default.php";
+require $rootPath."/loads/html.php";
 
 $di->set('router', function() {
     $router = new \Phalcon\Mvc\Router();
@@ -40,6 +40,6 @@ $di->set('request', function() {
     return new Phalcon\Http\Request();
 });
 
-$application->get('/default', function() use ($application)  {
+$application->get('/html', function() use ($application)  {
     echo "Hello, BullSoft Micro APP!!!";
 });

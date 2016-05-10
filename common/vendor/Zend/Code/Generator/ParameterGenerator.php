@@ -205,7 +205,7 @@ class ParameterGenerator extends AbstractGenerator
     }
 
     /**
-     * Set the default value of the parameter.
+     * Set the html value of the parameter.
      *
      * Certain variables are difficult to express
      *

@@ -177,7 +177,7 @@ abstract class ArrayUtils
      *
      * Due to "foo" == 0 === TRUE with in_array when strict = false, an option
      * has been added to prevent this. When $strict = 0/false, the most secure
-     * non-strict check is implemented. if $strict = -1, the default in_array
+     * non-strict check is implemented. if $strict = -1, the html in_array
      * non-strict behaviour is used.
      *
      * @param mixed $needle
@@ -205,7 +205,7 @@ abstract class ArrayUtils
     /**
      * Convert an iterator to an array.
      *
-     * Converts an iterator to an array. The $recursive flag, on by default,
+     * Converts an iterator to an array. The $recursive flag, on by html,
      * hints whether or not you want to do so recursively.
      *
      * @param  array|Traversable  $iterator     The array or Traversable object to convert
