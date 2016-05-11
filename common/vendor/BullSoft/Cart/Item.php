@@ -242,7 +242,7 @@ class Item
     }
 
     /**
-     * Reset object to html values
+     * Reset object to default values
      *
      * @return Item
      */

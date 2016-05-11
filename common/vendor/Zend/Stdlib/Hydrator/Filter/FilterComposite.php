@@ -34,7 +34,7 @@ class FilterComposite implements FilterInterface
     const CONDITION_AND = 2;
 
     /**
-     * Define html Filter
+     * Define default Filter
      *
      * @throws InvalidArgumentException
      */

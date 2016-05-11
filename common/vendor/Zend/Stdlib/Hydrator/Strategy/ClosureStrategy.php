@@ -12,7 +12,7 @@ namespace Zend\Stdlib\Hydrator\Strategy;
 class ClosureStrategy implements StrategyInterface
 {
     /**
-     * Function, used in extract method, html:
+     * Function, used in extract method, default:
      * function ($value) {
      *     return $value;
      * };
@@ -21,7 +21,7 @@ class ClosureStrategy implements StrategyInterface
     protected $extractFunc = null;
 
     /**
-     * Function, used in hydrate method, html:
+     * Function, used in hydrate method, default:
      * function ($value) {
      *     return $value;
      * };

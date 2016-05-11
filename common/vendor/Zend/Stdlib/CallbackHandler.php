@@ -15,7 +15,7 @@ use ReflectionClass;
  * CallbackHandler
  *
  * A handler for an event, event, filterchain, etc. Abstracts PHP callbacks,
- * primarily to allow for lazy-loading and ensuring availability of html
+ * primarily to allow for lazy-loading and ensuring availability of default
  * arguments (currying).
  */
 class CallbackHandler

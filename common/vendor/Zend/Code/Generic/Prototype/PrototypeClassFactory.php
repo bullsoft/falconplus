@@ -19,7 +19,7 @@ use Zend\Code\Reflection\Exception;
  * an interface which ensures every prototype has a name.
  *
  * If the factory can not supply the class someone is asking for
- * it tries to fallback on a generic html prototype, which would
+ * it tries to fallback on a generic default prototype, which would
  * have need to be set before.
  */
 class PrototypeClassFactory
@@ -71,7 +71,7 @@ class PrototypeClassFactory
     public function setGenericPrototype(PrototypeGenericInterface $prototype)
     {
         if (isset($this->genericPrototype)) {
-            throw new Exception\InvalidArgumentException('A html prototype is already set');
+            throw new Exception\InvalidArgumentException('A default prototype is already set');
         }
 
         $this->genericPrototype = $prototype;

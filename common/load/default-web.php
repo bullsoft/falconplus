@@ -1,7 +1,7 @@
 <?php
 /* Code: */
 
-require $rootPath."/common/load/html.php";
+require $rootPath."/common/load/default.php";
 
 $di->setShared('cookie', function () {
     $cookie = new \Phalcon\Http\Response\Cookies();
@@ -53,4 +53,4 @@ $di->setShared('router', function () use ($config) {
     return $router;
 });
 
-/* html-web.php ends here */
+/* default-web.php ends here */

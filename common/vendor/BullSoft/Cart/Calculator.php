@@ -796,7 +796,7 @@ class Calculator
 
     /**
      * Get Total Shipment Discount After Tax
-     *  By html, only non-specified and discountable items are included
+     *  By default, only non-specified and discountable items are included
      * 
      * @return string formatted as a numerical float
      */

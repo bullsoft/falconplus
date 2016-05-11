@@ -1,7 +1,7 @@
 <?php
-/* html-cli.php ---
+/* default-cli.php ---
  *
- * Filename: html-cli.php
+ * Filename: default-cli.php
  * Description:
  * Author: Gu Weigang
  * Maintainer:
@@ -15,7 +15,7 @@
 
 /* Code: */
 
-require $rootPath."/common/load/html.php";
+require $rootPath."/common/load/default.php";
 
 $di->set('router', function() {
         $router = new \Phalcon\CLI\Router();
@@ -28,4 +28,4 @@ $di->set('dispatcher', function() use ($di) {
         return $dispatcher;
 });
 
-/* html-cli.php ends here */
+/* default-cli.php ends here */

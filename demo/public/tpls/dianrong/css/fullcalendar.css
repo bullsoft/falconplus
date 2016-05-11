@@ -161,7 +161,7 @@ html .fc,
 	}
 
 /*
-	Our html prev/next buttons use HTML entities like &lsaquo; &rsaquo; &laquo; &raquo;
+	Our default prev/next buttons use HTML entities like &lsaquo; &rsaquo; &laquo; &raquo;
 	and we'll try to make them look good cross-browser.
 */
 
@@ -262,9 +262,9 @@ html .fc,
 	}
 	 
 .fc-event {
-	border: 1px solid #3a87ad; /* html BORDER color */
-	background-color: #3a87ad; /* html BACKGROUND color */
-	color: #fff;               /* html TEXT color */
+	border: 1px solid #3a87ad; /* default BORDER color */
+	background-color: #3a87ad; /* default BACKGROUND color */
+	color: #fff;               /* default TEXT color */
 	font-size: .85em;
 	cursor: default;
 	}

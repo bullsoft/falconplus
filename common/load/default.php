@@ -89,4 +89,4 @@ if (!function_exists("getRealSql")) {
     }
 }
 
-/* html.php ends here */
+/* default.php ends here */

@@ -138,7 +138,7 @@ class FunctionReflection extends ReflectionFunction implements ReflectionInterfa
                 'type'     => $parameter->getType(),
                 'required' => !$parameter->isOptional(),
                 'by_ref'   => $parameter->isPassedByReference(),
-                'html'  => $parameter->isDefaultValueAvailable() ? $parameter->getDefaultValue() : null,
+                'default'  => $parameter->isDefaultValueAvailable() ? $parameter->getDefaultValue() : null,
             );
         }
 
@@ -148,7 +148,7 @@ class FunctionReflection extends ReflectionFunction implements ReflectionInterfa
             foreach ($prototype['arguments'] as $name => $argument) {
                 $argsLine = ($argument['type'] ? $argument['type'] . ' ' : '') . ($argument['by_ref'] ? '&' : '') . '$' . $name;
                 if (!$argument['required']) {
-                    $argsLine .= ' = ' . var_export($argument['html'], true);
+                    $argsLine .= ' = ' . var_export($argument['default'], true);
                 }
                 $args[] = $argsLine;
             }

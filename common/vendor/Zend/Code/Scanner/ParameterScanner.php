@@ -255,7 +255,7 @@ class ParameterScanner
     }
 
     /**
-     * Get html value
+     * Get default value
      *
      * @return string
      */
@@ -315,7 +315,7 @@ class ParameterScanner
     }
 
     /**
-     * Check if html value is available
+     * Check if default value is available
      *
      * @return bool
      */

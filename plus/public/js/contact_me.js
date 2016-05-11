@@ -11,7 +11,7 @@ $(function() {
             // Not decided if I need it yet
         },
         submitSuccess: function($form, event) {
-            event.preventDefault(); // prevent html submit behaviour
+            event.preventDefault(); // prevent default submit behaviour
             // get values from FORM
             var name = $("input#name").val();
             var phone = $("input#phone").val();

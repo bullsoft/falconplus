@@ -91,7 +91,7 @@ class Parameters extends PhpArrayObject implements ParametersInterface
 
     /**
      * @param string $name
-     * @param mixed $default optional html value
+     * @param mixed $default optional default value
      * @return mixed
      */
     public function get($name, $default = null)

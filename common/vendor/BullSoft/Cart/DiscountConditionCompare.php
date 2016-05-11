@@ -334,7 +334,7 @@ class DiscountConditionCompare
     }
 
     /**
-     * Reset this object to html values
+     * Reset this object to default values
      *
      * @return DiscountConditionCompare
      */

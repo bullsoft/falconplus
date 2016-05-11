@@ -182,12 +182,7 @@ class Module extends PlusModule
                     }
                     $compiler = $volt->getCompiler();
                     $ext = new \PhalconPlus\Volt\Extension\PhpFunction();
-<<<<<<< HEAD
                     $ext->setCustNamespace('\Demo\Web\Plugins\\');
-=======
-                    $ext->setCustNamespace(__NAMESPACE__ . "\\Plugins\\");
-                    // $ext->setCustFuncName("haha");
->>>>>>> 5b06741847dada6e462ec55f0b49305b9ab68819
                     $compiler->addExtension($ext);
                     return $volt;
                 }

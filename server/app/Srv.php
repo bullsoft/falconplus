@@ -48,7 +48,7 @@ class Srv extends PlusModule
             $evtManager = $di->getShared("eventsManager");
             $evtManager->attach('db', function ($event, $connection) use ($profiler) {
                 if ($event->getType() == 'beforeQuery') {
-                    $sql = getRealSql($connection); // function getRealSql() is defined in common/load/html.php
+                    $sql = getRealSql($connection); // function getRealSql() is defined in common/load/default.php
                     $profiler->startProfile($sql);
                 }
                 if ($event->getType() == 'afterQuery') {
@@ -69,7 +69,7 @@ class Srv extends PlusModule
             $evtManager = $di->getShared("eventsManager");
             $evtManager->attach('db', function ($event, $connection) use ($profiler) {
                 if ($event->getType() == 'beforeQuery') {
-                    $sql = getRealSql($connection); // function getRealSql() is defined in common/load/html.php
+                    $sql = getRealSql($connection); // function getRealSql() is defined in common/load/default.php
                     $profiler->startProfile($sql);
                 }
                 if ($event->getType() == 'afterQuery') {

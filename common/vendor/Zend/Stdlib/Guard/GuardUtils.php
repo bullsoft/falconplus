@@ -14,7 +14,7 @@ use Traversable;
 /**
  * Static guard helper class
  *
- * Bridges the gap for allowing refactoring until traits can be used by html.
+ * Bridges the gap for allowing refactoring until traits can be used by default.
  *
  * @deprecated
  */
