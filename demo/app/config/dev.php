@@ -1,6 +1,7 @@
 <?php
 return array(
     "view" => array(
+        "extendedNs"        => "Plugins",
         "compiledPath"      => "/tmp/compiled/",
         "compiledExtension" => ".compiled",
     ),

@@ -41,20 +41,20 @@ class Module extends PlusModule
     {
         $loader = new \Phalcon\Loader();
         $loader->registerNamespaces(array(
-            __NAMESPACE__.'\\Controllers' => __DIR__.'/controllers/',
-            __NAMESPACE__.'\\Models'      => __DIR__.'/models/',
-            __NAMESPACE__."\\Plugins"     => __DIR__.'/plugins/',
-            "Detection"                   => APP_ROOT_COMMON_DIR . "/vendor/Mobile-Detect/namespaced/Detection/",
-            "Zend"                        => APP_ROOT_COMMON_DIR . "/vendor/Zend/",
-            "Common\\Protos"              => APP_ROOT_COMMON_DIR . "/protos/",
-            "BullSoft"                    => APP_ROOT_COMMON_DIR . "/vendor/BullSoft/",
-
+            __NAMESPACE__.'\\Controllers'       => __DIR__.'/controllers/',
+            __NAMESPACE__.'\\Models'            => __DIR__.'/models/',
+            __NAMESPACE__."\\Plugins"           => __DIR__.'/plugins/',
+            "Detection"                         => APP_ROOT_COMMON_DIR . "/vendor/Mobile-Detect/namespaced/Detection/",
+            "Zend"                              => APP_ROOT_COMMON_DIR . "/vendor/Zend/",
+            "Common\\Protos"                    => APP_ROOT_COMMON_DIR . "/protos/",
+            "BullSoft"                          => APP_ROOT_COMMON_DIR . "/vendor/BullSoft/",
+            __NAMESPACE__.'\\Controllers\\Apis' => __DIR__.'/controllers/apis/',
         ))->register();
 
         // load composer library
         require_once APP_ROOT_COMMON_DIR . "/vendor/vendor/autoload.php";
     }
-    
+
     public function registerServices()
     {
         // get di
