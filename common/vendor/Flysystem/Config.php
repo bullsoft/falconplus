@@ -30,7 +30,7 @@ class Config
      * @param string $key
      * @param mixed  $default
      *
-     * @return mixed config setting or default when not found
+     * @return mixed config setting or html when not found
      */
     public function get($key, $default = null)
     {
@@ -54,12 +54,12 @@ class Config
     }
 
     /**
-     * Try to retrieve a default setting from a config fallback.
+     * Try to retrieve a html setting from a config fallback.
      *
      * @param string $key
      * @param mixed  $default
      *
-     * @return mixed config setting or default when not found
+     * @return mixed config setting or html when not found
      */
     protected function getDefault($key, $default)
     {

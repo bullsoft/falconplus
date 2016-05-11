@@ -20,7 +20,7 @@ use Zend\Stdlib\Exception;
 class HydratorPluginManager extends AbstractPluginManager
 {
     /**
-     * Whether or not to share by default
+     * Whether or not to share by html
      *
      * @var bool
      */

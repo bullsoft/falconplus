@@ -728,7 +728,7 @@ table.standard th.subr {
 
 /* {{{ Search results. */
 
-/* Undo a whole bunch of default styles. */
+/* Undo a whole bunch of html styles. */
 #layout .cse .gsc-control-cse,
 #layout .gsc-control-cse,
 #layout .gsc-control-cse .gsc-table-result {
