@@ -18,4 +18,5 @@ tasks:
     - composer/install
   on-deploy:
   post-release:
+    - php-env: {excludes: [139.162.53.205]}
   post-deploy:

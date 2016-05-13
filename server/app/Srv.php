@@ -18,13 +18,12 @@ class Srv extends PlusModule
             "Common\\Protos"           => APP_ROOT_COMMON_DIR.'/protos/',
             "Zend"                     => APP_ROOT_COMMON_DIR.'/vendor/Zend/',
             "BullSoft"                 => APP_ROOT_COMMON_DIR . "/vendor/BullSoft/"
-
         ))->register();
 
         // load composer library
         require_once APP_ROOT_COMMON_DIR . "/vendor/vendor/autoload.php";
     }
-    
+
     public function registerServices()
     {
         // get di

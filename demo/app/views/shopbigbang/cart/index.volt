@@ -187,7 +187,7 @@
                 </td>
                 <td>
                     <button type="button" class="btn btn-success">
-                        支付 <span class="glyphicon glyphicon-play"></span>
+                        确认 <span class="glyphicon glyphicon-play"></span>
                     </button>
                 </td>
             </tr>

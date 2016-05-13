@@ -10,7 +10,7 @@ class Module extends PlusModule
     public function __construct(\Phalcon\DI $di)
     {
         parent::__construct($di);
-        if(APP_ENV != "dev") {
+        if(APP_ENV != "111") {
             set_exception_handler(function ($exception) use ($di) {
                 $response = $di->get("response");
                 $msg = $exception->getMessage();
@@ -83,6 +83,9 @@ class Module extends PlusModule
         $di->has("dispatched") || $di->set('dispatcher', function () use ($di) {
             $evtManager = $di->getShared('eventsManager');
             $evtManager->attach("dispatch:beforeException", function ($event, $dispatcher, $exception) {
+                if(rtrim($dispatcher->getNamespaceName(), "\\") == __NAMESPACE__ ."\\Controllers\\Apis") {
+                    throw $exception;
+                }
                 switch ($exception->getCode()) {
                     case \Phalcon\Mvc\Dispatcher::EXCEPTION_HANDLER_NOT_FOUND:
                     case \Phalcon\Mvc\Dispatcher::EXCEPTION_ACTION_NOT_FOUND:
@@ -92,7 +95,12 @@ class Module extends PlusModule
                         ));
                         return false;
                     default:
-                        throw $exception;
+                        $dispatcher->forward(array(
+                            'controller' => 'error',
+                            'action'     => 'showUnknown',
+                            "params"     => [$exception],
+                        ));
+                        return false;
                 }
             });
 

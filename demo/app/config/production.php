@@ -15,7 +15,7 @@ return array(
     'dbDemo' => array(
         "host" => "rds2yafurnqibun.mysql.rds.aliyuncs.com",
         "port" => 3306,
-        "username" => "shbb",
+        "username" => getenv("PHP_MYSQL_USER_SHBB"),
         "password" => getenv("PHP_MYSQL_PASSWD_SHBB"),
         "dbname" => "shopbigbang",
         "charset" => "utf8",

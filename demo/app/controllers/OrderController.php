@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: guweigang
- * Date: 16/1/27
- * Time: 18:20
- */
-
 namespace Demo\Web\Controllers;
 use \PhalconPlus\Base\SimpleRequest;
 
@@ -22,24 +15,19 @@ use Phalcon\Validation\Validator\Digit as DigitValidator;
 
 use BullSoft\Cart as BsCart;
 
-class CartController extends BaseController
+class OrderController extends BaseController
 {
     public function indexAction()
     {
-        $sessionId = $this->session->getId();
-        $response = $this->rpc("Cart", "getBySessionId", [$sessionId]);
-        $json = $response->popItem();
-        $cart = new BsCart\Cart();
-        $cart->importJson($json);
-        $this->view->setVar("cart", $cart);
+        $orderId = $this->request->getQuery("orderId");
     }
 
-    public function checkoutAction()
+    public function paymentAction()
     {
 
     }
 
-    public function paymentAction()
+    public function callbackActin()
     {
 
     }
