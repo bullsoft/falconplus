@@ -9,11 +9,20 @@ return array(
         "logFilePath" => "/tmp/demo_phalconplus.log",
     ),
     'dbDemo' => array(
-        "host" => "127.0.0.1",
+        "host" => "rds2yafurnqibun.mysql.rds.aliyuncs.com",
         "port" => 3306,
-        "username" => "root",
-        "password" => "",
-        "dbname" => "p2p",
+        "username" => getenv("PHP_MYSQL_USER_SHBB"),
+        "password" => getenv("PHP_MYSQL_PASSWD_SHBB"),
+        "dbname" => "shopbigbang",
+        "charset" => "utf8",
+        "timeout" => 3, // 3 秒
+    ),
+    'dbDemo_r' => array(
+        "host" => "rds2yafurnqibun.mysql.rds.aliyuncs.com",
+        "port" => 3306,
+        "username" => getenv("PHP_MYSQL_USER_SHBB"),
+        "password" => getenv("PHP_MYSQL_PASSWD_SHBB"),
+        "dbname" => "shopbigbang",
         "charset" => "utf8",
         "timeout" => 3, // 3 秒
     ),

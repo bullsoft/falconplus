@@ -149,8 +149,8 @@ class Module extends PlusModule
             } else {
                 $remoteUrls = $config->demoServerUrl;
                 $client = new \PhalconPlus\RPC\Client\Adapter\Remote($remoteUrls->toArray());
-                $client->SetOpt(\YAR_OPT_CONNECT_TIMEOUT, 5);
-                // $client->SetOpt(\CURLOPT_NOSIGNAL, 1);
+                $client->SetOpt(\YAR_OPT_CONNECT_TIMEOUT, 2000);
+                $client->SetOpt(\CURLOPT_NOSIGNAL, 1);
             }
             return $client;
         });
@@ -163,7 +163,7 @@ class Module extends PlusModule
             } else {
                 $remoteUrls = $config->uCenterServerUrl;
                 $client = new \PhalconPlus\RPC\Client\Adapter\Remote($remoteUrls->toArray());
-                $client->SetOpt(\YAR_OPT_CONNECT_TIMEOUT, 5);
+                $client->SetOpt(\YAR_OPT_CONNECT_TIMEOUT, 2000);
                 $client->SetOpt(\CURLOPT_NOSIGNAL, 1);
             }
             return $client;
