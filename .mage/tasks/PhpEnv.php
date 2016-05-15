@@ -24,7 +24,7 @@ class PhpEnv extends AbstractTask
         array_shift($args);
         if(empty($args)) {
             Console::output("<red>未指定指令</red>");
-            return false;
+            return true;
         }
         $subCommand = array_shift($args);
         $content = "";
@@ -48,6 +48,7 @@ class PhpEnv extends AbstractTask
                     break;
                 }
             }
+            $result = $this->runCommandRemote('sudo /home/work/bin/phpEnv');
             break;
         default:
             Console::output("<red>指令不存在</red>");
