@@ -59,8 +59,8 @@ class Srv extends PlusModule
             return $db;
         });
 
-        // register db service 
-        $di->setShared('r_dbDemo', function() use ($di) {
+        // register db service
+        $di->setShared('dbDemo_r', function() use ($di) {
             $mysql = new \PhalconPlus\Db\Mysql($di, "dbDemo");
             $db = $mysql->getConnection();
             $profiler = $di->get("profiler");

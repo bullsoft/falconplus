@@ -27,7 +27,7 @@ class ModelTask extends \Phalcon\CLI\Task
             $className = \Phalcon\Text::camelize($table);
             $filePath = $modelDir. $className . ".php";
             $fullClassName = $namespace . '\\' . $className;
-            
+
             if (class_exists($fullClassName)) {
                 $cr = new ClassReflection(new $fullClassName);
                 $generator = ClassGenerator::fromReflection($cr);
@@ -40,7 +40,7 @@ class ModelTask extends \Phalcon\CLI\Task
             } else {
                 $generator = new ClassGenerator();
             }
-            
+
             $docblock = DocBlockGenerator::fromArray(array(
                 'shortDescription' => 'Phalcon Model: ' . $className,
                 'longDescription'  => '此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator',
@@ -130,11 +130,20 @@ class ModelTask extends \Phalcon\CLI\Task
 
             
             if(!$generator->hasMethod("initialize")) {
+                $content = 'parent::initialize();' . "\n" . '$this->setWriteConnectionService("'. $dbService .'");' . "\n";
+                $dbRService = $dbService;
+                if($this->di->getConfig()->application->get("dbSplitRW", false) === true) {
+                    $dbRService .= "_r";
+                    if(!$this->di->has($dbRService)) {
+                        $dbRService = $dbService;
+                    }
+                }
+                $content .= '$this->setReadConnectionService("'. $dbRService .'");' . "\n";
                 $generator->addMethod(
                     'initialize',
                     array(),
                     MethodGenerator::FLAG_PUBLIC,
-                    'parent::initialize();' . "\n" . '$this->setConnectionService("'. $dbService .'");' . "\n"
+                    $content
                 );
             }
 

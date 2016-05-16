@@ -4,6 +4,7 @@ return [
         "name"  => "demoServerDev",
         "ns"    => "Demo\\Server\\",
         "mode"  => "Srv",
+        "dbSplitRW" => true,
         "staticUri" => "/",
         "url" => "http//server.phalconplus.com/",
         "logFilePath" => "/tmp/demo_phalconplus.log",

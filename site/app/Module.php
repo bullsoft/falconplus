@@ -15,8 +15,11 @@ class Module extends PlusModule
             __NAMESPACE__.'\\Models'      => __DIR__.'/models/',
             "Zend" => APP_ROOT_COMMON_DIR . "/vendor/Zend/",
         ))->register();
+
+        // load composer library
+        require_once APP_ROOT_COMMON_DIR . "/vendor/vendor/autoload.php";
     }
-    
+
     public function registerServices()
     {
         // get di
@@ -70,6 +73,8 @@ class Module extends PlusModule
                     $volt->setOptions(array(
                         "compiledPath"      => $di->get('config')->view->compiledPath,
                         "compiledExtension" => $di->get('config')->view->compiledExtension,
+                        // in dev only
+                        "compileAlways"     => true,
                     ));
                     // 如果模板缓存目录不存在，则创建它
                     if(!file_exists($di->get('config')->view->compiledPath)) {

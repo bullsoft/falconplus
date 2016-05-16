@@ -8,7 +8,7 @@ namespace Demo\Server\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Server\Models
- * @version $Rev:2016-05-10 18:02:33$
+ * @version $Rev:2016-05-16 17:37:15$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class CartInfo extends \PhalconPlus\Base\Model
@@ -92,12 +92,6 @@ class CartInfo extends \PhalconPlus\Base\Model
      */
     public $mtime = '0000-00-00 00:00:00';
 
-    public function initialize()
-    {
-        parent::initialize();
-        $this->setConnectionService("dbDemo");
-    }
-
     /**
      * When an instance created, it would be executed
      */
@@ -138,6 +132,13 @@ class CartInfo extends \PhalconPlus\Base\Model
             'ctime' => 'ctime', 
             'mtime' => 'mtime', 
         );
+    }
+
+    public function initialize()
+    {
+        parent::initialize();
+        $this->setWriteConnectionService("dbDemo");
+        $this->setReadConnectionService("dbDemo_r");
     }
 
     /**

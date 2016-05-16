@@ -21,7 +21,6 @@
             <h2 id="dependency">依赖安装</h2>
             <p>
                 <ul>
-                    <li><a href="http://zephir-lang.com/install.html" target="_blank">Zephir - lang for php extension</a></li>
                     <li><a href="http://phalconphp.com/en/download" target="_blank">Phalcon - a php framework which made with c/zephir</a></li>
                     <li><a href="https://github.com/laruence/yar" target="_blank">Yar - yet another rpc</a></li>
                 </ul>
@@ -33,10 +32,12 @@
             <p>
                 <pre>
                 <code>
-git clone https://github.com/BullSoft/phalconplus.git
-cd phalconplus
-zephir clean
-zephir build
+git clone https://github.com/bullsoft/phalconplus.git
+cd phalconplus/ext/
+/usr/bin/phpize
+./configure --with-php-config=/usr/bin/php-configure
+make
+make install
                 </code>
                 </pre>
 
@@ -56,7 +57,7 @@ phalconplus
                   <code class="shell">
 mkdir demo
 cd demo
-git clone https://github.com/BullSoft/falconplus-common.git common
+git clone https://github.com/bullsoft/falconplus-common.git common
                     </code>
                 </pre>
             </p>
