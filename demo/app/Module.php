@@ -114,7 +114,7 @@ class Module extends PlusModule
         });
 
         $di->setShared('siteConf', function() {
-            $siteConfs = include_once(APP_MODULE_DIR . "app/config/siteTitle.php");
+            $siteConfs = include_once(APP_MODULE_DIR . "app/config/siteConf.php");
             return new \Phalcon\Config($siteConfs);
         });
 

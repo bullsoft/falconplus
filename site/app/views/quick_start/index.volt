@@ -13,7 +13,6 @@
                 <a href="#install" class="list-group-item">Phalcon+安装</a>
                 <a href="#project" class="list-group-item">构建项目</a>
                 <a href="#config" class="list-group-item">nginx配置</a>
-                <a href="#model" class="list-group-item">生成模型</a>
             </div>
         </div>
         <!-- Content Column -->

@@ -7,7 +7,8 @@ class ManualController extends \Phalcon\Mvc\Controller
     public function indexAction()
     {
         $markdown = new \ParsedownExtra();
-        echo $markdown->text('# Manual {.sth}'); # prints: <h1 class="sth">Header</h1>
-        echo $markdown->text('`TBD.`');
+        $str = file_get_contents(APP_MODULE_DIR."public/manual.md");
+        echo $markdown->text($str);
+        // echo $markdown->text('`TBD.`');
     }
 }
