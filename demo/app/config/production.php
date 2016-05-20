@@ -8,8 +8,8 @@ return [
         "name"  => "demo-web",
         "ns"    => "Demo\Web\\",
         "mode"  => "Web",
-        "staticUri" => "/",
-        "url" => "http//shopbigbang.com",
+        "staticUri" => "https://bullsoft-static.oss-cn-beijing.aliyuncs.com/",
+        "url" => $di->get('request')->getHttpHost(),
         "logFilePath" => "/tmp/demo_phalconplus.log",
     ],
     'redis' => [

@@ -52,7 +52,10 @@ class Module extends PlusModule
         ))->register();
 
         // load composer library
-        require_once APP_ROOT_COMMON_DIR . "/vendor/vendor/autoload.php";
+        $composer = APP_ROOT_COMMON_DIR . "/vendor/vendor/autoload.php";
+        if(file_exists($composer)) {
+            require_once $composer;
+        }
     }
 
     public function registerServices()
@@ -213,12 +216,12 @@ class Module extends PlusModule
             error_log("Service::Method: ". $serivce . "::" . $method);
         });
 
-        $di->set("url", function(){
+        $di->set("url", function() use ($di){
             $url = new \Phalcon\Mvc\Url();
             // Dynamic URIs are
-            $url->setBaseUri('/');
+            $url->setBaseUri($di->getConfig()->application->url);
             // Static resources go through a CDN
-            $url->setStaticBaseUri('http://static.mywebsite.com/');
+            $url->setStaticBaseUri($di->getConfig()->application->staticUrl . $di->getSiteConf()->template . "/");
             return $url;
         });
     }

@@ -9,7 +9,7 @@ return [
         "name"  => "demo-web",
         "ns"    => "Demo\\Web\\",
         "mode"  => "Web",
-        "staticUri" => "/",
+        "staticUrl" => "/tpls/",
         "url" => "http://127.0.0.1:8084/",
         "logFilePath" => "/tmp/demo_phalconplus.log",
     ],

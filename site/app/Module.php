@@ -48,7 +48,7 @@ class Module extends PlusModule
             $dispatcher->setDefaultNamespace(__NAMESPACE__."\\Controllers\\");
             $dispatcher->setDefaultAction("index");
             return $dispatcher;
-        });   
+        });
 
         $di->set("rpc", function() use ($di, $config, $bootstrap) {
             $client = null;
