@@ -1,4 +1,11 @@
 <?php
+$host = $_SERVER["HTTP_HOST"];
+$schema = "http";
+if(strpos($host, "bullsoft.org") !== false) {
+    $schema = "https";
+}
+$url = $schema . "://" . $host . "/";
+
 return [
     "view" => [
         "compiledPath"      => "/tmp/compiled/",
@@ -8,8 +15,8 @@ return [
         "name"  => "demo-web",
         "ns"    => "Demo\Web\\",
         "mode"  => "Web",
-        "staticUri" => "https://bullsoft-static.oss-cn-beijing.aliyuncs.com/",
-        "url" => $di->get('request')->getHttpHost(),
+        "staticUrl" => "https://bullsoft-static.oss-cn-beijing.aliyuncs.com/",
+        "url" => $url,
         "logFilePath" => "/tmp/demo_phalconplus.log",
     ],
     'redis' => [
