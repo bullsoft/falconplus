@@ -53,6 +53,9 @@ class BlogController extends \Phalcon\Mvc\Controller
     {
         $markdown = new \ParsedownExtra();
         $file = APP_MODULE_DIR."public/blogs/{$file}.md";
+        if(!file_exists($file)) {
+            throw new \Exception("该文章不存在", 1112);
+        }
         $str = file_get_contents($file);
         $this->view->setVar("content",  $markdown->text($str));
     }

@@ -26,15 +26,13 @@
                 <li>
                     <a href="/api/">API文档</a>
                 </li>
-                <li>
-                    <a href="http://forum.bullsoft.org" target="_blank">社区</a>
+                <li{% if dispatcher.getControllerName() ==  "blog" %} class="active"{% endif %}>
+                    <a href="/blog/index.html">博客</a>
                 </li>
                 <li>
                     <a href="http://bullsoft.org/donate" target="_blank">捐助我们</a>
                 </li>
-                <li{% if dispatcher.getControllerName() ==  "blog" %} class="active"{% endif %}>
-                    <a href="/blog/index.html">博客</a>
-                </li>
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">赞助商<b class="caret"></b></a>
                     <ul class="dropdown-menu">

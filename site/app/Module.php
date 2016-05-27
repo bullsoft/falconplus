@@ -41,6 +41,13 @@ class Module extends PlusModule
                             'action'     => 'show404'
                         ));
                         return false;
+                default:
+                    $dispatcher->forward(array(
+                        'controller' => 'error',
+                        'action'     => 'showUnknown',
+                        "params"     => [$exception],
+                    ));
+                    return false;
                 }
             });
             $dispatcher = new \Phalcon\Mvc\Dispatcher();
@@ -62,7 +69,7 @@ class Module extends PlusModule
             }
             return $client;
         });
-        
+
         // set view with volt
         $di->set('view', function() use ($di) {
             $view = new \Phalcon\Mvc\View();

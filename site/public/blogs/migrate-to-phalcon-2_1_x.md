@@ -207,6 +207,7 @@ $cars = $this->modelsManager->executeQuery($phql);
     ```
 
   - New column type: DOUBLE, BIGINT, BLOB, Support for BIT types in MySQL with binding as booleans
+  
     |  类型            | 值   |  描述  |  适用范围 |
     |  --------        | :--: | :----  |  :------  |
     |  TYPE_INTEGE     | 0 | Integer abstract type | MySQL, Postgre, Oracle|

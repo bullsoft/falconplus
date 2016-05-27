@@ -23,7 +23,7 @@ class PhpEnv extends AbstractTask
         $args = $this->getConfig()->getArguments();
         array_shift($args);
         if(empty($args)) {
-            Console::output("<red>未指定指令</red>");
+            $result = $this->runCommandRemote('sudo /home/work/bin/phpEnv');
             return true;
         }
         $subCommand = array_shift($args);
