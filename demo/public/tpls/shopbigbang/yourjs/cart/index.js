@@ -27,8 +27,19 @@ $(document).ready(function() {
 
     $('[data-toggle="tooltip"]').tooltip();
 
-    $('button').click(function(e) {
+    $('button.btn-success').click(function(e) {
         e.preventDefault();
-        alert("This is a demo.\n :-)");
+        $.ajax({
+            method: "POST",
+            url: "/apis/cart/checkout",
+            dataType: "json",
+            data: {}
+        }).done(function( data ) {
+            if(data.errorCode == 0) {
+                $(location).attr('href', '/order/checkout?id='+data.data.id);
+            } else {
+            }
+        });
+        return false;
     });
 });

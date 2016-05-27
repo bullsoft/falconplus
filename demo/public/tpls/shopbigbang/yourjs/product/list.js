@@ -8,13 +8,12 @@ jQuery(document).ready(function() {
             url: "/apis/cart/set-item",
             dataType: "json",
             data: {qty: q, skuId: skuId}
-        })
-            .done(function( data ) {
-                if(data.errorCode == 0) {
-                    $(location).attr('href', '/cart/index');
-                } else {
-                }
-            });
+        }).done(function( data ) {
+            if(data.errorCode == 0) {
+                $(location).attr('href', '/cart/index');
+            } else {
+            }
+        });
         return false;
     });
 });

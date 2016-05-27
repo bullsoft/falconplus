@@ -84,7 +84,7 @@ class Seq
              "INSERT INTO `generation` (`id`, `app`, `bucket`, `seq`) VALUES " .
              "(@maxId+1, '{$app}', '{$bucket}', '{$start}');";
         $rows = $this->dbClient->exec($sql);
-        if($rows <= 0) {
+        if($rows != 0) {
             throw new \Exception("初始化ID序列失败");
         }
         return true;
@@ -108,7 +108,7 @@ class Seq
             $sql = "UPDATE `generation` SET `seq` = LAST_INSERT_ID(`seq` + {$step}) WHERE `app`='{$app}' AND `bucket`='{$bucket}'";
             $rows = $this->dbClient->exec($sql);
             if($rows <= 0) {
-                throw new \Exception("网络繁忙");
+                throw new \Exception("ID序列不存在或网络繁忙");
             }
             $sequence = $this->dbClient->lastInsertId();
             $this->push($cacheKey, $sequence, $step);

@@ -23,12 +23,12 @@ class Volt
 
     public static function yourJs($whichController, $whichAction)
     {
-        $fileVirtualPath = sprintf("tpls/%s/yourjs/%s/%s.js", getDI()->getSiteConf()->get("template"),
+        $fileVirtualPath = sprintf("%s/yourjs/%s/%s.js", getDI()->getSiteConf()->get("template"),
                                    $whichController,
                                    $whichAction);
-        $filePath = sprintf("%spublic/%s", APP_MODULE_DIR, $fileVirtualPath);
+        $filePath = sprintf("%spublic/tpls/%s", APP_MODULE_DIR, $fileVirtualPath);
         if(file_exists($filePath)) {
-            $f = sprintf("%s%s", getDI()->getConfig()->application->staticUri, $fileVirtualPath);
+            $f = sprintf("%s%s", getDI()->getConfig()->application->staticUrl, $fileVirtualPath);
             return '<script src="'.$f.'"></script>';
         } else {
             return  "";
@@ -37,12 +37,12 @@ class Volt
 
     public static function yourCss($whichController, $whichAction)
     {
-        $fileVirtualPath = sprintf("tpls/%s/yourcss/%s/%s.css", getDI()->getSiteConf()->get("template"),
+        $fileVirtualPath = sprintf("%s/yourcss/%s/%s.css", getDI()->getSiteConf()->get("template"),
                                    $whichController,
                                    $whichAction);
-        $filePath = sprintf("%spublic/%s", APP_MODULE_DIR, $fileVirtualPath);
+        $filePath = sprintf("%spublic/tpls/%s", APP_MODULE_DIR, $fileVirtualPath);
         if(file_exists($filePath)) {
-            $f = sprintf("%s%s", getDI()->getConfig()->application->staticUri, $fileVirtualPath);
+            $f = sprintf("%s%s", getDI()->getConfig()->application->staticUrl, $fileVirtualPath);
             return '<link href="'.$f.'" rel="stylesheet">';
         } else {
             return  "";

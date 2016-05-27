@@ -13,7 +13,7 @@ if(strpos($host, "shopbigbang.com") !== false) {
 } elseif(strpos($host, "bullsoft.org") !== false) {
     $tpl = "bullsoft";
 } else {
-    $tpl = "bullsoft";
+    $tpl = "shopbigbang";
 }
 
 $siteConf = [

@@ -8,11 +8,17 @@ namespace Demo\Server\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Server\Models
- * @version $Rev:2016-05-16 17:37:15$
+ * @version $Rev:2016-05-25 14:36:39$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class DealRecord extends \PhalconPlus\Base\Model
 {
+
+    /**
+     * @var string
+     * @table deal_record
+     */
+    public $cart_uuid = null;
 
     /**
      * @var integer
@@ -42,7 +48,13 @@ class DealRecord extends \PhalconPlus\Base\Model
      * @var string
      * @table deal_record
      */
-    public $cart_uuid = null;
+    public $deal_no = '';
+
+    /**
+     * @var string
+     * @table deal_record
+     */
+    public $cart_no = '';
 
     /**
      * @var integer
@@ -80,6 +92,19 @@ class DealRecord extends \PhalconPlus\Base\Model
      */
     public $mtime = '0000-00-00 00:00:00';
 
+    public function initialize()
+    {
+        parent::initialize();
+        $this->setWriteConnectionService("dbDemo");
+        $this->setReadConnectionService("dbDemo_r");
+        $this->hasMany("cartNo", __NAMESPACE__."\\CartInfo", "cartNo", [
+            'alias' => "RelatedCartDetails"
+        ]);
+        $this->belongsTo("buyerId", __NAMESPACE__."\\UserInfo", "id", [
+            'alias' => 'RelatedUserInfo'
+        ]);
+    }
+
     /**
      * When an instance created, it would be executed
      */
@@ -89,7 +114,8 @@ class DealRecord extends \PhalconPlus\Base\Model
         $this->buyerId = NULL;
         $this->buyerAddrId = '0';
         $this->sellerId = NULL;
-        $this->cartUuid = NULL;
+        $this->dealNo = '';
+        $this->cartNo = '';
         $this->discountId = '0';
         $this->shipmentId = '0';
         $this->amount = NULL;
@@ -108,7 +134,8 @@ class DealRecord extends \PhalconPlus\Base\Model
             'buyer_id' => 'buyerId', 
             'buyer_addr_id' => 'buyerAddrId', 
             'seller_id' => 'sellerId', 
-            'cart_uuid' => 'cartUuid', 
+            'deal_no' => 'dealNo', 
+            'cart_no' => 'cartNo', 
             'discount_id' => 'discountId', 
             'shipment_id' => 'shipmentId', 
             'amount' => 'amount', 
@@ -116,13 +143,6 @@ class DealRecord extends \PhalconPlus\Base\Model
             'ctime' => 'ctime', 
             'mtime' => 'mtime', 
         );
-    }
-
-    public function initialize()
-    {
-        parent::initialize();
-        $this->setWriteConnectionService("dbDemo");
-        $this->setReadConnectionService("dbDemo_r");
     }
 
     /**

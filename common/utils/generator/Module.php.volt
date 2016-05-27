@@ -15,8 +15,14 @@ class Module extends PlusModule
             "Common\\Protos"             => APP_ROOT_COMMON_DIR.'/protos/',
             "Zend" => APP_ROOT_COMMON_DIR . "/vendor/Zend/",
         ))->register();
+
+        // load composer library
+        $composer = APP_ROOT_COMMON_DIR . "/vendor/vendor/autoload.php";
+        if(file_exists($composer)) {
+            require_once $composer;
+        }
     }
-    
+
     public function registerServices()
     {
         // get di

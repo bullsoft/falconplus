@@ -99,6 +99,9 @@ class CartController extends BaseController
     public function checkoutAction()
     {
         $response = $this->rpc("Cart", "checkout", [$this->session->getId(), $this->session->get("identity")]);
-        return $response;
+        $result = $response->getResult();
+        $hashids = new \Hashids\Hashids('helloworld');
+        $id = $hashids->encode($result['orderNo'], $result['cartNo']);
+        return ["id" => $id];
     }
 }

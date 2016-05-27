@@ -8,6 +8,7 @@
 
 namespace Demo\Server\Services;
 use Demo\Server\Daos\CartDao;
+use Demo\Server\Daos\SeqDao;
 use \PhalconPlus\Base\SimpleRequest;
 use \PhalconPlus\Base\SimpleResponse;
 use Demo\Server\Models\CartInfo;
@@ -55,13 +56,13 @@ class CartService extends BaseService
         $sessionId = $request->getParam(0);
         $userId = $request->getParam(1);
         $cart = CartDao::getCart($sessionId);
-        $cartId = CartDao::generateId();
+        $cartNo = sprintf("%s%010d", date("Ymd"), SeqDao::generate("shopbb", "cartId"));
 
         $work = new UnitOfWork("dbDemo");
 
         foreach($cart->getItems() as $key => $item) {
             $cartInfo = new CartInfo();
-            $cartInfo->uuid = $cartId;
+            $cartInfo->cartNo = $cartNo;
             $cartInfo->sessionId = $sessionId;
             $cartInfo->skuId = $item->getId();
             $cartInfo->productId = $item->getVars()["product_id"];
@@ -73,16 +74,22 @@ class CartService extends BaseService
         }
 
         $order = new DealRecord();
+        $dealNo = sprintf("%s%010d", date("Ymd"), SeqDao::generate("shopbb", "orderId"));
         $order->buyerId = $userId;
+        $order->dealNo = $dealNo;
         $order->sellerId = 0;
-        $order->cartUuid = $cartId;
+        $order->cartNo = $cartNo;
         $order->amount = $cart->getTotals()["grand_total"];
-        $work->save("order-".$cartId, $order);
+        $work->save("order-".$cartNo, $order);
 
         $work->exec();
 
+        $this->response->setResult([
+            "orderNo" => $dealNo,
+            "cartNo" => $cartNo
+        ]);
+        CartDao::clear($sessionId);
         return $this->response;
-        // CartDao::clear($sessionId);
     }
 
     public function clear(SimpleRequest $request)

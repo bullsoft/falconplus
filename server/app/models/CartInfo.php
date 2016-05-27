@@ -8,11 +8,17 @@ namespace Demo\Server\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Server\Models
- * @version $Rev:2016-05-16 17:37:15$
+ * @version $Rev:2016-05-25 14:36:39$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class CartInfo extends \PhalconPlus\Base\Model
 {
+
+    /**
+     * @var string
+     * @table cart_info
+     */
+    public $uuid = null;
 
     /**
      * @var unknown
@@ -24,7 +30,7 @@ class CartInfo extends \PhalconPlus\Base\Model
      * @var string
      * @table cart_info
      */
-    public $uuid = null;
+    public $cart_no = null;
 
     /**
      * @var string
@@ -92,13 +98,20 @@ class CartInfo extends \PhalconPlus\Base\Model
      */
     public $mtime = '0000-00-00 00:00:00';
 
+    public function initialize()
+    {
+        parent::initialize();
+        $this->setWriteConnectionService("dbDemo");
+        $this->setReadConnectionService("dbDemo_r");
+    }
+
     /**
      * When an instance created, it would be executed
      */
     public function onConstruct()
     {
         $this->id = NULL;
-        $this->uuid = NULL;
+        $this->cartNo = NULL;
         $this->sessionId = NULL;
         $this->skuId = NULL;
         $this->productId = NULL;
@@ -119,7 +132,7 @@ class CartInfo extends \PhalconPlus\Base\Model
     {
         return array(
             'id' => 'id', 
-            'uuid' => 'uuid', 
+            'cart_no' => 'cartNo', 
             'session_id' => 'sessionId', 
             'sku_id' => 'skuId', 
             'product_id' => 'productId', 
@@ -132,13 +145,6 @@ class CartInfo extends \PhalconPlus\Base\Model
             'ctime' => 'ctime', 
             'mtime' => 'mtime', 
         );
-    }
-
-    public function initialize()
-    {
-        parent::initialize();
-        $this->setWriteConnectionService("dbDemo");
-        $this->setReadConnectionService("dbDemo_r");
     }
 
     /**

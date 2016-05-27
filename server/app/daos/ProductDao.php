@@ -8,6 +8,7 @@
 
 namespace Demo\Server\Daos;
 use PhalconPlus\Assert\Assertion as Assert;
+use Demo\Server\Models\SkuInfo as SIModel;
 
 class ProductDao
 {
@@ -36,4 +37,18 @@ class ProductDao
         return $rows;
     }
 
+    public function getSkuInfoByIds(array $ids)
+    {
+        $ids = array_unique(array_filter($ids, "intval"));
+        $skuInfos = SIModel::find([
+            'id IN ({ids:array})',
+            'bind' => [
+                'ids' => $ids
+            ]
+        ]);
+        if(0 == $skuInfos->count()) {
+            throw new \Exception("相关商品不存在");
+        }
+        return $skuInfos;
+    }
 }

@@ -14,7 +14,7 @@ class ProductController extends BaseController
     /**
      * 商品详情页
      */
-    public function webItemAction()
+    public function itemAction()
     {
 
     }
@@ -48,16 +48,15 @@ class ProductController extends BaseController
         $pagable->setPageSize($pageSize);
         $pagable->setPageNo($pageNo);
         $skus = $this->rpc("Sku", "getByCateId", [$cateId, $pagable]);
-        //var_dump($skus->getResult());exit;
         $this->view->setVar("skus", $skus->getResult());
     }
 
-    public function webRankingAction()
+    public function rankingAction()
     {
 
     }
 
-    public function webRecommendAction()
+    public function recommendAction()
     {
 
     }

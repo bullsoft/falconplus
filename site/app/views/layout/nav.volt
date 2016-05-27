@@ -32,16 +32,8 @@
                 <li>
                     <a href="http://bullsoft.org/donate" target="_blank">捐助我们</a>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">博客 <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="{{ url('blog/index.html') }}">首页</a>
-                        </li>
-                        <li>
-                            <a href="{{ url('blog/category.html') }}">分类</a>
-                        </li>
-                    </ul>
+                <li{% if dispatcher.getControllerName() ==  "blog" %} class="active"{% endif %}>
+                    <a href="/blog/index.html">博客</a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">赞助商<b class="caret"></b></a>

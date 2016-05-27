@@ -17,13 +17,6 @@ class CartDao
 {
     const KEY = "cart";
 
-    public static function generateId()
-    {
-        $u4 = UUID::v4();
-        $u5 = UUID::v5($u4, self::KEY);
-        return $u5;
-    }
-
     private static function getCacheKey($sessionId)
     {
         return self::KEY . ":" . $sessionId;

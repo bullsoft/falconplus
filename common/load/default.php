@@ -77,6 +77,8 @@ if (!function_exists("getRealSql")) {
                     $var = 'NULL';
                 } elseif (is_numeric($var)) {
                     $var = $var;
+                } elseif (is_array($var)) {
+                    $var = implode(",", $var);
                 } else {
                     $var = '"'.$var.'"';
                 }

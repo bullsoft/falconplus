@@ -12,7 +12,7 @@ releases:
 hosts:
   - 115.28.223.103
   - 115.28.13.165
-  - 139.162.53.205
+  #- 139.162.53.205
 tasks:
   pre-deploy:
     - composer/install

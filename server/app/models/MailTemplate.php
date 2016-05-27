@@ -8,7 +8,7 @@ namespace Demo\Server\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Server\Models
- * @version $Rev:2016-05-16 17:37:15$
+ * @version $Rev:2016-05-25 14:36:39$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class MailTemplate extends \PhalconPlus\Base\Model
@@ -19,6 +19,13 @@ class MailTemplate extends \PhalconPlus\Base\Model
      * @table mail_template
      */
     public $id = null;
+
+    public function initialize()
+    {
+        parent::initialize();
+        $this->setWriteConnectionService("dbDemo");
+        $this->setReadConnectionService("dbDemo_r");
+    }
 
     /**
      * When an instance created, it would be executed
@@ -36,13 +43,6 @@ class MailTemplate extends \PhalconPlus\Base\Model
         return array(
             'id' => 'id', 
         );
-    }
-
-    public function initialize()
-    {
-        parent::initialize();
-        $this->setWriteConnectionService("dbDemo");
-        $this->setReadConnectionService("dbDemo_r");
     }
 
     /**

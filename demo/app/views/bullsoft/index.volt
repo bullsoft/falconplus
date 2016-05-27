@@ -11,6 +11,7 @@
         <link href="{{static_url("css/ytplayer.css")}}" rel="stylesheet" type="text/css" media="all" />
         <link href="{{static_url("css/theme.css")}}" rel="stylesheet" type="text/css" media="all" />
         <link href="{{static_url("css/custom.css")}}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{static_url("css/font.css")}}" rel="stylesheet" type="text/css" media="all" />
         <!-- Custom CSS -->
         {{__invoke__('Volt::yourCss', whichController, whichAction)}}
     </head>

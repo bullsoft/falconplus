@@ -28,7 +28,7 @@ class CartController extends BaseController
     {
         $sessionId = $this->session->getId();
         $response = $this->rpc("Cart", "getBySessionId", [$sessionId]);
-        $json = $response->popItem();
+        $json = $response->getItem();
         $cart = new BsCart\Cart();
         $cart->importJson($json);
         $this->view->setVar("cart", $cart);
