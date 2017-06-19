@@ -1,8 +1,0 @@
-# global settings
-name: falconplus
-email: guweigang@bullsoft.org
-notifications: true
-logging: true
-maxlogs: 30
-ssh_needs_tty: false
-composer_cmd: cd common/vendor && composer
