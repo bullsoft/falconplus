@@ -30,6 +30,9 @@
                     <a href="/blog/index.html">博客</a>
                 </li>
                 <li>
+                    <a href="http://forum.phalconphp.org">讨论区</a>
+                </li>
+                <li>
                     <a href="http://bullsoft.org/donate" target="_blank">捐助我们</a>
                 </li>
 
