@@ -6,6 +6,6 @@ namespace Common\Protos\Exception;
 class UserNotExists extends \PhalconPlus\Base\Exception
 {
     protected $code = 10001;
-    protected $message = '用户不存在，请核实后再试';
+    protected $message = '用户(%s)不存在，请核实后再试';
     protected $level = 6;
 }

@@ -2,9 +2,21 @@
 namespace Demo\Server\Services;
 use Common\Protos\RequestDemo;
 use Common\Protos\ResponseDemo;
+use PhalconPlus\Base\SimpleRequest as SimpleRequest;
+use PhalconPlus\Db\UnitOfWork as UnitOfWork;
+use Demo\Server\Models\DealRecord as DealRecordModel;
+use Demo\Server\Models\Kv as KvModel;
 
+/**
+ * Class DemoService
+ * @package Demo\Server\Services
+ */
 class DemoService extends \PhalconPlus\Base\Service
 {
+    /**
+     * @param RequestDemo $request
+     * @return ResponseDemo
+     */
     public function demo(RequestDemo $request)
     {
         $response = new ResponseDemo();
@@ -27,9 +39,15 @@ class DemoService extends \PhalconPlus\Base\Service
         return $response;
     }
 
-    public function simple(\PhalconPlus\Base\SimpleRequest $request)
+    /**
+     * @param SimpleRequest $request
+     * @return mixed
+     */
+    public function simple(SimpleRequest $request)
     {
-        return $request->getParam(2);
+        $response = new \PhalconPlus\Base\SimpleResponse();
+        $response->result = reset($request->toArray());
+        return $response;
     }
         
 }

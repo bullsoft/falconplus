@@ -29,7 +29,7 @@ if(isset($_GET['_url'])) {
 }
 
 // register rules for router
-$di->set('router', function () use ($config) {
+$di->setShared('router', function () use ($config) {
     $router = new \Phalcon\Mvc\Router(false);
     $router->removeExtraSlashes(true);
 
@@ -38,17 +38,28 @@ $di->set('router', function () use ($config) {
         'action'     => 2,
         'params'     => 3,
     ))->convert('action', function ($action) {
-        // return str_replace('-', '', $action);
-        // transform action from foo-bar -> fooBar
-        return lcfirst(Phalcon\Text::camelize($action));
+        // transform action from foo-bar -> foo_bar
+        $a = str_replace('-', '_', $action);
+        // transform action from foo_bar -> fooBar
+        return lcfirst(Phalcon\Text::camelize($a));
     });
 
     $router->add('/:controller', array(
         'controller' => 1,
     ));
 
-    $router->handle();
+    // no need to handle() here, Phalcon will handle it in application::start()
+    // $router->handle();
     return $router;
+});
+
+$di->set("url", function() use ($di){
+    $url = new \Phalcon\Mvc\Url();
+    // Dynamic URIs are
+    $url->setBaseUri($di->getConfig()->application->url);
+    // Static resources go through a CDN
+    $url->setStaticBaseUri($di->getConfig()->application->staticUrl);
+    return $url;
 });
 
 /* default-web.php ends here */

@@ -1,0 +1,22 @@
+{
+    "require": {
+        "overtrue/wechat": "~3.2.7",
+        "gregwar/captcha": "~1.1",
+        "mobiledetect/mobiledetectlib": "~2.8",
+        "paragonie/random_compat": "~1.2",
+        "hashids/hashids": "^1.0",
+        "signe/redlock-php":"~1.0.5",
+        "league/flysystem": "~1.0.37",
+        "league/climate": "*",
+        "erusev/parsedown-extra": "dev-master",
+        "phalcon/incubator": "^3.0",
+        "zendframework/zend-code": "*",
+        "zendframework/zend-stdlib": "*"
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    }
+}

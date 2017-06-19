@@ -1,0 +1,2 @@
+﻿.header-menu > li > ul{display:none;}
+.header-menu > li:hover > ul{display:block;}

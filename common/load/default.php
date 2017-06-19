@@ -2,12 +2,14 @@
 /* Code: */
 
 use Phalcon\Logger\Adapter\File as FileLogger;
+use Phalcon\Mvc\Model\Transaction\Manager as TransactionManager;
 
 mb_internal_encoding("UTF-8");
 
+require_once($rootPath . "vendor/autoload.php");
+
 // register global class-dirs, class-namespace and class-prefix
 // $loader->registerDirs(array())->register();
-
 $loader->registerNamespaces($config->namespace->toArray())->register();
 
 // class autoloader
@@ -34,11 +36,59 @@ $di->setShared('modelsManager', function() {
     return new \Phalcon\Mvc\Model\Manager();
 });
 
+$di->setShared('txm', function () {
+    return new TransactionManager();
+});
+
+$di->set('tx', function ($service, $autoBegin = true) use ($di){
+    $txm = $di->get('txm');
+    $txm->setDbService(strval($service));
+    return $txm->get((bool)$autoBegin);
+});
+
 // global funciton to retrive $di
 if (!function_exists("getDI")) {
     function getDI()
     {
         return \Phalcon\DI::getDefault();
+    }
+}
+
+if (!function_exists("getRealSql")) {
+    function getRealSql(\Phalcon\Db\Adapter\Pdo\Mysql $db)
+    {
+        $sql = $db->getSQLStatement();
+        $vars = $db->getSQLVariables();
+        if ($vars) {
+            $keys = array();
+            $values = array();
+            foreach ($vars as $placeHolder=>$var) {
+                // fill array of placeholders
+                if (is_string($placeHolder)) {
+                    $keys[] = '/:'.ltrim($placeHolder, ':').'/';
+                } else {
+                    $keys[] = '/[?]/';
+                }
+                // fill array of values
+                // It makes sense to use RawValue only in INSERT and UPDATE queries and only as values
+                // in all other cases it will be inserted as a quoted string
+                if ((strpos($sql, 'INSERT') === 0 || strpos($sql, 'UPDATE') === 0) && $var instanceof \Phalcon\Db\RawValue) {
+                    $var = $var->getValue();
+                } elseif (is_null($var)) {
+                    $var = 'NULL';
+                } elseif (is_numeric($var)) {
+                    $var = $var;
+                } elseif (is_array($var)) {
+                    $var = implode(",", $var);
+                } else {
+                    $var = '"'.$var.'"';
+                }
+                $values[] = $var;
+            }
+            $sql = preg_replace($keys, $values, $sql, 1);
+        }
+        return $sql;
+
     }
 }
 

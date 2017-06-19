@@ -23,8 +23,9 @@
             </div>
             <div class="panel-body">
                 <p>PhalconPlus完全免费，并且开源，你可以轻松获取它的源代码，并且做任何更改无需合并到官方分支。</p>
-                <a href="https://github.com/BullSoft/falconplus" target="_blank" class="btn btn-default">falconplus</a>
-                <a href="https://github.com/BullSoft/phalconplus" target="_blank" class="btn btn-default">phalconplus</a>
+                <a href="https://github.com/bullsoft/falconplus" target="_blank" class="btn btn-default">falconplus</a>
+                <a href="https://github.com/bullsoft/phalconplus" target="_blank" class="btn btn-default">phalconplus</a>
+                <a href="http://pan.baidu.com/s/1jGSfF1s" target="_blank" class="btn btn-default">dll下载</a>
             </div>
         </div>
     </div>
@@ -35,7 +36,7 @@
             </div>
             <div class="panel-body">
                 <p>上手简单，0门槛，所有准备工作基本都可以自动完成。极速提升开发效率，从此跟XX说拜拜。</p>
-                <a href="http://phalconphp.org/topics/24" target="_blank" class="btn btn-default">了解更多</a>
+                <a href="http://forum.bullsoft.org/topics/24" target="_blank" class="btn btn-default">了解更多</a>
             </div>
         </div>
     </div>

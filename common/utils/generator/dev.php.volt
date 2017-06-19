@@ -3,7 +3,7 @@ return array(
         "name"  => "{{module}}",
         "ns"    => "{{rootNs}}\\{{mode}}\\",
         "mode"  => "{{mode}}",
-        "staticUri" => "/",
+        "staticUrl" => "/",
         "url" => "http//server.localhost.com/",
         "logFilePath" => "/tmp/{{rootNs}}_{{module}}.log",
     ),

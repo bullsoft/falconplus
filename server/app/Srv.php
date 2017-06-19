@@ -13,10 +13,17 @@ class Srv extends PlusModule
         $loader->registerNamespaces(array(
             __NAMESPACE__.'\\Services' => __DIR__.'/services/',
             __NAMESPACE__.'\\Models'   => __DIR__.'/models/',
-            "Common\\Protos"             => APP_ROOT_COMMON_DIR.'/protos/',
+            __NAMESPACE__."\\Plugins"  => __DIR__.'/plugins/',
+            __NAMESPACE__."\\Daos"     => __DIR__.'/daos/',
+            "Common\\Protos"           => APP_ROOT_COMMON_DIR.'/protos/',
+            "Zend"                     => APP_ROOT_COMMON_DIR.'/vendor/Zend/',
+            "BullSoft"                 => APP_ROOT_COMMON_DIR . "/vendor/BullSoft/"
         ))->register();
+
+        // load composer library
+        require_once APP_ROOT_COMMON_DIR . "/vendor/vendor/autoload.php";
     }
-    
+
     public function registerServices()
     {
         // get di
@@ -25,15 +32,78 @@ class Srv extends PlusModule
         $bootstrap = $di->get('bootstrap');
         // get config
         $config = $di->get('config');
-        
+
+        $di->setShared("profiler", function(){
+            $profiler = new \Phalcon\Db\Profiler();
+            return $profiler;
+        });
+
         // register db service 
         $di->setShared('dbDemo', function() use ($di) {
             $mysql = new \PhalconPlus\Db\Mysql($di, "dbDemo");
-            return $mysql->getConnection();
+            $db = $mysql->getConnection();
+            $profiler = $di->get("profiler");
+            $logger = $di->get("logger");
+            $evtManager = $di->getShared("eventsManager");
+            $evtManager->attach('db', function ($event, $connection) use ($profiler) {
+                if ($event->getType() == 'beforeQuery') {
+                    $sql = getRealSql($connection); // function getRealSql() is defined in common/load/default.php
+                    $profiler->startProfile($sql);
+                }
+                if ($event->getType() == 'afterQuery') {
+                    $profiler->stopProfile();
+                }
+            });
+            // Assign the eventsManager to the db adapter instance
+            $db->setEventsManager($evtManager);
+            return $db;
         });
 
-        $di->set("requestCheck", function($serivce, $method, $request) use ($di, $config) {
-            error_log("Request Check: " . $serivce . ":" . $method . "::::" . var_export($request, true));
+        // register db service
+        $di->setShared('dbDemo_r', function() use ($di) {
+            $mysql = new \PhalconPlus\Db\Mysql($di, "dbDemo");
+            $db = $mysql->getConnection();
+            $profiler = $di->get("profiler");
+            $logger = $di->get("logger");
+            $evtManager = $di->getShared("eventsManager");
+            $evtManager->attach('db', function ($event, $connection) use ($profiler) {
+                if ($event->getType() == 'beforeQuery') {
+                    $sql = getRealSql($connection); // function getRealSql() is defined in common/load/default.php
+                    $profiler->startProfile($sql);
+                }
+                if ($event->getType() == 'afterQuery') {
+                    $profiler->stopProfile();
+                }
+            });
+            // Assign the eventsManager to the db adapter instance
+            $db->setEventsManager($evtManager);
+            return $db;
+        });
+
+        $di->setShared("acl", function() use ($di) {
+            $optons = [
+                'db' => $di->get('dbDemo'),
+                'roles'             => 'acl_roles',
+                'rolesInherits'     => 'acl_roles_inherits',
+                'resources'         => 'acl_resources',
+                'resourcesAccesses' => 'acl_resources_accesses',
+                'accessList'        => 'acl_access_list'
+            ];
+            $acl = new \Phalcon\Acl\Adapter\Database($optons);
+            $acl->setDefaultAction(\Phalcon\Acl::DENY);
+            return $acl;
+        });
+
+        $di->set("serviceListener", function() use ($di) {
+            $evtManager = $di->getShared("eventsManager");
+            $rpcListener = new \Demo\Server\Plugins\RpcListener($this->di, $evtManager);
+            $evtManager->attach("backend-server", $rpcListener);
+        });
+
+        $di->setShared("redis", function(){
+            $redis = new \Redis();
+            $redis->connect('127.0.0.1', 32768);
+            return $redis;
         });
 
         $di->setShared("logger", function() use ($di, $config){
@@ -43,7 +113,6 @@ class Srv extends PlusModule
             $formatter = new \PhalconPlus\Logger\Formatter\LinePlus("[%date%][%trace%][%uid%][%type%] %message%");
             $formatter->addProcessor("uid", new UidProcessor(18));
             $formatter->addProcessor("trace", new TraceProcessor(TraceProcessor::T_CLASS));
-            
             $logger->setFormatter($formatter);
             return $logger;
         });

@@ -1,0 +1,28 @@
+#production
+deployment:
+  user: work 
+  from: ./
+  to: /home/work/deployment/falconplus/
+  excludes:
+releases:
+  enabled: true
+  max: 10
+  symlink: current
+  directory: releases
+hosts:
+  #- 115.28.223.103
+  #- 115.28.13.165
+  103.29.71.162:
+    deployment:
+      excludes:
+        - shop/*
+        - demo/*
+        - bullsoft/*
+  
+tasks:
+  pre-deploy:
+    - composer/install
+  on-deploy:
+  post-release:
+    - php-env: {excludes: [139.162.53.205]}
+  post-deploy:

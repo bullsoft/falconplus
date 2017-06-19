@@ -1,30 +1,37 @@
 <?php
-return array(
-    "view" => array(
+$host = $_SERVER["HTTP_HOST"];
+$schema = "http";
+if(strpos($host, "bullsoft.org") !== false) {
+    $schema = "https";
+}
+$url = $schema . "://" . $host . "/";
+
+return [
+    "view" => [
         "compiledPath"      => "/tmp/compiled/",
         "compiledExtension" => ".compiled",
-    ),
-    'application' => array(
+    ],
+    'application' => [
         "name"  => "demo-web",
         "ns"    => "Demo\Web\\",
         "mode"  => "Web",
-        "staticUri" => "/",
-        "url" => "http//demo.phalconphp.org/",
+        "staticUrl" => "https://bullsoft-static.oss-cn-beijing.aliyuncs.com/",
+        "url" => $url,
         "logFilePath" => "/tmp/demo_phalconplus.log",
-    ),
-    'dbDemo' => array(
-        "host" => "127.0.0.1",
-        "port" => 3306,
-        "username" => "root",
-        "password" => "",
-        "dbname" => "p2p",
-        "charset" => "utf8",
-        "timeout" => 3, // 3 秒
-    ),
-    'demoServerUrl' => array(
-        "http://server.phalconphp.org",
-        "http://server.phalconphp.org",
-        "http://server.phalconphp.org",
-    ),
+    ],
+    'redis' => [
+        'host' => "10.161.41.106",
+        'port' => 3306,
+        'auth' => getenv("PHP_REDIS_AUTH"),
+    ],
+    'redis_r' => [
+        'host' => ["10.161.41.106", "10.144.14.81"],
+        'port' => 3306,
+        'auth' => getenv("PHP_REDIS_AUTH"),
+    ],
+    'demoServerUrl' => [
+        "http://10.144.14.81:8003",
+        "http://10.161.41.106:8003",
+    ],
     'debugRPC' => false,
-);
+];

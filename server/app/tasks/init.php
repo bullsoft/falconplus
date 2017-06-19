@@ -22,4 +22,6 @@ foreach($argv as $k => $arg) {
         $arguments['params'][] = $arg;
     }
 }
+
 $bootstrap->execTask($arguments, $di);
+

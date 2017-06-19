@@ -16,7 +16,7 @@ class Module extends PlusModule
             "Zend" => APP_ROOT_COMMON_DIR . "/vendor/Zend/",
         ))->register();
     }
-    
+
     public function registerServices()
     {
         // get di
@@ -38,6 +38,13 @@ class Module extends PlusModule
                             'action'     => 'show404'
                         ));
                         return false;
+                default:
+                    $dispatcher->forward(array(
+                        'controller' => 'error',
+                        'action'     => 'showUnknown',
+                        "params"     => [$exception],
+                    ));
+                    return false;
                 }
             });
             $dispatcher = new \Phalcon\Mvc\Dispatcher();
@@ -45,7 +52,7 @@ class Module extends PlusModule
             $dispatcher->setDefaultNamespace(__NAMESPACE__."\\Controllers\\");
             $dispatcher->setDefaultAction("index");
             return $dispatcher;
-        });   
+        });
 
         $di->set("rpc", function() use ($di, $config, $bootstrap) {
             $client = null;
@@ -59,7 +66,7 @@ class Module extends PlusModule
             }
             return $client;
         });
-        
+
         // set view with volt
         $di->set('view', function() use ($di) {
             $view = new \Phalcon\Mvc\View();
@@ -70,6 +77,8 @@ class Module extends PlusModule
                     $volt->setOptions(array(
                         "compiledPath"      => $di->get('config')->view->compiledPath,
                         "compiledExtension" => $di->get('config')->view->compiledExtension,
+                        // in dev only
+                        "compileAlways"     => true,
                     ));
                     // 如果模板缓存目录不存在，则创建它
                     if(!file_exists($di->get('config')->view->compiledPath)) {
