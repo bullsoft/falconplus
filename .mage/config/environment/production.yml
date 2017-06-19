@@ -12,12 +12,13 @@ releases:
 hosts:
   #- 115.28.223.103
   #- 115.28.13.165
-  139.162.53.205:
-    releases:
+  103.29.71.162:
+    deployment:
       excludes:
-        - demo/*
         - shop/*
+        - demo/*
         - bullsoft/*
+  
 tasks:
   pre-deploy:
     - composer/install

@@ -16,7 +16,7 @@
             <a href="{{ url('blog/post/') }}{{blog['slug']}}">{{blog["title"]}}</a>
         </h2>
         <p class="lead">
-            by <a href="index.php">Phalcon+ Team</a>
+            by <a href="#">Phalcon+ Team</a>
         </p>
         <p><span class="glyphicon glyphicon-time"></span> Posted on {{date("Y-m-d H:i:s", blog["ctime"])}}</p>
         <hr>

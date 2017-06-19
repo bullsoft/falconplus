@@ -31,14 +31,14 @@ class TestTask extends \Phalcon\CLI\Task
         $dr = DRModel::findFirst(8);
         $dr->ctime = "2015-10-24 17:25:00";
         $work->save("drtime", $dr);
-        
+
         $kv = new KvModel();
         $kv->key = "foo2";
         $kv->val = "bar2";
         $work->save("testKV", $kv);
-        
+
         $work->exec();
-        
+
         $profiles = $this->di->get("profiler")->getProfiles();
         foreach ($profiles as $profile) {
             echo "SQL Statement: ", $profile->getSQLStatement(), "\n";

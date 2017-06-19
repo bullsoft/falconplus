@@ -53,4 +53,13 @@ $di->setShared('router', function () use ($config) {
     return $router;
 });
 
+$di->set("url", function() use ($di){
+    $url = new \Phalcon\Mvc\Url();
+    // Dynamic URIs are
+    $url->setBaseUri($di->getConfig()->application->url);
+    // Static resources go through a CDN
+    $url->setStaticBaseUri($di->getConfig()->application->staticUrl);
+    return $url;
+});
+
 /* default-web.php ends here */

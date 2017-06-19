@@ -196,7 +196,7 @@ class ModelTask extends \Phalcon\CLI\Task
         $ret = array();
         foreach ($columns as $item) {
             if($item['Type'] == 'timestamp' && $item['Default'] == 'CURRENT_TIMESTAMP') {
-                $item['Default'] = '0000-00-00 00:00:00';
+                $item['Default'] = null;
             }
             $ret[$item['Field']] = $item['Default'];
         }

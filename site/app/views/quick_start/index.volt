@@ -1,8 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">
-            Phalcon+ 快速开始
-        </h1>
+        <h1 class="page-header">Phalcon+ 快速开始</h1>
     </div>
 
     <div class="row">
@@ -12,7 +10,7 @@
                 <a href="#dependency" class="list-group-item active">依赖安装</a>
                 <a href="#install" class="list-group-item">Phalcon+安装</a>
                 <a href="#project" class="list-group-item">构建项目</a>
-                <a href="#config" class="list-group-item">nginx配置</a>
+                <a href="#config" class="list-group-item">Nginx配置</a>
             </div>
         </div>
         <!-- Content Column -->
@@ -21,109 +19,99 @@
             <p>
                 <ul>
                     <li><a href="http://phalconphp.com/en/download" target="_blank">Phalcon - a php framework which made with c/zephir</a></li>
-                    <li><a href="https://github.com/laruence/yar" target="_blank">Yar - yet another rpc</a></li>
+                    <li><a href="https://github.com/laruence/yar" target="_blank">Yar - Yet another rpc</a></li>
+                    <li><a href="https://getcomposer.org/" target="_blank">Composer - Dependency Manager for PHP</a></li>
                 </ul>
             </p>
 
             <hr />
-
+            <p>别得意，安装完依赖之后咱们还得继续 ...</p>
             <h2 id="install">Phalcon+ 安装</h2>
             <p>
-                <pre>
+             <pre>
                 <code>
-git clone https://github.com/bullsoft/phalconplus.git
-cd phalconplus/ext/
-/usr/bin/phpize
-./configure --with-php-config=/usr/bin/php-configure
-make
-make install
+➜ git clone https://github.com/bullsoft/phalconplus.git
+➜ cd phalconplus/ext/
+➜ /usr/bin/phpize
+➜ ./configure --with-php-config=/usr/bin/php-configure
+➜ make
+➜ make install
                 </code>
-                </pre>
+             </pre>
 
-            然后check一下是否已经安装好了?
+            然后check一下扩展是否已经安装好了?
             <pre>
                 <code>
-➜ git:(master) php -m | grep phalconplus
+➜ php -m | grep phalconplus
 phalconplus
                 </code>
             </pre>
+
+            ... 完美！
             </p>
 
             <h2 id="project">构建项目</h2>
-
-            <p>首先为你的项目新建一个干净的目录，这里假设目录名是demo
+            <p>我们使用PHP包依赖管理工具Composer来构建项目：</p>
+            <p>
                 <pre>
                   <code class="shell">
-mkdir demo
-cd demo
-git clone https://github.com/bullsoft/falconplus-common.git common
+➜ composer create-project bullsoft/fp-project fp-app
                     </code>
                 </pre>
             </p>
 
             <p>
-                然后生成项目结构
+                然后看一下我们可以做什么？
                 <pre>
                     <code>
-cd common/utils/
-
-➜ git:(master) php generator.php
-用法：php generator.php namespace(根命名空间) module(模块名称) mode(运行模式)
-
-运行模式可选值为:
- - Web: 常用于API和Frontend
- - Cli: 常用于任务
- - Srv: 常用于服务
-
-
-➜ git:(master) php generator.php Test test Web
-正在为你生成 Phalcon+ 模块, 根命名空间: Test, 模块名: test, 运行模式：Web ...
-Finish.⏎                
+➜ cd fp-app
+➜ ./common/bin/fp-devtool
+------- 华丽丽分割 -------
+<img src="http://bullsoft-static.oss-cn-beijing.aliyuncs.com/plus/image/fp-devtool-help.png" width="100%" />
                     </code>
                 </pre>
             </p>
+            <p>
+              现在我们来创建模块，输入以下命令后根据引导完成即可。
+              <pre>
+                <code>
+ ➜ ./common/bin/fp-devtool module create
+                </code>
+              </pre>
+            </p>
 
             <p>
-
-            这时候你应该能看到test目录的结构了
+            查看模块：
             <pre>
                 <code>
-➜ git:(master) cd ../../test
-
-➜ tree
-.
-├── app
-│   ├── Module.php
-│   ├── config
-│   │   └── dev.php
-│   ├── controllers
-│   │   ├── ErrorController.php
-│   │   └── IndexController.php
-│   └── views
-│       └── index
-└── public
-    └── index.php
+➜ ./common/bin/fp-devtool module list
+------- 华丽丽分割 -------
+<img src="http://bullsoft-static.oss-cn-beijing.aliyuncs.com/plus/image/fp-devtool-module_list.png" width="100%" />
                 </code>
             </pre>
-            注意: config/dev.php 是该模块的默认配置文件, 你可以在php.ini中更改默认选项, 如线上环境我们一般配成:
+            </p>
+
+            <p>
+              运行该模块：
             <pre>
                 <code>
-phalconplus.env=production
+➜ ./common/bin/fp-devtool server start api
                 </code>
             </pre>
-            然后你需要新增config/production.php配置文件.
+            浏览器查看效果：
+            <img src="http://bullsoft-static.oss-cn-beijing.aliyuncs.com/plus/image/localhost_8000.png" width="100%" style="border: 1px solid black" />
             </p>
 
             <hr />
 
-<h2 id="config">nginx配置</h2>
+<h2 id="config">Nginx配置</h2>
 
 <p>
-好了, 我们开始配置nginx吧，先看看咱们的项目在哪个目录下：
+当然，PHP内置的http服务非常不完善，我们还是需要配置nginx，先看看咱们的项目在哪个目录下：
     <pre>
         <code>
 ➜ pwd
-/Users/guweigang/github/bullsoft/demo/test
+/Users/guweigang/github/bullsoft/fp-app/api
         </code>
     </pre>
 
@@ -140,7 +128,7 @@ server {
 
       index index.php index.html index.htm;
 
-      set $root_path '/Users/guweigang/github/bullsoft/demo/test/public';
+      set $root_path '/Users/guweigang/github/bullsoft/fp-app/api/public';
 
       root $root_path;
 
@@ -184,7 +172,7 @@ server {
 
 现在你就可以在浏览器地址栏自信地敲下：<a href="http://demo.phalconplus.com" target="_blank">http://demo.phalconplus.com</a>，然后映入眼帘的绝对是：
 
-            <h3>It works.</h3>
+            <center><h3>It works.</h3></center>
 </p>
 
         </div>

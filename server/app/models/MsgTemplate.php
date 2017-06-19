@@ -8,7 +8,7 @@ namespace Demo\Server\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Server\Models
- * @version $Rev:2016-05-25 14:36:39$
+ * @version $Rev:2016-08-09 11:43:01$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class MsgTemplate extends \PhalconPlus\Base\Model

@@ -5,7 +5,7 @@ return array(
         "ns"    => "Plus\\Web\\",
         "mode"  => "Web",
         "staticUri" => "/",
-        "url" => "http//server.localhost.com/",
+        "url" => "http://localhost:8081/",
         "logFilePath" => "/tmp/Plus_site.log",
     ),
     "view" => array(
@@ -13,7 +13,7 @@ return array(
         "compiledExtension" => ".compiled",
     ),
     'db' => array(
-        "host" => "127.0.0.1",        
+        "host" => "127.0.0.1",
         "port" => 3306,
         "username" => "root",
         "password" => "",

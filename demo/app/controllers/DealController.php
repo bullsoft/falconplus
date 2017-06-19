@@ -8,7 +8,6 @@
 
 namespace Demo\Web\Controllers;
 
-
 class DealController extends BaseController
 {
     public function webPlaceSuccessAction()

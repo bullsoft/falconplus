@@ -12,8 +12,10 @@ class Module extends PlusModule
         $loader->registerNamespaces(array(
             __NAMESPACE__.'\\Controllers' => __DIR__.'/controllers/',
             __NAMESPACE__.'\\Models'      => __DIR__.'/models/',
-            "Common\\Protos"             => APP_ROOT_COMMON_DIR.'/protos/',
-            "Zend" => APP_ROOT_COMMON_DIR . "/vendor/Zend/",
+            __NAMESPACE__.'\\Controllers\\Apis' => __DIR__.'/controllers/apis/',
+            "Common\\Protos"              => APP_ROOT_COMMON_DIR.'/protos/',
+            "Zend"                        => APP_ROOT_COMMON_DIR . "/vendor/Zend/",
+            "BullSoft"                    => APP_ROOT_COMMON_DIR . "/vendor/BullSoft/",
         ))->register();
 
         // load composer library
@@ -32,10 +34,28 @@ class Module extends PlusModule
         // get config
         $config = $di->get('config');
 
+        $router = $di->getShared("router");
+        if($router instanceof \Phalcon\Mvc\Router) {
+            $router->add('/apis/:controller/([a-zA-Z0-9_\-]+)/:params', array(
+                'controller' => 1,
+                'action'     => 2,
+                'params'     => 3,
+                'namespace'  => __NAMESPACE__ . "\\Controllers\\Apis",
+            ))->convert('action', function ($action) {
+                // transform action from foo-bar -> foo_bar
+                $a = str_replace('-', '_', $action);
+                // transform action from foo_bar -> fooBar
+                return lcfirst(\Phalcon\Text::camelize($a));
+            });
+        }
+
         // register a dispatcher
         $di->has("dispatched") || $di->set('dispatcher', function () use ($di) {
             $evtManager = $di->getShared('eventsManager');
             $evtManager->attach("dispatch:beforeException", function ($event, $dispatcher, $exception) {
+                if(rtrim($dispatcher->getNamespaceName(), "\\") == __NAMESPACE__ ."\\Controllers\\Apis") {
+                    throw $exception;
+                }
                 switch ($exception->getCode()) {
                     case \Phalcon\Mvc\Dispatcher::EXCEPTION_HANDLER_NOT_FOUND:
                     case \Phalcon\Mvc\Dispatcher::EXCEPTION_ACTION_NOT_FOUND:
@@ -44,13 +64,20 @@ class Module extends PlusModule
                             'action'     => 'show404'
                         ));
                         return false;
+                    default:
+                        $dispatcher->forward(array(
+                            'controller' => 'error',
+                            'action'     => 'showUnknown',
+                            "params"     => [$exception],
+                        ));
+                        return false;
                 }
             });
             $dispatcher = new \Phalcon\Mvc\Dispatcher();
             $dispatcher->setEventsManager($evtManager);
             $dispatcher->setDefaultNamespace(__NAMESPACE__."\\Controllers\\");
             return $dispatcher;
-        });   
+        });
 
         $di->set("rpc", function() use ($di, $config, $bootstrap) {
             $client = null;
@@ -64,7 +91,7 @@ class Module extends PlusModule
             }
             return $client;
         });
-        
+
         // set view with volt
         $di->set('view', function() use ($di) {
             $view = new \Phalcon\Mvc\View();
@@ -91,12 +118,12 @@ class Module extends PlusModule
         $di->setShared("logger", function() use ($di, $config){
             $logger = new \PhalconPlus\Logger\Adapter\FilePlus($config->application->logFilePath);
             $logger->registerExtension(".de", [\Phalcon\Logger::DEBUG]);
-            
+
             // 添加formatter
             $formatter = new \PhalconPlus\Logger\Formatter\LinePlus("[%date%][%trace%][%uid%][%type%] %message%");
             $formatter->addProcessor("uid", new UidProcessor(18));
             $formatter->addProcessor("trace", new TraceProcessor(TraceProcessor::T_CLASS));
-            
+
             $logger->setFormatter($formatter);
             return $logger;
         });

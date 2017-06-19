@@ -20,4 +20,12 @@ class Test2Task extends \Phalcon\CLI\Task
         }
         var_dump(UserPayinfo::findFirst(1)->toArray());
     }
+
+    public function tAction()
+    {
+        $this->acl->addRole(new Phalcon\Acl\Role('Admins'));
+        $this->acl->addResource('Products', ['insert', 'update', 'delete']);
+        var_dump($this->acl->allow('Admins', 'Products', 'insert'));
+        var_dump($this->acl->isAllowed('Admins', 'Products', 'update'));
+    }
 }

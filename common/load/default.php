@@ -6,9 +6,10 @@ use Phalcon\Mvc\Model\Transaction\Manager as TransactionManager;
 
 mb_internal_encoding("UTF-8");
 
+require_once($rootPath . "vendor/autoload.php");
+
 // register global class-dirs, class-namespace and class-prefix
 // $loader->registerDirs(array())->register();
-
 $loader->registerNamespaces($config->namespace->toArray())->register();
 
 // class autoloader

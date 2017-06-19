@@ -15,9 +15,6 @@ class Module extends PlusModule
             __NAMESPACE__.'\\Models'      => __DIR__.'/models/',
             "Zend" => APP_ROOT_COMMON_DIR . "/vendor/Zend/",
         ))->register();
-
-        // load composer library
-        require_once APP_ROOT_COMMON_DIR . "/vendor/vendor/autoload.php";
     }
 
     public function registerServices()

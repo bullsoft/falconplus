@@ -50,12 +50,6 @@ class Module extends PlusModule
             "BullSoft"                          => APP_ROOT_COMMON_DIR . "/vendor/BullSoft/",
             __NAMESPACE__.'\\Controllers\\Apis' => __DIR__.'/controllers/apis/',
         ))->register();
-
-        // load composer library
-        $composer = APP_ROOT_COMMON_DIR . "/vendor/vendor/autoload.php";
-        if(file_exists($composer)) {
-            require_once $composer;
-        }
     }
 
     public function registerServices()
@@ -193,7 +187,7 @@ class Module extends PlusModule
                     }
                     $compiler = $volt->getCompiler();
                     $ext = new \PhalconPlus\Volt\Extension\PhpFunction();
-                    $ext->setCustNamespace('\Demo\Web\Plugins\\');
+                    $ext->setCustNamespace(__NAMESPACE__.'\Plugins\\');
                     $compiler->addExtension($ext);
                     return $volt;
                 }

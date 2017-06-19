@@ -15,7 +15,11 @@ class PhpEnv extends AbstractCommand implements RequiresEnvironment
         $tasks = $this->getConfig()->getTasks(AbstractTask::STAGE_POST_RELEASE);
         $hosts = $this->getConfig()->getHosts();
         foreach($hosts as $hostKey => $host) {
-            $this->getConfig()->setHost($host);
+            if(false === filter_var($host, FILTER_VALIDATE_IP)) {
+                $this->getConfig()->setHost($hostKey);
+            } else {
+                $this->getConfig()->setHost($host);
+            }
             foreach($tasks as $taskData) {
                 $task = Factory::get($taskData, $this->getConfig(), false, AbstractTask::STAGE_POST_RELEASE);
                 if($task->getName() == "Task\\PhpEnv") {

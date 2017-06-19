@@ -80,6 +80,20 @@ class Srv extends PlusModule
             return $db;
         });
 
+        $di->setShared("acl", function() use ($di) {
+            $optons = [
+                'db' => $di->get('dbDemo'),
+                'roles'             => 'acl_roles',
+                'rolesInherits'     => 'acl_roles_inherits',
+                'resources'         => 'acl_resources',
+                'resourcesAccesses' => 'acl_resources_accesses',
+                'accessList'        => 'acl_access_list'
+            ];
+            $acl = new \Phalcon\Acl\Adapter\Database($optons);
+            $acl->setDefaultAction(\Phalcon\Acl::DENY);
+            return $acl;
+        });
+
         $di->set("serviceListener", function() use ($di) {
             $evtManager = $di->getShared("eventsManager");
             $rpcListener = new \Demo\Server\Plugins\RpcListener($this->di, $evtManager);

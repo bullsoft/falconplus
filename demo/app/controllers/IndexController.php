@@ -17,7 +17,7 @@ class IndexController extends BaseController
     public function batchAction()
     {
     }
-    
+
     /**
      * Query Builder查询示例
      */
@@ -31,7 +31,7 @@ class IndexController extends BaseController
            ->limit(1)
            ->getQuery()
            ->execute();
-        
+
         $profiles = $this->profiler->getProfiles();
 
         foreach ($profiles as $profile) {
@@ -65,7 +65,7 @@ class IndexController extends BaseController
             "method" => "demo",
             "args"   => $request,
         ));
-        
+
         echo json_encode($response);
     }
 
@@ -96,7 +96,7 @@ class IndexController extends BaseController
         $pagable = new \PhalconPlus\Base\Pagable();
         $pagable->setPageSize(10);
         $pagable->setPageNo(2);
-        
+
         $orderBy1 = new \PhalconPlus\Base\ProtoOrderBy();
         $orderBy1->setProperty("foo");
         $orderBy1->setDirection(new \PhalconPlus\Enum\OrderByDirection("ASC"));
@@ -124,7 +124,7 @@ class IndexController extends BaseController
         $orderBy1->setProperty("investorId");
         $orderBy1->setDirection(new \PhalconPlus\Enum\OrderByDirection("DESC"));
         $pagable->setOrderBy($orderBy1);
-        
+
         $orderBy2 = new \PhalconPlus\Base\ProtoOrderBy();
         $orderBy2->setProperty("id");
         $orderBy2->setDirection(new \PhalconPlus\Enum\OrderByDirection("ASC"));
@@ -135,7 +135,7 @@ class IndexController extends BaseController
             "bind" => ["id" => 1],
             "columns" => "id, dealId, investorId"
         ]);
-        
+
         $profiles = $this->profiler->getProfiles();
         foreach ($profiles as $profile) {
             echo "SQL Statement: ", $profile->getSQLStatement(), "<br />";
@@ -158,7 +158,7 @@ class IndexController extends BaseController
             echo $e->getMessage();
             echo "<br />";
         }
-        
+
         // 0, 1, 2, 3, 4 才是合法的枚举值
         try {
             $a = new \Common\Protos\EnumUserStatus($userStatus);
@@ -260,6 +260,12 @@ class IndexController extends BaseController
         }
         $data = $content['r'];          //Return
         var_dump($content);
+        exit;
+    }
+
+    public function abAction()
+    {
+        var_dump(new \Phalcon\Acl\Adapter\Database([]));
         exit;
     }
 }

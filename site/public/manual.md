@@ -25,47 +25,40 @@ So, 总结来说，`Phalcon+`并不是一个全新的框架，而是对Phalcon�
  - 所有模块目录结构都是同构的
  - 模块是有工作模式的，如：Web, Server, Task等...，不同模式的模块角色不一样
  - 无论哪种模式，入口文件都完全一样
- - RPC使用鸟哥的Yar组件
+ - Buit-in RPC，使用中国PHP第一人鸟哥的Yar组件
  - 所有模块都依赖全局的common目录
 
 ## 3. 目录介绍 ##
 
-### 3.1 Common目录介绍 ###
-common目录的存在，能帮你省去很多的重复工作量，且看下面：
+### 3.1 Common模块介绍 ###
+common模块能帮你省去很多重复的工作量，且看下面：
 
 ```
-$ tree -L 2
+➜  common git:(master) ✗ tree -L 2
 .
-├── config                      全局配置
-│   └── config.php              全局配置文件
-├── load
-│   ├── default-cli.php         TASK模式下需要默认加载的服务
-│   ├── default-micro.php       MICRO模式下需要默认加载的服务
-│   ├── default.php             所有模式都需要加载的服务
-│   └── default-web.php         WEB模式下需要加载的服务
-├── protos                      跨模块的接口参数定义 以及 跨模块的异常定义
-│   ├── EnumExceptionCode.php   异常码定义  
-│   ├── EnumLoggerLevel.php     异常日志级别定义
-│   ├── Exception               
-│   ├── ProtoBase.php
-│   ├── ProtoLoginInfo.php
-├── utils                       工具文件夹
-│   ├── exception.php           生成异常类的文件夹
-│   ├── generator               生成模块的文件模板
-│   ├── generator.php           生成模块的脚本
-│   ├── init.php                tasks目录下的任务引导文件
-│   ├── README.md               --
-│   └── tasks                   与模块相关的全局TASK
-└── vendor                      第三方库
-    ├── BullSoft                布尔软件经年累月积累的PHP库
-    ├── composer.json           Composer依赖描述文件
-    ├── vendor                  Composer库安装路径
-    └── Zend                    著名的Zend公司开发的PHP库
+├── README.md
+├── app                              应用目录
+│   ├── Task.php                     模块引导文件
+│   ├── config                       配置文件目录
+│   ├── tasks                        任务控制器目录
+│   └── templates                    代码模块目录
+├── bin
+│   └── fp-devtool                   开发工具-可执行文件
+├── composer.json
+├── config                           全局配置文件目录
+│   └── config.php
+├── load                             全局加载目录
+│   ├── default-cli.php                - for task
+│   ├── default-micro.php              - for micro
+│   ├── default-web.php                - for web
+│   └── default.php                    - for all
+└── vendor                           第三方库
+    └── BullSoft
 ```
 
-`common`目录如此重要，以至于在`快速开始`中，第一件做的跟代码相关的事情就是把`falcon-common`克隆到本地。
+`common`其实是一个标准的`Phalcon+ CLI 模块`，承担了整个项目的构建工作。
 
-`Phalcon+`鼓励大家使用`common/utils`中的工具，如：生成一个模块，已知模块的三要素为：
+`Phalcon+`鼓励大家使用`common`中的工具，如：生成一个模块，已知模块的三要素为：
 
  - 模块名(即模块目录名)：test
  - 模块根命名空间：Test
@@ -73,10 +66,9 @@ $ tree -L 2
 
 使用的工具如下：
 ```shell
-➜ common/utils$ php generator.php Test test Web
-正在为你生成 Phalcon+ 模块, 根命名空间: Test, 模块名: test, 运行模式：Web ...
-Finish.⏎      
+➜ $ ./common/bin/fp-devtool module create
 ```
+按照引导完成即可。
 
 ### 3.2 模块目录介绍 ###
 

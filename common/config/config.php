@@ -15,7 +15,7 @@ return array(
     ),
 
     'namespace' => array(
-        'Assert'           => $rootPath.'/vendor/assert/lib/Assert/',
+        'BullSoft'  => $rootPath.'/common/vendor/BullSoft/',
     ),
 );
 

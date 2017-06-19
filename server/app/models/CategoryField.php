@@ -8,7 +8,7 @@ namespace Demo\Server\Models;
  * 此文件由代码自动生成，代码依赖PhalconPlus和Zend\Code\Generator
  *
  * @namespace Demo\Server\Models
- * @version $Rev:2016-05-25 14:36:39$
+ * @version $Rev:2016-08-09 11:43:01$
  * @license PhalconPlus(http://plus.phalconphp.org/license-1.0.html)
  */
 class CategoryField extends \PhalconPlus\Base\Model
@@ -90,13 +90,13 @@ class CategoryField extends \PhalconPlus\Base\Model
      * @var unknown
      * @table category_field
      */
-    public $ctime = '0000-00-00 00:00:00';
+    public $ctime = null;
 
     /**
      * @var unknown
      * @table category_field
      */
-    public $mtime = '0000-00-00 00:00:00';
+    public $mtime = null;
 
     public function initialize()
     {
@@ -122,8 +122,8 @@ class CategoryField extends \PhalconPlus\Base\Model
         $this->isRequired = NULL;
         $this->isShow = NULL;
         $this->displayOrder = NULL;
-        $this->ctime = '0000-00-00 00:00:00';
-        $this->mtime = '0000-00-00 00:00:00';
+        $this->ctime = NULL;
+        $this->mtime = NULL;
     }
 
     /**
