@@ -7,3 +7,7 @@
 .blog-row {
     margin-top: 30px;
 }
+
+.row img {
+    width: 100%
+}
