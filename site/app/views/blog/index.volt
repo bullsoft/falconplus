@@ -15,10 +15,17 @@
         <h2>
             <a href="{{ url('blog/post/') }}{{blog['slug']}}">{{blog["title"]}}</a>
         </h2>
+        <p>
+          {% for tag in blog["tags"] %}
+          <span class="label label-info">{{tag}}</span>
+          {% endfor %}
+        </p>
         <p class="lead">
             by <a href="#">Phalcon+ Team</a>
         </p>
+
         <p><span class="glyphicon glyphicon-time"></span> Posted on {{date("Y-m-d H:i:s", blog["ctime"])}}</p>
+        
         <hr>
         <!--
              <img class="img-responsive" src="http://placehold.it/900x300" alt="">
@@ -53,21 +60,23 @@
         <!-- Blog Search Well -->
         <div class="well">
             <h4>Blog Search</h4>
+            <form type="GET" action="{{url('blog/search')}}" >
             <div class="input-group">
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" required="required" name="query" >
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
+                            <button class="btn btn-default" type="submit">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
                         </span>
             </div>
+            </form>
             <!-- /.input-group -->
         </div>
 
         <!-- Side Widget Well -->
         <div class="well">
             <h4>编程珠玑</h4>
-            <p>...</p>
+            <p>{{saying}}</p>
         </div>
 
     </div>

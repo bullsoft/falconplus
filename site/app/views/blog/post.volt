@@ -34,14 +34,16 @@
         <!-- Blog Search Well -->
         <div class="well">
             <h4>Blog Search</h4>
+            <form type="GET" action="{{url('blog/search')}}" >
             <div class="input-group">
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" required="required" name="query" >
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
+                            <button class="btn btn-default" type="submit">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
                         </span>
             </div>
+            </form>
             <!-- /.input-group -->
         </div>
 
@@ -49,7 +51,7 @@
         <div class="well">
             <h4>编程珠玑</h4>
             <p>
-                ...
+                {{saying}}
             </p>
         </div>
 
